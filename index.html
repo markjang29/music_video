@@ -10,29 +10,29 @@
   <body>
     <header class="topbar">
       <div>
-        <p class="eyebrow">Fukuoka · Beppu · Proposal Ring</p>
+        <p class="eyebrow" data-i18n="topEyebrow">후쿠오카 · 벳푸 · 프로포즈링</p>
         <h1 data-i18n="appTitle">아로하 여행 MV 촬영 콜시트</h1>
       </div>
-      <div class="top-actions" aria-label="촬영 도구">
-        <div class="language-switcher" aria-label="언어 선택">
+      <div class="top-actions" aria-label="촬영 도구" data-i18n-aria="topActionsAria">
+        <div class="language-switcher" aria-label="언어 선택" data-i18n-aria="languageAria">
           <button class="lang-button active" type="button" data-lang="ko">KO</button>
           <button class="lang-button" type="button" data-lang="en">EN</button>
           <button class="lang-button" type="button" data-lang="vi">VI</button>
         </div>
-        <button class="icon-button" id="printBtn" type="button" title="프린트">
+        <button class="icon-button" id="printBtn" type="button" title="인쇄" data-i18n-title="printTitle">
           <i data-lucide="printer"></i>
         </button>
-        <button class="icon-button" id="exportBtn" type="button" title="진행상황 내보내기">
+        <button class="icon-button" id="exportBtn" type="button" title="진행상황 내보내기" data-i18n-title="exportTitle">
           <i data-lucide="download"></i>
         </button>
-        <button class="icon-button danger" id="resetBtn" type="button" title="체크 초기화">
+        <button class="icon-button danger" id="resetBtn" type="button" title="체크 초기화" data-i18n-title="resetTitle">
           <i data-lucide="rotate-ccw"></i>
         </button>
       </div>
     </header>
 
     <main class="app-shell">
-      <aside class="sidebar" aria-label="일정 선택">
+      <aside class="sidebar" aria-label="일정 선택" data-i18n-aria="sidebarAria">
         <section class="summary-panel">
           <div>
             <span class="summary-label" data-i18n="overallProgress">전체 진행률</span>
@@ -56,7 +56,7 @@
           <div class="hero-badges" id="heroBadges"></div>
         </div>
 
-        <div class="mobile-tabs primary-tabs" role="tablist" aria-label="보기 전환">
+        <div class="mobile-tabs primary-tabs" role="tablist" aria-label="보기 전환" data-i18n-aria="tabsAria">
           <button class="tab active" type="button" data-tab="schedule">
             <i data-lucide="calendar-days"></i>
             <span data-i18n="tabSchedule">일정</span>

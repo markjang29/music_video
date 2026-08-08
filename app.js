@@ -192,6 +192,367 @@ const itinerary = [
   }
 ];
 
+const itineraryTranslations = {
+  en: {
+    "0809": {
+      title: "Arrive in Fukuoka",
+      mood: "The journey begins",
+      note:
+        "Capture the excitement and movement of the first day. Do not reveal the ring yet; open the story with hands, luggage, and your expressions at the airport.",
+      tags: ["Airport", "Hakata Station", "First meal"],
+      schedule: [
+        ["Flight", "Jeju Air 7C1472 departs at 11:10 and arrives in Fukuoka at 12:40. Booking code: UY2V7P."],
+        ["Transfer", "Take the international-terminal airport bus from stop 6 or 7. About 20 minutes to Hakata Station, JPY 310 per person."],
+        ["Hotel", "Mars Garden Hotel Hakata. Booking number 1739694152, reference code 6204188608."],
+        ["Food", "Kiwamiya Hakata Station Underground Branch, Il Forno del Mignon, and Maedaya Hakata."]
+      ],
+      shots: [
+        ["Airport arrival expressions", "Film the arrivals hall, hands on suitcase handles, and the first moment you laugh together for 5 seconds each.", "B-roll"],
+        ["First Hakata Station shot", "Connect the station sign, footsteps, and a rear view of you holding hands.", "Wide"],
+        ["First-meal reaction", "Capture Kiwamiya's hot stone, sauces, and one of you offering the other a bite.", "Close-up"],
+        ["At the hotel window", "After entering the room, open the curtain and capture the expression that says the trip has begun.", "Emotion"],
+        ["Ring hint", "Show only the silhouette of the small case inside the bag for 2 seconds. Do not reveal the ring.", "Ring"]
+      ],
+      ring: [
+        ["A hidden beginning", "Keep the ring case inside a bag or pouch and reveal only a brief hint of its texture."],
+        ["Editing point", "During the intro or first line of Aloha, quickly connect the airport, station, and hand shots."],
+        ["Caution", "While waiting at restaurants, avoid holding the camera for long. Film short hand movements instead."]
+      ]
+    },
+    "0810": {
+      title: "Hakata to Beppu",
+      mood: "A journey for two",
+      note:
+        "Today moves from the city to an onsen town. Use window views, the bus terminal, and hands resting on the seats to create the feeling of a plan known only to the two of you.",
+      tags: ["Bus", "Beppu", "Onsen hotel"],
+      schedule: [
+        ["Brunch options", "Choose Tannya Hakata, Uchinotamago, DACOMECCA, or Yoshinoya depending on timing and energy."],
+        ["Transfer", "Depart from platform 34 on 3F of Hakata Bus Terminal at 12:01 and arrive at Beppu Kitahama at 14:45. Booking number: 43080325."],
+        ["Hotel", "Beppu Hatto Onyado Nono Beppu. Booking number 1739694152, reference code 6204188608."],
+        ["Dinner", "Kintaro Sushi Beppu. Remember futomaki menu number 105."]
+      ],
+      shots: [
+        ["Waiting at the terminal", "Film the bus sign, platform number, and one of you waiting beside the luggage.", "Info"],
+        ["View from the bus", "Record faces reflected in the window and the passing scenery for at least 10 seconds.", "Emotion"],
+        ["Sunlight on your hands", "Film your hands together on the seat. Do not put the ring on yet.", "Ring"],
+        ["Arriving in Beppu", "Capture the Kitahama arrival sign and a rear view walking toward the hotel.", "Wide"],
+        ["Sushi dinner", "Briefly film the menu, plates, and hands choosing food.", "B-roll"]
+      ],
+      ring: [
+        ["Build emotion", "Show only the feeling of having something important to say. Hands and glances, not the case, are the focus."],
+        ["Filming tip", "A little bus shake can feel natural. Pick up stable shots after you arrive."],
+        ["Rain backup", "If it rains, use droplets on the bus window and hand silhouettes to create atmosphere."]
+      ]
+    },
+    "0811": {
+      title: "Beppu walks and meals",
+      mood: "Growing closer",
+      note:
+        "Use Beppu by day and evening to collect natural couple footage. The key is catching moments when your girlfriend is not conscious of the camera.",
+      tags: ["Toyotsune", "Walk", "Dinner"],
+      schedule: [
+        ["Lunch", "Toyotsune Main Branch is closed on Wednesdays and may have a long lunch queue. Arriving just after opening is recommended."],
+        ["Alternative", "At Bungo Chaya, consider dango-jiru, chicken tempura set, soba set, or yaseuma."],
+        ["Dinner", "Somuri Steak is expensive. For Robatajin, go around opening time or ask the hotel front desk about a same-day reservation."],
+        ["Plan B", "Switch to a good-value izakaya."]
+      ],
+      shots: [
+        ["Opening-time footsteps", "Film the restaurant sign, your feet in line, and a side view while reading the menu.", "On location"],
+        ["Hands on the table", "Capture chopsticks, water glasses, and the backs of your hands naturally. Rehearse the ring-finger framing.", "Ring"],
+        ["Wide Beppu street", "Hold a shot in a quiet alley or at a crosswalk for at least 7 seconds.", "Wide"],
+        ["Laughter reaction", "Right after a joke, film the smile once vertically and once horizontally.", "Emotion"],
+        ["Restaurant entrance at night", "Capture the lit sign and a rear view opening the door and walking in.", "Transition"]
+      ],
+      ring: [
+        ["Hand-framing rehearsal", "Practice hand position and focus today for the proposal-day close-up."],
+        ["Editing point", "These shots work well as a montage of the two of you growing closer before the Aloha chorus."],
+        ["Caution", "At an expensive restaurant, prioritize the meal. Capture only a few shots before entering and after leaving."]
+      ]
+    },
+    "0812": {
+      title: "Possible proposal day in Beppu",
+      mood: "The heart of the confession",
+      note:
+        "This is the most important filming day. Secure a quiet window before or after the hotel dinner and aim to capture the ring and proposal without forcing the moment.",
+      tags: ["Key day", "Ring", "Hotel dinner"],
+      schedule: [
+        ["Daytime", "Save your energy. Focus on a short walk near the hotel, hand shots, and ring-only shots."],
+        ["Dinner", "Ask the hotel whether an in-house dinner is available."],
+        ["Alternative", "Switch easily to yakitori or a nearby restaurant."],
+        ["Prepare", "Check the ring, case, small cloth, phone battery, and backup light."]
+      ],
+      shots: [
+        ["Ring-only shot", "In window light, film the case opening, the side of the ring, and the ring resting on a hand.", "Ring"],
+        ["Just before the proposal", "Capture a nervous hand in the hallway or room, the doorknob, and details of flowers or a gift.", "Emotion"],
+        ["The proposal", "Use a locked-off frame for at least 30 seconds if possible, including the spoken words.", "Required"],
+        ["Putting on the ring", "Get close to the moment it slides onto the finger, even if the camera shakes.", "Required"],
+        ["Chorus ending shot", "Hold 10 seconds of you laughing and holding hands. Focus on expressions rather than the ring.", "Ending"],
+        ["Ring insert", "Under the hotel lights, alternate 5-second shots of the sparkle, case, and hands.", "Ring"]
+      ],
+      ring: [
+        ["Main direction", "Showing the nervous pause before speaking creates more natural emotion than leading with the ring itself."],
+        ["Camera placement", "Lock one phone for the wide view and use another for hands and the ring to reduce the chance of missing the moment."],
+        ["Backup plan", "If the location is awkward, keep it short and sincere by the hotel-room window or in a quiet hallway."],
+        ["Sound", "Keep the original proposal audio. Mixing it quietly into the MV ending will make it much stronger."]
+      ]
+    },
+    "0813": {
+      title: "Return to Hakata",
+      mood: "Back to the city",
+      note:
+        "Carry the emotion built in Beppu into lively Hakata. This is the first day the ring begins to appear naturally on her hand.",
+      tags: ["JR", "Ramen", "Yakiniku"],
+      schedule: [
+        ["Transfer", "JR departs Beppu at 11:19 and arrives at Hakata Station at 13:28. Sonic 24, booking number 5572103138."],
+        ["Caution", "Exchange the booking for physical tickets in advance."],
+        ["Hotel", "S-Peria Hotel Hakata. Booking number 1739700820."],
+        ["Food", "Choose Shin-Shin Ramen, Ippudo, Ichiran, Kanetora, or Ikkousha. For dinner, choose Yakiniku Tagyu or Tonkatsu Wakaba."]
+      ],
+      shots: [
+        ["JR ticket and hand", "Film the hand holding the physical ticket. Let the ring appear naturally.", "Ring"],
+        ["Train seat", "Capture the window, the expression of returning to the city, and a finger close-up.", "Transition"],
+        ["Back at Hakata Station", "Take a short vertical shot by the station name, like the start of act two.", "Wide"],
+        ["Ramen steam", "Capture steam above the bowl, chopsticks, and a smiling reaction.", "B-roll"],
+        ["Dinner hand shot", "Let the ring appear subtly while toasting or grilling meat.", "Ring"]
+      ],
+      ring: [
+        ["Reveal transition", "From today, stop hiding the ring and let it appear naturally in everyday moments."],
+        ["Editing point", "After the proposal, use the repeated chorus to transition into a journey where the ring is now with you."],
+        ["Caution", "Strong restaurant lighting can blow out the ring, so lower exposure slightly."]
+      ]
+    },
+    "0814": {
+      title: "Last night in Hakata",
+      mood: "Our souvenirs",
+      note:
+        "Collect ending material through gifts, food, and the night streets. Focus less on spectacle and more on what remains after you return home.",
+      tags: ["Gifts", "Unagi", "Last night"],
+      schedule: [
+        ["Hotel", "S-Peria Hotel Hakata. Booking number 1739700820."],
+        ["Meal options", "Yoshizuka Unagiya, Motsunabe Rakutenchi 2nd, or Daichino Udon."],
+        ["Shopping", "Do not rely only on airport duty-free for gift sweets; buy them ahead at Hakata Station or in town."],
+        ["Transfer", "For Yoshizuka Unagiya around 17:00 on a weekday, consider taking a taxi."]
+      ],
+      shots: [
+        ["Choosing gifts", "Film sweet boxes, shopping bags, and the ringed hand.", "Ring"],
+        ["Last dinner", "Prioritize shots of you looking at each other over the food.", "Emotion"],
+        ["Walking at night", "Hold a rear view under Hakata's lights for at least 10 seconds.", "Ending"],
+        ["Back at the hotel", "Capture the elevator mirror, room key, luggage, and the ringed hand.", "Transition"],
+        ["A word of thanks", "Record a 10-second message to each other, including clean audio.", "Required"]
+      ],
+      ring: [
+        ["Ending material", "A ringed hand carrying gifts will connect smoothly to the return-home ending."],
+        ["Sound", "A short piece of real conversation will make the video feel alive, even with street noise."],
+        ["Rain backup", "If it rains, film the umbrella handle and ringed hand together."]
+      ]
+    },
+    "0815": {
+      title: "Return home",
+      mood: "Ending",
+      note:
+        "Finish with the airport and flight. Weave together the ring, hands, luggage, and boarding pass so the journey ends as one promise.",
+      tags: ["Airport", "Homebound", "Finale"],
+      schedule: [
+        ["Transfer", "From Hakata Station's Chikushi Exit, follow signs to the bus terminal. Board at stop 11, JPY 310 per person."],
+        ["Target", "Aim for the 09:30 or 09:50 bus. The latest safe target is 10:10; the next bus is 10:35."],
+        ["Flight", "Jeju Air 7C1472 departs at 13:40. Booking code: UY2V7P."],
+        ["Caution", "Lines for international check-in and security at Fukuoka Airport can be long, so arrive 2.5 to 3 hours before departure."]
+      ],
+      shots: [
+        ["Bus stop", "Film stop 11, the luggage, and a shot of you holding hands.", "Info"],
+        ["Airport check-in", "Capture the line, boarding pass, passport cover, and ringed hand.", "Ring"],
+        ["Packing the souvenirs", "Frame the shopping bags and ringed hand together.", "B-roll"],
+        ["Airplane window", "Capture clouds, hands, and reflections in the window.", "Ending"],
+        ["Final hand shot", "Overlap your hands and hold still for 8 seconds for the final line of Aloha.", "Required"]
+      ],
+      ring: [
+        ["Final image", "The ring is the focus without being shown off; present it as the promise you are carrying home together."],
+        ["Editing point", "In the final 10 seconds, leave a little of the real hand-shot audio and airport sound."],
+        ["Caution", "Airport filming restrictions may apply in secure areas. Avoid signs, checkpoints, and staff."]
+      ]
+    }
+  },
+  vi: {
+    "0809": {
+      title: "Đến Fukuoka",
+      mood: "Hành trình bắt đầu",
+      note:
+        "Hãy ghi lại sự háo hức và nhịp di chuyển của ngày đầu tiên. Chưa để lộ nhẫn; mở đầu câu chuyện bằng bàn tay, hành lý và nét mặt ở sân bay.",
+      tags: ["Sân bay", "Ga Hakata", "Bữa ăn đầu tiên"],
+      schedule: [
+        ["Chuyến bay", "Jeju Air 7C1472 khởi hành lúc 11:10, đến Fukuoka lúc 12:40. Mã đặt chỗ: UY2V7P."],
+        ["Di chuyển", "Đi xe buýt sân bay ở điểm số 6 hoặc 7 của ga quốc tế. Khoảng 20 phút đến ga Hakata, 310 yên/người."],
+        ["Khách sạn", "Mars Garden Hotel Hakata. Số đặt chỗ 1739694152, mã tham chiếu 6204188608."],
+        ["Ăn uống", "Kiwamiya chi nhánh tầng hầm ga Hakata, Il Forno del Mignon và Maedaya Hakata."]
+      ],
+      shots: [
+        ["Biểu cảm khi đến sân bay", "Quay sảnh đến, tay kéo vali và khoảnh khắc hai người cùng cười, mỗi cảnh 5 giây.", "B-roll"],
+        ["Cảnh đầu ở ga Hakata", "Nối biển tên ga, bước chân và góc quay từ sau khi hai người nắm tay.", "Toàn cảnh"],
+        ["Phản ứng với bữa ăn đầu", "Quay đá nóng của Kiwamiya, nước sốt và bàn tay mời nhau một miếng.", "Cận cảnh"],
+        ["Bên cửa sổ khách sạn", "Sau khi vào phòng, mở rèm và ghi lại nét mặt báo hiệu chuyến đi đã bắt đầu.", "Cảm xúc"],
+        ["Gợi ý về chiếc nhẫn", "Chỉ quay bóng hộp nhỏ bên trong túi trong 2 giây. Không để lộ nhẫn.", "Nhẫn"]
+      ],
+      ring: [
+        ["Khởi đầu bí mật", "Giữ hộp nhẫn trong túi hoặc túi nhỏ, chỉ để lộ thoáng qua chất liệu của hộp."],
+        ["Điểm dựng", "Ở phần dạo đầu hoặc câu đầu của Aloha, nối nhanh các cảnh sân bay, nhà ga và bàn tay."],
+        ["Lưu ý", "Khi xếp hàng ở nhà hàng, đừng cầm máy quá lâu; chỉ quay những cử động tay ngắn."]
+      ]
+    },
+    "0810": {
+      title: "Từ Hakata đến Beppu",
+      mood: "Hành trình của hai người",
+      note:
+        "Hôm nay rời thành phố để đến thị trấn onsen. Dùng cảnh ngoài cửa sổ, bến xe và bàn tay trên ghế để tạo cảm giác về một kế hoạch chỉ hai người biết.",
+      tags: ["Xe buýt", "Beppu", "Khách sạn onsen"],
+      schedule: [
+        ["Lựa chọn ăn sáng muộn", "Chọn Tannya Hakata, Uchinotamago, DACOMECCA hoặc Yoshinoya tùy thời gian và thể lực."],
+        ["Di chuyển", "12:01 lên xe tại điểm 34, tầng 3 bến xe Hakata; 14:45 đến Beppu Kitahama. Số đặt chỗ: 43080325."],
+        ["Khách sạn", "Beppu Hatto Onyado Nono Beppu. Số đặt chỗ 1739694152, mã tham chiếu 6204188608."],
+        ["Bữa tối", "Kintaro Sushi Beppu. Ghi nhớ futomaki số 105."]
+      ],
+      shots: [
+        ["Chờ ở bến xe", "Quay biển xe buýt, số điểm lên xe và cảnh chờ bên cạnh hành lý.", "Thông tin"],
+        ["Ngoài cửa sổ xe", "Quay gương mặt phản chiếu trên cửa kính và phong cảnh lướt qua ít nhất 10 giây.", "Cảm xúc"],
+        ["Nắng trên bàn tay", "Quay cảnh nắm tay trên ghế. Chưa đeo nhẫn.", "Nhẫn"],
+        ["Đến Beppu", "Quay biển đến Kitahama và góc từ sau khi đi về phía khách sạn.", "Toàn cảnh"],
+        ["Bữa tối sushi", "Quay ngắn menu, đĩa thức ăn và bàn tay chọn món.", "B-roll"]
+      ],
+      ring: [
+        ["Tích lũy cảm xúc", "Chỉ thể hiện cảm giác sắp nói điều quan trọng. Bàn tay và ánh mắt là nhân vật chính, không phải hộp nhẫn."],
+        ["Mẹo quay", "Một chút rung trên xe buýt vẫn tự nhiên. Bổ sung cảnh ổn định sau khi đến nơi."],
+        ["Phương án khi mưa", "Nếu trời mưa, dùng giọt nước trên cửa kính xe và bóng bàn tay để tạo không khí."]
+      ]
+    },
+    "0811": {
+      title: "Dạo chơi và ăn uống ở Beppu",
+      mood: "Khoảng cách gần hơn",
+      note:
+        "Tận dụng Beppu ban ngày và buổi tối để quay nhiều cảnh đôi tự nhiên. Quan trọng nhất là những lúc bạn gái không để ý đến máy quay.",
+      tags: ["Toyotsune", "Dạo bộ", "Bữa tối"],
+      schedule: [
+        ["Bữa trưa", "Toyotsune Main Branch nghỉ thứ Tư và có thể xếp hàng lâu vào giờ trưa. Nên đến ngay sau khi mở cửa."],
+        ["Phương án khác", "Tại Bungo Chaya có thể chọn dango-jiru, set gà tempura, set soba hoặc yaseuma."],
+        ["Bữa tối", "Somuri Steak khá đắt. Với Robatajin, hãy đến lúc mở cửa hoặc hỏi lễ tân khách sạn về đặt chỗ trong ngày."],
+        ["Plan B", "Chuyển sang một quán izakaya giá hợp lý."]
+      ],
+      shots: [
+        ["Bước chân lúc mở cửa", "Quay biển nhà hàng, chân khi xếp hàng và góc nghiêng lúc xem menu.", "Tại chỗ"],
+        ["Bàn tay trên bàn", "Quay đũa, cốc nước và mu bàn tay tự nhiên. Tập khung hình cho ngón đeo nhẫn.", "Nhẫn"],
+        ["Toàn cảnh đường phố Beppu", "Giữ cảnh ở ngõ yên tĩnh hoặc vạch qua đường ít nhất 7 giây.", "Toàn cảnh"],
+        ["Phản ứng bật cười", "Ngay sau một câu đùa, quay nụ cười một lần dọc và một lần ngang.", "Cảm xúc"],
+        ["Cửa nhà hàng ban đêm", "Quay biển đèn và góc từ sau khi mở cửa bước vào.", "Chuyển cảnh"]
+      ],
+      ring: [
+        ["Tập khung hình bàn tay", "Hôm nay hãy tập vị trí tay và lấy nét cho cảnh cận vào ngày cầu hôn."],
+        ["Điểm dựng", "Các cảnh này hợp làm montage hai người ngày càng gần nhau trước điệp khúc Aloha."],
+        ["Lưu ý", "Ở nhà hàng đắt tiền, ưu tiên trải nghiệm bữa ăn; chỉ quay vài cảnh trước và sau khi vào."]
+      ]
+    },
+    "0812": {
+      title: "Ngày dự kiến cầu hôn ở Beppu",
+      mood: "Trung tâm của lời tỏ tình",
+      note:
+        "Đây là ngày quay quan trọng nhất. Hãy tìm khoảng thời gian yên tĩnh trước hoặc sau bữa tối ở khách sạn và ghi lại nhẫn cùng khoảnh khắc cầu hôn thật tự nhiên.",
+      tags: ["Ngày quan trọng", "Nhẫn", "Bữa tối khách sạn"],
+      schedule: [
+        ["Ban ngày", "Giữ sức. Chủ yếu đi dạo gần khách sạn, quay bàn tay và cảnh riêng của nhẫn."],
+        ["Bữa tối", "Hỏi khách sạn xem có thể dùng bữa tối tại đây không."],
+        ["Phương án khác", "Chuyển nhẹ nhàng sang yakitori hoặc nhà hàng gần đó."],
+        ["Chuẩn bị", "Kiểm tra nhẫn, hộp, khăn nhỏ, pin điện thoại và đèn dự phòng."]
+      ],
+      shots: [
+        ["Cảnh riêng của nhẫn", "Dưới ánh sáng cửa sổ, quay hộp mở ra, mặt bên của nhẫn và nhẫn đặt trên tay.", "Nhẫn"],
+        ["Ngay trước khi cầu hôn", "Quay bàn tay hồi hộp trong hành lang hoặc phòng, tay nắm cửa và chi tiết hoa hoặc quà.", "Cảm xúc"],
+        ["Khoảnh khắc cầu hôn", "Nếu có thể, cố định khung hình ít nhất 30 giây và giữ cả lời nói.", "Bắt buộc"],
+        ["Đeo nhẫn", "Đến gần khoảnh khắc nhẫn đi vào ngón tay, dù máy có rung cũng được.", "Bắt buộc"],
+        ["Cảnh kết điệp khúc", "Quay 10 giây hai người nắm tay và cười. Lấy nét vào biểu cảm hơn là chiếc nhẫn.", "Kết"],
+        ["Cảnh chèn chiếc nhẫn", "Dưới đèn khách sạn, luân phiên quay ánh lấp lánh, hộp và bàn tay, mỗi cảnh 5 giây.", "Nhẫn"]
+      ],
+      ring: [
+        ["Dàn dựng chính", "Cho thấy sự hồi hộp ngay trước khi nói sẽ tự nhiên hơn việc mở đầu bằng chiếc nhẫn."],
+        ["Đặt máy", "Cố định một điện thoại cho toàn cảnh và dùng máy khác quay tay cùng nhẫn để giảm nguy cơ bỏ lỡ khoảnh khắc."],
+        ["Phương án dự phòng", "Nếu địa điểm không thuận tiện, hãy làm ngắn gọn và chân thành bên cửa sổ phòng hoặc hành lang yên tĩnh."],
+        ["Âm thanh", "Nhất định giữ lại tiếng nói cầu hôn gốc. Trộn nhỏ vào đoạn kết MV sẽ rất có sức nặng."]
+      ]
+    },
+    "0813": {
+      title: "Trở lại Hakata",
+      mood: "Trở về nhịp thành phố",
+      note:
+        "Mang cảm xúc đã tạo ở Beppu về Hakata sôi động. Từ hôm nay, chiếc nhẫn bắt đầu xuất hiện tự nhiên trên tay cô ấy.",
+      tags: ["JR", "Ramen", "Yakiniku"],
+      schedule: [
+        ["Di chuyển", "JR rời Beppu lúc 11:19, đến ga Hakata lúc 13:28. Sonic 24, số đặt chỗ 5572103138."],
+        ["Lưu ý", "Đổi trước sang vé giấy."],
+        ["Khách sạn", "S-Peria Hotel Hakata. Số đặt chỗ 1739700820."],
+        ["Ăn uống", "Chọn Shin-Shin Ramen, Ippudo, Ichiran, Kanetora hoặc Ikkousha. Bữa tối chọn Yakiniku Tagyu hoặc Tonkatsu Wakaba."]
+      ],
+      shots: [
+        ["Vé JR và bàn tay", "Quay bàn tay cầm vé giấy. Để chiếc nhẫn xuất hiện tự nhiên.", "Nhẫn"],
+        ["Ghế trên tàu", "Quay cửa sổ, nét mặt khi trở lại thành phố và cận cảnh ngón tay.", "Chuyển cảnh"],
+        ["Trở lại ga Hakata", "Quay một cảnh dọc ngắn trước tên ga, như mở đầu hồi hai của chuyến đi.", "Toàn cảnh"],
+        ["Hơi ramen", "Quay hơi nóng trên tô, đũa và phản ứng mỉm cười.", "B-roll"],
+        ["Cảnh tay trong bữa tối", "Để nhẫn xuất hiện nhẹ khi cụng ly hoặc nướng thịt.", "Nhẫn"]
+      ],
+      ring: [
+        ["Chuyển sang công khai", "Từ hôm nay không giấu nhẫn nữa; để nó xuất hiện tự nhiên trong sinh hoạt."],
+        ["Điểm dựng", "Sau lời cầu hôn, dùng đoạn điệp khúc lặp lại để chuyển sang phần chuyến đi có chiếc nhẫn đồng hành."],
+        ["Lưu ý", "Đèn nhà hàng mạnh có thể làm nhẫn bị cháy sáng, vì vậy hãy giảm sáng nhẹ."]
+      ]
+    },
+    "0814": {
+      title: "Đêm cuối ở Hakata",
+      mood: "Kỷ niệm của chúng ta",
+      note:
+        "Thu thập chất liệu kết bằng quà tặng, đồ ăn và phố đêm. Tập trung vào điều còn lại sau khi trở về hơn là sự hào nhoáng.",
+      tags: ["Quà", "Lươn", "Đêm cuối"],
+      schedule: [
+        ["Khách sạn", "S-Peria Hotel Hakata. Số đặt chỗ 1739700820."],
+        ["Lựa chọn bữa ăn", "Yoshizuka Unagiya, Motsunabe Rakutenchi 2 hoặc Daichino Udon."],
+        ["Mua sắm", "Đừng chỉ trông chờ hàng miễn thuế ở sân bay; hãy mua bánh quà trước tại ga Hakata hoặc trong thành phố."],
+        ["Di chuyển", "Nếu đến Yoshizuka Unagiya khoảng 17:00 ngày thường, cân nhắc đi taxi."]
+      ],
+      shots: [
+        ["Bàn tay chọn quà", "Quay hộp bánh, túi mua sắm và bàn tay đeo nhẫn.", "Nhẫn"],
+        ["Bữa ăn cuối", "Ưu tiên cảnh hai người nhìn nhau hơn là món ăn.", "Cảm xúc"],
+        ["Đi bộ phố đêm", "Giữ góc quay từ sau dưới ánh đèn Hakata ít nhất 10 giây.", "Kết"],
+        ["Trở về khách sạn", "Quay gương thang máy, thẻ phòng, hành lý và bàn tay đeo nhẫn.", "Chuyển cảnh"],
+        ["Lời cảm ơn", "Mỗi người nói với nhau một câu trong 10 giây và ghi cả âm thanh rõ.", "Bắt buộc"]
+      ],
+      ring: [
+        ["Chất liệu kết", "Bàn tay đeo nhẫn cầm quà sẽ nối tự nhiên với đoạn kết trở về nhà."],
+        ["Âm thanh", "Một đoạn hội thoại thật ngắn sẽ làm video sống động dù có tiếng ồn đường phố."],
+        ["Phương án khi mưa", "Nếu trời mưa, quay tay cầm ô cùng bàn tay đeo nhẫn."]
+      ]
+    },
+    "0815": {
+      title: "Trở về nhà",
+      mood: "Kết",
+      note:
+        "Khép lại bằng sân bay và chuyến bay. Kết nối nhẫn, bàn tay, hành lý và thẻ lên máy bay để chuyến đi kết thúc như một lời hứa.",
+      tags: ["Sân bay", "Trở về", "Kết thúc"],
+      schedule: [
+        ["Di chuyển", "Từ cửa Chikushi của ga Hakata, đi theo biển đến bến xe. Lên xe tại điểm 11, 310 yên/người."],
+        ["Mục tiêu", "Nhắm chuyến 09:30 hoặc 09:50. Mốc an toàn cuối là 10:10; chuyến sau lúc 10:35."],
+        ["Chuyến bay", "Jeju Air 7C1472 khởi hành lúc 13:40. Mã đặt chỗ: UY2V7P."],
+        ["Lưu ý", "Hàng làm thủ tục quốc tế và kiểm tra an ninh ở sân bay Fukuoka có thể dài; hãy đến trước 2,5-3 giờ."]
+      ],
+      shots: [
+        ["Điểm xe buýt", "Quay điểm số 11, hành lý và cảnh hai người nắm tay.", "Thông tin"],
+        ["Làm thủ tục sân bay", "Quay hàng chờ, thẻ lên máy bay, bìa hộ chiếu và bàn tay đeo nhẫn.", "Nhẫn"],
+        ["Sắp xếp quà", "Đặt túi mua sắm và bàn tay đeo nhẫn trong cùng một khung hình.", "B-roll"],
+        ["Cửa sổ máy bay", "Quay mây, bàn tay và hình phản chiếu trên cửa sổ.", "Kết"],
+        ["Cảnh tay cuối", "Chồng hai bàn tay và giữ yên 8 giây cho câu cuối của Aloha.", "Bắt buộc"]
+      ],
+      ring: [
+        ["Hình ảnh cuối", "Chiếc nhẫn là trọng tâm nhưng không phô trương; hãy thể hiện nó như lời hứa hai người cùng mang về nhà."],
+        ["Điểm dựng", "Trong 10 giây cuối, giữ lại một chút âm thanh thật của cảnh tay và sân bay."],
+        ["Lưu ý", "Khu vực an ninh sân bay có thể hạn chế quay. Tránh biển báo, điểm kiểm tra và nhân viên."]
+      ]
+    }
+  }
+};
+
 const storageKey = "aloha-mv-call-sheet-v1";
 const langStorageKey = "aloha-mv-language-v1";
 const state = {
@@ -204,6 +565,7 @@ const state = {
 const uiText = {
   ko: {
     appTitle: "아로하 여행 MV 촬영 콜시트",
+    topEyebrow: "후쿠오카 · 벳푸 · 프로포즈링",
     overallProgress: "전체 진행률",
     tabShots: "촬영",
     tabSchedule: "여행 동선",
@@ -219,10 +581,20 @@ const uiText = {
     referenceEyebrow: "일본 현장 참고",
     referenceTitle: "사용법과 Insta360 X2 운용",
     doneTitle: "컷 완료",
-    resetConfirm: "모든 촬영 체크를 초기화할까요?"
+    resetConfirm: "모든 촬영 체크를 초기화할까요?",
+    topActionsAria: "촬영 도구",
+    languageAria: "언어 선택",
+    sidebarAria: "일정 선택",
+    tabsAria: "보기 전환",
+    printTitle: "인쇄",
+    exportTitle: "진행 상황 내보내기",
+    resetTitle: "체크 초기화",
+    alternativePrefix: "대안",
+    glossaryTitle: "촬영 용어 예시"
   },
   en: {
     appTitle: "Aloha Travel MV Shooting Call Sheet",
+    topEyebrow: "Fukuoka · Beppu · Proposal Ring",
     overallProgress: "Total progress",
     tabShots: "Shooting",
     tabSchedule: "Route",
@@ -238,10 +610,20 @@ const uiText = {
     referenceEyebrow: "Japan field guide",
     referenceTitle: "How to use this and Insta360 X2 setup",
     doneTitle: "shots done",
-    resetConfirm: "Reset all shot checks?"
+    resetConfirm: "Reset all shot checks?",
+    topActionsAria: "Shooting tools",
+    languageAria: "Choose language",
+    sidebarAria: "Choose a date",
+    tabsAria: "Switch view",
+    printTitle: "Print",
+    exportTitle: "Export progress",
+    resetTitle: "Reset checks",
+    alternativePrefix: "Alternative",
+    glossaryTitle: "Shot term examples"
   },
   vi: {
     appTitle: "Call Sheet Quay MV Du Lịch Aloha",
+    topEyebrow: "Fukuoka · Beppu · Nhẫn cầu hôn",
     overallProgress: "Tiến độ tổng",
     tabShots: "Quay",
     tabSchedule: "Lộ trình",
@@ -257,7 +639,16 @@ const uiText = {
     referenceEyebrow: "Hướng dẫn tại Nhật",
     referenceTitle: "Cách dùng và thiết lập Insta360 X2",
     doneTitle: "cảnh đã xong",
-    resetConfirm: "Đặt lại toàn bộ checklist quay?"
+    resetConfirm: "Đặt lại toàn bộ checklist quay?",
+    topActionsAria: "Công cụ quay",
+    languageAria: "Chọn ngôn ngữ",
+    sidebarAria: "Chọn ngày",
+    tabsAria: "Chuyển chế độ xem",
+    printTitle: "In",
+    exportTitle: "Xuất tiến độ",
+    resetTitle: "Đặt lại checklist",
+    alternativePrefix: "Phương án khác",
+    glossaryTitle: "Ví dụ thuật ngữ quay"
   }
 };
 
@@ -693,6 +1084,309 @@ const routeLinks = {
   ]
 };
 
+const routeTranslations = {
+  en: {
+    "0809": [
+      {
+        time: "11:10",
+        title: "Jeju Air 7C1472 departs",
+        note: "Arrives in Fukuoka at 12:40. Cabin 10 kg, checked 15 kg. Booking code: UY2V7P.",
+        links: ["Airport transfer guide"]
+      },
+      {
+        time: "After arrival",
+        title: "Fukuoka Airport -> Hakata Station",
+        note: "International-terminal airport bus, stop 6 or 7. About 20 minutes, JPY 310 per person.",
+        links: ["Airport to Hakata guide"]
+      },
+      {
+        time: "Check-in",
+        title: "Mars Garden Hotel Hakata",
+        note: "Booking number 1739694152, reference code 6204188608.",
+        links: ["Hotel map"]
+      },
+      {
+        time: "Lunch",
+        title: "Kiwamiya Hakata Station Underground Branch",
+        note: "If the queue is long, after 15:30 may be easier. Order idea: steak set, rice, and two sauces.",
+        links: ["Kiwamiya map"],
+        alts: ["Daichino Udon"]
+      },
+      {
+        time: "Snack / dinner",
+        title: "Il Forno del Mignon -> Maedaya",
+        note: "Mini croissants, then Maedaya at 17:00. Reservation: ECDA2GVMPX.",
+        links: ["Mignon map", "Maedaya map", "Check reservation"],
+        alts: ["Yakiniku Champion"]
+      }
+    ],
+    "0810": [
+      {
+        time: "Morning",
+        title: "Hakata brunch options",
+        note: "Pick a light meal that fits the route from the hotel to the terminal.",
+        links: ["Tannya Hakata", "Uchinotamago", "DACOMECCA"],
+        alts: ["Yoshinoya"]
+      },
+      {
+        time: "12:01",
+        title: "Hakata Bus Terminal -> Beppu Kitahama",
+        note: "Platform 34 on 3F. Arrive 20-30 minutes early. Nishitetsu bus No. 47908, booking 43080325.",
+        links: ["Hakata Bus Terminal"]
+      },
+      {
+        time: "Check-in",
+        title: "Beppu Hatto Onyado Nono Beppu",
+        note: "Base for three nights in Beppu. Keep onsen and hotel interior shots quiet and brief.",
+        links: ["Hotel map"]
+      },
+      {
+        time: "Dinner",
+        title: "Kintaro Sushi Beppu",
+        note: "Dinner from 17:00. Remember futomaki number 105.",
+        links: ["Kintaro Sushi map"],
+        alts: ["YouMe Town Beppu"]
+      }
+    ],
+    "0811": [
+      {
+        time: "Lunch",
+        title: "Toyotsune Main Branch",
+        note: "Closed Wednesdays. The lunch queue can be long, so arriving just after opening is recommended.",
+        links: ["Toyotsune map"],
+        alts: ["Bungo Chaya"]
+      },
+      {
+        time: "Dinner",
+        title: "Somuri / Robatajin",
+        note: "Somuri is expensive. For Robatajin, go around opening time or ask the hotel front desk for a same-day reservation.",
+        links: ["Somuri map", "Robatajin map"],
+        alts: ["Sushi Yamaguchi"]
+      }
+    ],
+    "0812": [
+      {
+        time: "Daytime",
+        title: "Free day in Beppu",
+        note: "Possible proposal day. Save your energy and focus on a nearby walk and ring-only shots.",
+        links: ["Map around hotel"]
+      },
+      {
+        time: "Dinner",
+        title: "Ask hotel about dinner / nearby restaurant",
+        note: "Ask the front desk whether hotel dinner is available. If not, switch to yakitori or an izakaya.",
+        links: ["Nearby restaurants"]
+      }
+    ],
+    "0813": [
+      {
+        time: "11:19",
+        title: "JR Beppu -> Hakata",
+        note: "Arrives in Hakata at 13:28. Sonic 24, booking 5572103138. Exchange for physical tickets in advance.",
+        links: ["Beppu Station"]
+      },
+      {
+        time: "Check-in",
+        title: "S-Peria Hotel Hakata",
+        note: "Booking number 1739700820. Buy gift sweets in town rather than waiting for the airport.",
+        links: ["Hotel map"]
+      },
+      {
+        time: "Late lunch",
+        title: "Hakata ramen options",
+        note: "Choose according to your energy and the queue after arrival.",
+        links: ["Shin-Shin Ramen", "Ippudo", "Ichiran"],
+        alts: ["Menya Kanetora", "Hakata Ikkousha"]
+      },
+      {
+        time: "Dinner",
+        title: "Yakiniku Tagyu / Tonkatsu Wakaba",
+        note: "After returning to Hakata, choose yakiniku or tonkatsu.",
+        links: ["Tagyu map", "Wakaba map"]
+      }
+    ],
+    "0814": [
+      {
+        time: "Meal",
+        title: "Yoshizuka Unagiya / Rakutenchi 2nd / Daichino Udon",
+        note: "Consider a taxi to Unagiya around 17:00 on a weekday. Keep the route short on the final night.",
+        links: ["Yoshizuka Unagiya", "Rakutenchi 2nd", "Daichino Udon"],
+        alts: ["Nikuichi", "Taketora Gyoza"]
+      },
+      {
+        time: "Shopping",
+        title: "Buy gift sweets early",
+        note: "Do not rely only on airport duty-free; buy them ahead at Hakata Station or in town.",
+        links: ["Shopping at Hakata Station"]
+      }
+    ],
+    "0815": [
+      {
+        time: "09:30",
+        title: "Hakata Station -> Fukuoka Airport International Terminal",
+        note: "Use the Chikushi Exit and bus-terminal stop 11. Aim for 09:30 or 09:50; latest safe target is 10:10.",
+        links: ["Airport bus guide", "Hakata Bus Terminal"]
+      },
+      {
+        time: "13:40",
+        title: "Jeju Air 7C1472 flight home",
+        note: "International check-in and security lines can be long, so arrive 2.5-3 hours before departure.",
+        links: ["Fukuoka Airport"]
+      }
+    ]
+  },
+  vi: {
+    "0809": [
+      {
+        time: "11:10",
+        title: "Jeju Air 7C1472 khởi hành",
+        note: "Đến Fukuoka lúc 12:40. Hành lý xách tay 10 kg, ký gửi 15 kg. Mã đặt chỗ: UY2V7P.",
+        links: ["Hướng dẫn di chuyển từ sân bay"]
+      },
+      {
+        time: "Sau khi đến",
+        title: "Sân bay Fukuoka -> Ga Hakata",
+        note: "Xe buýt ở ga quốc tế, điểm số 6 hoặc 7. Khoảng 20 phút, 310 yên/người.",
+        links: ["Cách đi từ sân bay đến Hakata"]
+      },
+      {
+        time: "Nhận phòng",
+        title: "Mars Garden Hotel Hakata",
+        note: "Số đặt chỗ 1739694152, mã tham chiếu 6204188608.",
+        links: ["Bản đồ khách sạn"]
+      },
+      {
+        time: "Bữa trưa",
+        title: "Kiwamiya chi nhánh tầng hầm ga Hakata",
+        note: "Nếu hàng dài, sau 15:30 có thể dễ hơn. Gợi ý: set bít tết, cơm và hai loại sốt.",
+        links: ["Bản đồ Kiwamiya"],
+        alts: ["Daichino Udon"]
+      },
+      {
+        time: "Ăn nhẹ / tối",
+        title: "Il Forno del Mignon -> Maedaya",
+        note: "Ăn croissant nhỏ rồi đến Maedaya lúc 17:00. Mã đặt chỗ: ECDA2GVMPX.",
+        links: ["Bản đồ Mignon", "Bản đồ Maedaya", "Kiểm tra đặt chỗ"],
+        alts: ["Yakiniku Champion"]
+      }
+    ],
+    "0810": [
+      {
+        time: "Buổi sáng",
+        title: "Lựa chọn ăn sáng muộn ở Hakata",
+        note: "Chọn món nhẹ phù hợp đường đi từ khách sạn đến bến xe.",
+        links: ["Tannya Hakata", "Uchinotamago", "DACOMECCA"],
+        alts: ["Yoshinoya"]
+      },
+      {
+        time: "12:01",
+        title: "Bến xe Hakata -> Beppu Kitahama",
+        note: "Điểm 34, tầng 3. Đến sớm 20-30 phút. Xe Nishitetsu số 47908, đặt chỗ 43080325.",
+        links: ["Bến xe Hakata"]
+      },
+      {
+        time: "Nhận phòng",
+        title: "Beppu Hatto Onyado Nono Beppu",
+        note: "Nơi ở ba đêm tại Beppu. Quay onsen và bên trong khách sạn thật yên lặng, ngắn gọn.",
+        links: ["Bản đồ khách sạn"]
+      },
+      {
+        time: "Bữa tối",
+        title: "Kintaro Sushi Beppu",
+        note: "Bữa tối từ 17:00. Ghi nhớ futomaki số 105.",
+        links: ["Bản đồ Kintaro Sushi"],
+        alts: ["YouMe Town Beppu"]
+      }
+    ],
+    "0811": [
+      {
+        time: "Bữa trưa",
+        title: "Toyotsune Main Branch",
+        note: "Nghỉ thứ Tư. Hàng chờ buổi trưa có thể dài, nên đến ngay sau khi mở cửa.",
+        links: ["Bản đồ Toyotsune"],
+        alts: ["Bungo Chaya"]
+      },
+      {
+        time: "Bữa tối",
+        title: "Somuri / Robatajin",
+        note: "Somuri khá đắt. Với Robatajin, đến lúc mở cửa hoặc nhờ lễ tân hỏi đặt chỗ trong ngày.",
+        links: ["Bản đồ Somuri", "Bản đồ Robatajin"],
+        alts: ["Sushi Yamaguchi"]
+      }
+    ],
+    "0812": [
+      {
+        time: "Ban ngày",
+        title: "Ngày thư thả ở Beppu",
+        note: "Ngày dự kiến cầu hôn. Giữ sức, đi dạo gần khách sạn và chủ yếu quay riêng chiếc nhẫn.",
+        links: ["Bản đồ quanh khách sạn"]
+      },
+      {
+        time: "Bữa tối",
+        title: "Hỏi khách sạn về bữa tối / quán gần đó",
+        note: "Hỏi lễ tân xem có bữa tối tại khách sạn không. Nếu không, chuyển sang yakitori hoặc izakaya.",
+        links: ["Nhà hàng gần đây"]
+      }
+    ],
+    "0813": [
+      {
+        time: "11:19",
+        title: "JR Beppu -> Hakata",
+        note: "Đến Hakata lúc 13:28. Sonic 24, đặt chỗ 5572103138. Đổi vé giấy trước.",
+        links: ["Ga Beppu"]
+      },
+      {
+        time: "Nhận phòng",
+        title: "S-Peria Hotel Hakata",
+        note: "Số đặt chỗ 1739700820. Mua bánh quà trong thành phố thay vì chờ đến sân bay.",
+        links: ["Bản đồ khách sạn"]
+      },
+      {
+        time: "Bữa trưa muộn",
+        title: "Lựa chọn ramen ở Hakata",
+        note: "Chọn theo thể lực và độ dài hàng chờ sau khi đến.",
+        links: ["Shin-Shin Ramen", "Ippudo", "Ichiran"],
+        alts: ["Menya Kanetora", "Hakata Ikkousha"]
+      },
+      {
+        time: "Bữa tối",
+        title: "Yakiniku Tagyu / Tonkatsu Wakaba",
+        note: "Sau khi trở lại Hakata, chọn yakiniku hoặc tonkatsu.",
+        links: ["Bản đồ Tagyu", "Bản đồ Wakaba"]
+      }
+    ],
+    "0814": [
+      {
+        time: "Bữa ăn",
+        title: "Yoshizuka Unagiya / Rakutenchi 2 / Daichino Udon",
+        note: "Cân nhắc đi taxi đến Unagiya khoảng 17:00 ngày thường. Đêm cuối nên giữ lộ trình ngắn.",
+        links: ["Yoshizuka Unagiya", "Rakutenchi 2", "Daichino Udon"],
+        alts: ["Nikuichi", "Taketora Gyoza"]
+      },
+      {
+        time: "Mua sắm",
+        title: "Mua bánh quà từ sớm",
+        note: "Đừng chỉ trông chờ hàng miễn thuế ở sân bay; hãy mua trước tại ga Hakata hoặc trong thành phố.",
+        links: ["Mua sắm tại ga Hakata"]
+      }
+    ],
+    "0815": [
+      {
+        time: "09:30",
+        title: "Ga Hakata -> Ga quốc tế sân bay Fukuoka",
+        note: "Đi cửa Chikushi, điểm 11 của bến xe. Nhắm chuyến 09:30 hoặc 09:50; mốc an toàn cuối là 10:10.",
+        links: ["Hướng dẫn xe buýt sân bay", "Bến xe Hakata"]
+      },
+      {
+        time: "13:40",
+        title: "Jeju Air 7C1472 về nhà",
+        note: "Hàng làm thủ tục quốc tế và an ninh có thể dài, nên đến trước giờ bay 2,5-3 giờ.",
+        links: ["Sân bay Fukuoka"]
+      }
+    ]
+  }
+};
+
 const dayList = document.querySelector("#dayList");
 const shotList = document.querySelector("#shotList");
 const scheduleList = document.querySelector("#scheduleList");
@@ -705,8 +1399,37 @@ const heroBadges = document.querySelector("#heroBadges");
 const progressText = document.querySelector("#progressText");
 const progressBar = document.querySelector("#progressBar");
 
+function localizeDay(day) {
+  const translation = itineraryTranslations[state.lang]?.[day.id];
+  return translation ? { ...day, ...translation, id: day.id, date: day.date } : day;
+}
+
 function getDay() {
-  return itinerary.find((day) => day.id === state.selectedDay) || itinerary[0];
+  const day = itinerary.find((item) => item.id === state.selectedDay) || itinerary[0];
+  return localizeDay(day);
+}
+
+function getLocalizedRoutes(dayId) {
+  const routes = routeLinks[dayId] || [];
+  const translations = routeTranslations[state.lang]?.[dayId] || [];
+
+  return routes.map((item, index) => {
+    const translation = translations[index] || {};
+    return {
+      ...item,
+      time: translation.time || item.time,
+      title: translation.title || item.title,
+      note: translation.note || item.note,
+      links: (item.links || []).map((link, linkIndex) => ({
+        ...link,
+        label: translation.links?.[linkIndex] || link.label
+      })),
+      alts: (item.alts || []).map((link, linkIndex) => ({
+        ...link,
+        label: translation.alts?.[linkIndex] || link.label
+      }))
+    };
+  });
 }
 
 function shotKey(dayId, index) {
@@ -732,11 +1455,12 @@ function renderDays() {
   dayList.innerHTML = "";
 
   itinerary.forEach((day) => {
+    const localizedDay = localizeDay(day);
     const node = template.content.firstElementChild.cloneNode(true);
     const done = countDayDone(day);
     node.classList.toggle("active", day.id === state.selectedDay);
     node.querySelector(".day-date").textContent = day.date;
-    node.querySelector(".day-name").textContent = day.title;
+    node.querySelector(".day-name").textContent = localizedDay.title;
     node.querySelector(".day-progress").textContent = `${done}/${day.shots.length}`;
     node.addEventListener("click", () => {
       state.selectedDay = day.id;
@@ -756,9 +1480,18 @@ function renderHero(day) {
 function renderUiText() {
   const labels = uiText[state.lang] || uiText.ko;
   document.documentElement.lang = state.lang;
+  document.title = labels.appTitle;
   document.querySelectorAll("[data-i18n]").forEach((node) => {
     const key = node.dataset.i18n;
     node.textContent = labels[key] || uiText.ko[key] || node.textContent;
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((node) => {
+    const key = node.dataset.i18nAria;
+    node.setAttribute("aria-label", labels[key] || uiText.ko[key] || node.getAttribute("aria-label"));
+  });
+  document.querySelectorAll("[data-i18n-title]").forEach((node) => {
+    const key = node.dataset.i18nTitle;
+    node.title = labels[key] || uiText.ko[key] || node.title;
   });
   document.querySelectorAll(".lang-button").forEach((button) => {
     button.classList.toggle("active", button.dataset.lang === state.lang);
@@ -791,7 +1524,8 @@ function renderShots(day) {
 }
 
 function renderInfo(day) {
-  const routes = routeLinks[day.id] || [];
+  const routes = getLocalizedRoutes(day.id);
+  const labels = uiText[state.lang] || uiText.ko;
   scheduleList.innerHTML = `
     <div class="route-day">
       ${routes
@@ -813,7 +1547,7 @@ function renderInfo(day) {
               ${
                 item.alts
                   ? `<div class="route-alts">${item.alts
-                      .map((link) => `<a class="route-link alt" href="${link.href}" target="_blank" rel="noreferrer">대안: ${link.label}</a>`)
+                      .map((link) => `<a class="route-link alt" href="${link.href}" target="_blank" rel="noreferrer">${labels.alternativePrefix}: ${link.label}</a>`)
                       .join("")}</div>`
                   : ""
               }
@@ -833,6 +1567,7 @@ function renderInfo(day) {
 }
 
 function renderReferenceGuide() {
+  const labels = uiText[state.lang] || uiText.ko;
   const guide = referenceGuide[state.lang] || referenceGuide.ko;
   const glossary = shotGlossary[state.lang] || shotGlossary.ko;
   const guideHtml = guide
@@ -845,7 +1580,7 @@ function renderReferenceGuide() {
       `
     )
     .join("");
-  const glossaryTitle = state.lang === "en" ? "Shot term examples" : state.lang === "vi" ? "Ví dụ thuật ngữ quay" : "촬영 용어 예시";
+  const glossaryTitle = labels.glossaryTitle;
   const glossaryHtml = `
     <article class="reference-card glossary-section">
       <strong>${glossaryTitle}</strong>
