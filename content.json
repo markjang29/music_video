@@ -1,9 +1,45 @@
 {
   "version": 2,
-  "updatedAt": null,
+  "updatedAt": "2026-08-08T08:49:03.752886+00:00",
   "overrides": {
-    "ko": {},
-    "en": {},
-    "vi": {}
+    "ko": {
+      "0809": {
+        "shots": [
+          [
+            "배포 경로 검증 컷",
+            "최종 사용자 계획에는 남기지 않는 되돌림 검증",
+            "고정 숏",
+            "3초 · 3박",
+            "다음 컷은 사운드 브리지로 연결"
+          ]
+        ]
+      }
+    },
+    "en": {
+      "0809": {
+        "shots": [
+          [
+            "Distribution path verification shot",
+            "A check shot not kept in the final user plan",
+            "Fixed shot",
+            "3 sec · 3 beats",
+            "Connect to next shot with sound bridge"
+          ]
+        ]
+      }
+    },
+    "vi": {
+      "0809": {
+        "shots": [
+          [
+            "Cảnh xác minh đường dẫn phân phối",
+            "Cảnh kiểm tra không giữ lại trong kế hoạch người dùng cuối",
+            "Cảnh tĩnh",
+            "3 giây · 3 nhịp",
+            "Kết nối sang cảnh tiếp theo bằng cầu âm thanh"
+          ]
+        ]
+      }
+    }
   }
 }
