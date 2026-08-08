@@ -30,6 +30,7 @@ body {
     "Malgun Gothic",
     system-ui,
     sans-serif;
+  font-size: 14px;
 }
 
 button,
@@ -276,7 +277,7 @@ h3 {
 }
 
 .mobile-tabs {
-  display: none;
+  display: flex;
   gap: 8px;
   margin: 14px 0;
 }
@@ -298,23 +299,18 @@ h3 {
 }
 
 .content-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
-  gap: 18px;
+  display: block;
   margin-top: 18px;
 }
 
 .panel {
   border-radius: 8px;
-  padding: 18px;
+  padding: 14px;
+  display: none;
 }
 
-.shot-panel {
-  grid-row: span 2;
-}
-
-.reference-panel {
-  grid-column: 1 / -1;
+.panel.active-mobile {
+  display: block;
 }
 
 .section-head {
@@ -347,8 +343,8 @@ h3 {
   grid-template-columns: 24px minmax(0, 1fr) auto;
   gap: 12px;
   align-items: center;
-  min-height: 74px;
-  padding: 12px;
+  min-height: 62px;
+  padding: 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
@@ -379,6 +375,70 @@ h3 {
 .ring-card p {
   color: var(--muted);
   line-height: 1.55;
+}
+
+.route-day {
+  display: grid;
+  gap: 10px;
+}
+
+.route-card {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+}
+
+.route-card header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.route-time {
+  flex: 0 0 auto;
+  min-width: 58px;
+  color: var(--accent-dark);
+  font-weight: 900;
+  font-size: 0.8rem;
+}
+
+.route-card h4 {
+  margin: 0;
+  font-size: 0.96rem;
+}
+
+.route-card p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.route-actions,
+.route-alts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.route-link {
+  min-height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 6px 9px;
+  background: #f7fbfc;
+  color: var(--accent-dark);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.route-link.alt {
+  background: #fff9ed;
+  color: #745317;
 }
 
 .shot-meta {
@@ -705,9 +765,6 @@ svg {
     justify-content: flex-start;
   }
 
-  .content-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 720px) {
@@ -719,18 +776,6 @@ svg {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-  }
-
-  .mobile-tabs {
-    display: flex;
-  }
-
-  .panel {
-    display: none;
-  }
-
-  .panel.active-mobile {
-    display: block;
   }
 
   .section-head {

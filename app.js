@@ -197,7 +197,7 @@ const langStorageKey = "aloha-mv-language-v1";
 const state = {
   selectedDay: itinerary[0].id,
   checked: JSON.parse(localStorage.getItem(storageKey) || "{}"),
-  mobileTab: "shots",
+  mobileTab: "schedule",
   lang: localStorage.getItem(langStorageKey) || "ko"
 };
 
@@ -205,15 +205,15 @@ const uiText = {
   ko: {
     appTitle: "아로하 여행 MV 촬영 콜시트",
     overallProgress: "전체 진행률",
-    tabShots: "컷",
-    tabSchedule: "일정",
+    tabShots: "촬영",
+    tabSchedule: "여행 동선",
     tabRing: "반지",
     tabReference: "참고",
     shotEyebrow: "오늘 꼭 찍을 컷",
     shotTitle: "촬영 체크리스트",
     completeDay: "오늘 컷 완료",
-    scheduleEyebrow: "동선과 예약",
-    scheduleTitle: "현장 메모",
+    scheduleEyebrow: "PDF 기반 링크와 대안",
+    scheduleTitle: "여행 동선",
     ringEyebrow: "프로포즈링 연출",
     ringTitle: "감정선 설계",
     referenceEyebrow: "일본 현장 참고",
@@ -224,15 +224,15 @@ const uiText = {
   en: {
     appTitle: "Aloha Travel MV Shooting Call Sheet",
     overallProgress: "Total progress",
-    tabShots: "Shots",
-    tabSchedule: "Schedule",
+    tabShots: "Shooting",
+    tabSchedule: "Route",
     tabRing: "Ring",
     tabReference: "Guide",
     shotEyebrow: "Must-get shots today",
     shotTitle: "Shooting checklist",
     completeDay: "Complete today",
-    scheduleEyebrow: "Route and bookings",
-    scheduleTitle: "Field notes",
+    scheduleEyebrow: "PDF links and backups",
+    scheduleTitle: "Travel route",
     ringEyebrow: "Proposal ring direction",
     ringTitle: "Emotional arc",
     referenceEyebrow: "Japan field guide",
@@ -243,15 +243,15 @@ const uiText = {
   vi: {
     appTitle: "Call Sheet Quay MV Du Lịch Aloha",
     overallProgress: "Tiến độ tổng",
-    tabShots: "Cảnh quay",
-    tabSchedule: "Lịch trình",
+    tabShots: "Quay",
+    tabSchedule: "Lộ trình",
     tabRing: "Nhẫn",
     tabReference: "Hướng dẫn",
     shotEyebrow: "Cảnh cần quay hôm nay",
     shotTitle: "Checklist quay",
     completeDay: "Hoàn tất hôm nay",
-    scheduleEyebrow: "Lộ trình và đặt chỗ",
-    scheduleTitle: "Ghi chú hiện trường",
+    scheduleEyebrow: "Liên kết PDF và phương án phụ",
+    scheduleTitle: "Lộ trình du lịch",
     ringEyebrow: "Dàn dựng nhẫn cầu hôn",
     ringTitle: "Mạch cảm xúc",
     referenceEyebrow: "Hướng dẫn tại Nhật",
@@ -507,6 +507,192 @@ const shotGlossary = {
   ]
 };
 
+function mapUrl(query) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+
+const routeLinks = {
+  "0809": [
+    {
+      time: "11:10",
+      title: "제주항공 7C1472 출발",
+      note: "후쿠오카 12:40 도착. 기내 10kg, 위탁 15kg. 예약 코드 UY2V7P.",
+      links: [{ label: "공항 이동 글", href: "https://www.channeul.com/japan/fukuoka/airport-to-city/" }]
+    },
+    {
+      time: "도착 후",
+      title: "후쿠오카 공항 -> 하카타역",
+      note: "국제선 공항버스 6번/7번 승강장. 약 20분, 1인 310엔.",
+      links: [{ label: "공항-하카타 가는 법", href: "https://www.channeul.com/japan/fukuoka/airport-to-city/" }]
+    },
+    {
+      time: "체크인",
+      title: "Mars Garden Hotel Hakata",
+      note: "예약 번호 1739694152, 참조 코드 6204188608.",
+      links: [{ label: "호텔 지도", href: mapUrl("마스 가든 호텔 하카타") }]
+    },
+    {
+      time: "점심",
+      title: "키와미야 하카타역 지하가점",
+      note: "웨이팅 길면 15:30 이후가 유리. 주문 후보: 스테이크 세트, 밥, 소스 2개.",
+      links: [{ label: "키와미야 지도", href: mapUrl("키와미야 하카타역 지하가점") }],
+      alts: [{ label: "다이치노 우동", href: mapUrl("다이치노 우동 하카타역 지하") }]
+    },
+    {
+      time: "간식/저녁",
+      title: "일 포르노 델 미뇽 -> 마에다야",
+      note: "미니 크로와상 후 저녁 17:00 마에다야. 예약번호 ECDA2GVMPX.",
+      links: [
+        { label: "미뇽 지도", href: mapUrl("일 포르노 델 미뇽 하카타") },
+        { label: "마에다야 지도", href: mapUrl("하카타 모츠나베 마에다야 하카타점") },
+        { label: "예약 확인", href: "https://yoyaku.tabelog.com/yoyaku/tabelog_mypage/show/?code=ECDA2GVMPX&escape=false" }
+      ],
+      alts: [{ label: "야키니쿠 챔피언", href: mapUrl("야키니쿠 챔피언 JR하카타시티") }]
+    }
+  ],
+  "0810": [
+    {
+      time: "아침",
+      title: "하카타 아점 후보",
+      note: "숙소/터미널 동선에 맞춰 가볍게 선택.",
+      links: [
+        { label: "탄야 하카타", href: mapUrl("탄야 하카타") },
+        { label: "우치노타마고", href: mapUrl("우치노타마고 초쿠바이쇼 하카타") },
+        { label: "다코멧카", href: mapUrl("다코멧카 하카타") }
+      ],
+      alts: [{ label: "요시노야", href: mapUrl("요시노야 하카타데이토스아넥스점") }]
+    },
+    {
+      time: "12:01",
+      title: "하카타 버스터미널 -> 벳푸기타하마",
+      note: "3F 34번 승차장. 20-30분 전 도착. 니시니혼 버스 No 47908, 예약 43080325.",
+      links: [{ label: "하카타 버스터미널", href: mapUrl("하카타 버스터미널") }]
+    },
+    {
+      time: "체크인",
+      title: "Beppu Hatto Onyado Nono Beppu",
+      note: "벳푸 3박 거점. 온천/호텔 내부 컷은 조용히 짧게.",
+      links: [{ label: "호텔 지도", href: mapUrl("Beppu Hatto Onyado Nono Beppu") }]
+    },
+    {
+      time: "저녁",
+      title: "킨타로스시 벳푸",
+      note: "저녁 17:00 이후. 105번 후토마키 메모.",
+      links: [{ label: "킨타로스시 지도", href: mapUrl("金太郎 킨타로스시 벳푸") }],
+      alts: [{ label: "유메타운 벳푸", href: mapUrl("유메타운 벳푸") }]
+    }
+  ],
+  "0811": [
+    {
+      time: "점심",
+      title: "토요츠네 본점",
+      note: "수요일 휴무. 점심 피크 대기 길 수 있어 오픈 직후 추천.",
+      links: [{ label: "토요츠네 지도", href: mapUrl("토요츠네 본점 벳푸") }],
+      alts: [{ label: "분고차야", href: mapUrl("분고차야 벳푸") }]
+    },
+    {
+      time: "저녁",
+      title: "소무리 / 로바타진",
+      note: "소무리는 비싼 편. 로바타진은 오픈 시간대 또는 호텔 프런트 당일 예약 문의.",
+      links: [
+        { label: "소무리 지도", href: mapUrl("소무리 벳푸") },
+        { label: "로바타진 지도", href: mapUrl("로바타진 본점 벳푸") }
+      ],
+      alts: [{ label: "鮨やま口", href: mapUrl("鮨やま口 벳푸") }]
+    }
+  ],
+  "0812": [
+    {
+      time: "낮",
+      title: "벳푸 여유일",
+      note: "프로포즈 후보일. 체력 아끼고 숙소 주변 산책/반지 단독 컷 위주.",
+      links: [{ label: "호텔 주변 지도", href: mapUrl("Beppu Hatto Onyado Nono Beppu") }]
+    },
+    {
+      time: "저녁",
+      title: "호텔식 문의 / 가까운 식당",
+      note: "호텔 프런트에 저녁 가능 여부 문의. 어렵다면 야키토리/이자카야로 전환.",
+      links: [{ label: "주변 음식점", href: mapUrl("벳푸역 주변 야키토리 이자카야") }]
+    }
+  ],
+  "0813": [
+    {
+      time: "11:19",
+      title: "JR 벳푸 -> 하카타",
+      note: "13:28 하카타 도착. 소닉 24, 예약번호 5572103138. 실물 승차권 미리 교환.",
+      links: [{ label: "벳푸역", href: mapUrl("JR 벳푸역") }]
+    },
+    {
+      time: "체크인",
+      title: "S-Peria Hotel Hakata",
+      note: "예약 번호 1739700820. 선물 과자는 공항보다 시내에서 미리 구매.",
+      links: [{ label: "호텔 지도", href: mapUrl("에스페리아 호텔 하카타") }]
+    },
+    {
+      time: "늦점",
+      title: "하카타 라멘 후보",
+      note: "도착 후 컨디션과 줄 길이에 따라 선택.",
+      links: [
+        { label: "신신라멘", href: mapUrl("신신라멘 하카타데이토스점") },
+        { label: "잇푸도", href: mapUrl("잇푸도 라멘 하카타역점") },
+        { label: "이치란", href: mapUrl("이치란 하카타점") }
+      ],
+      alts: [
+        { label: "멘야 카네토라", href: mapUrl("멘야 카네토라 하카타 데이토스점") },
+        { label: "잇코샤", href: mapUrl("하카타 잇코샤 총본점") }
+      ]
+    },
+    {
+      time: "저녁",
+      title: "야키니쿠 타규 / 돈카츠 와카바",
+      note: "하카타 복귀 후 고기 또는 돈카츠 선택.",
+      links: [
+        { label: "타규 지도", href: mapUrl("야키니쿠 타규 하카타에키미나미점") },
+        { label: "와카바 지도", href: mapUrl("돈카츠 와카바") }
+      ]
+    }
+  ],
+  "0814": [
+    {
+      time: "식사",
+      title: "요시즈카 우나기야 / 라쿠텐치 / 다이치노 우동",
+      note: "평일 17시 우나기야는 택시 이동 고려. 마지막 밤이라 동선 짧게.",
+      links: [
+        { label: "요시즈카 우나기야", href: mapUrl("요시즈카 우나기야") },
+        { label: "라쿠텐치 2대", href: mapUrl("하카타 모츠나베 라쿠텐치 2대") },
+        { label: "다이치노 우동", href: mapUrl("다이치노 우동") }
+      ],
+      alts: [
+        { label: "니쿠이치", href: mapUrl("니쿠이치 하카타점") },
+        { label: "타케토라 교자", href: mapUrl("히토쿠치 교자 타케토라") }
+      ]
+    },
+    {
+      time: "쇼핑",
+      title: "선물 과자 미리 구매",
+      note: "공항 면세점만 믿지 말고 하카타역/시내 매장에서 미리 확보.",
+      links: [{ label: "하카타역 쇼핑", href: mapUrl("하카타역 선물 과자") }]
+    }
+  ],
+  "0815": [
+    {
+      time: "09:30",
+      title: "하카타역 -> 후쿠오카 공항 국제선",
+      note: "지쿠시 출입구, 버스터미널 11번 승강장. 목표 9:30/9:50, 마지노선 10:10.",
+      links: [
+        { label: "공항버스 글", href: "https://m.blog.naver.com/tripinstyle/223855667537" },
+        { label: "하카타 버스터미널", href: mapUrl("하카타 버스터미널") }
+      ]
+    },
+    {
+      time: "13:40",
+      title: "제주항공 7C1472 귀국",
+      note: "후쿠오카 공항 국제선 수속/보안검색 줄이 길 수 있어 2시간 30분-3시간 전 도착.",
+      links: [{ label: "후쿠오카 공항", href: mapUrl("후쿠오카 공항 국제선") }]
+    }
+  ]
+};
+
 const dayList = document.querySelector("#dayList");
 const shotList = document.querySelector("#shotList");
 const scheduleList = document.querySelector("#scheduleList");
@@ -605,9 +791,38 @@ function renderShots(day) {
 }
 
 function renderInfo(day) {
-  scheduleList.innerHTML = day.schedule
-    .map(([title, detail]) => `<article class="info-card"><strong>${title}</strong><p>${detail}</p></article>`)
-    .join("");
+  const routes = routeLinks[day.id] || [];
+  scheduleList.innerHTML = `
+    <div class="route-day">
+      ${routes
+        .map(
+          (item) => `
+            <article class="route-card">
+              <header>
+                <span class="route-time">${item.time}</span>
+                <div>
+                  <h4>${item.title}</h4>
+                  <p>${item.note}</p>
+                </div>
+              </header>
+              <div class="route-actions">
+                ${(item.links || [])
+                  .map((link) => `<a class="route-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}</a>`)
+                  .join("")}
+              </div>
+              ${
+                item.alts
+                  ? `<div class="route-alts">${item.alts
+                      .map((link) => `<a class="route-link alt" href="${link.href}" target="_blank" rel="noreferrer">대안: ${link.label}</a>`)
+                      .join("")}</div>`
+                  : ""
+              }
+            </article>
+          `
+        )
+        .join("")}
+    </div>
+  `;
 
   ringPlan.innerHTML = day.ring
     .map(([title, detail], index) => {
