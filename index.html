@@ -81,10 +81,29 @@
                 <span class="summary-label" data-i18n="shotEyebrow">오늘 꼭 찍을 컷</span>
                 <h3 data-i18n="shotTitle">촬영 체크리스트</h3>
               </div>
-              <button class="text-button" id="completeDayBtn" type="button">
-                <i data-lucide="check-check"></i>
-                <span data-i18n="completeDay">오늘 컷 완료</span>
-              </button>
+              <div class="section-actions">
+                <button class="text-button" id="editShotsBtn" type="button">
+                  <i data-lucide="square-pen"></i>
+                  <span data-i18n="editShots">촬영 편집</span>
+                </button>
+                <button class="text-button" id="completeDayBtn" type="button">
+                  <i data-lucide="check-check"></i>
+                  <span data-i18n="completeDay">오늘 컷 완료</span>
+                </button>
+              </div>
+            </div>
+            <section class="mv-flow" aria-labelledby="mvFlowTitle">
+              <header class="mv-flow-header">
+                <div>
+                  <span class="summary-label" id="mvChapter"></span>
+                  <h4 id="mvFlowTitle" data-i18n="mvFlowTitle">오늘의 MV 러프컷</h4>
+                </div>
+                <p data-i18n="mvFlowIntro">촬영 순서가 아니라 아래 순서대로 편집 타임라인에 놓습니다.</p>
+              </header>
+              <div class="mv-flow-list" id="mvFlowList"></div>
+            </section>
+            <div class="checklist-heading">
+              <span class="summary-label" data-i18n="checklistLabel">촬영 현장 체크</span>
             </div>
             <div id="shotList" class="shot-list"></div>
             <section class="proposal-section">
@@ -121,6 +140,60 @@
         </div>
       </section>
     </main>
+
+    <dialog class="inspiration-dialog" id="inspirationDialog">
+      <div class="inspiration-shell">
+        <header class="editor-header">
+          <div>
+            <p class="eyebrow" data-i18n="inspirationTitle">B-roll 영감 보드</p>
+            <h2 id="inspirationBoardTitle"></h2>
+          </div>
+          <button class="icon-button" id="inspirationCloseBtn" type="button" data-i18n-title="closeExamples">
+            <i data-lucide="x"></i>
+          </button>
+        </header>
+        <p class="inspiration-lead" id="inspirationLead"></p>
+        <div class="inspiration-gallery" id="inspirationGallery"></div>
+      </div>
+    </dialog>
+
+    <dialog class="editor-dialog" id="shotEditorDialog">
+      <div class="editor-shell">
+        <header class="editor-header">
+          <div>
+            <p class="eyebrow" id="editorContext"></p>
+            <h2 data-i18n="editorTitle">촬영 내용 편집</h2>
+          </div>
+          <button class="icon-button" id="editorCloseBtn" type="button" data-i18n-title="closeTitle">
+            <i data-lucide="x"></i>
+          </button>
+        </header>
+
+        <div class="editor-key-row">
+          <label for="editorKeyInput" data-i18n="editorKey">편집 키</label>
+          <input id="editorKeyInput" type="password" autocomplete="current-password" data-i18n-placeholder="editorKeyPlaceholder" />
+        </div>
+
+        <div class="editor-rows" id="editorRows"></div>
+
+        <button class="text-button add-shot-button" id="addShotBtn" type="button">
+          <i data-lucide="plus"></i>
+          <span data-i18n="addShot">촬영 항목 추가</span>
+        </button>
+
+        <footer class="editor-footer">
+          <span class="editor-status" id="editorStatus" role="status"></span>
+          <div class="editor-footer-actions">
+            <button class="text-button" id="editorCancelBtn" type="button" data-i18n="cancel">취소</button>
+            <button class="text-button primary" id="saveShotsBtn" type="button">
+              <i data-lucide="git-commit-horizontal"></i>
+              <span data-i18n="saveToGit">Git에 저장</span>
+            </button>
+          </div>
+        </footer>
+      </div>
+      <datalist id="techniqueOptions"></datalist>
+    </dialog>
 
     <template id="dayButtonTemplate">
       <button class="day-button" type="button">

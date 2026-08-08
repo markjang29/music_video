@@ -556,12 +556,124 @@ const itineraryTranslations = {
 const storageKey = "aloha-mv-call-sheet-v1";
 const langStorageKey = "aloha-mv-language-v1";
 const sidebarStorageKey = "aloha-mv-sidebar-collapsed-v1";
+const editorTokenStorageKey = "aloha-mv-editor-token-v1";
 const state = {
   selectedDay: itinerary[0].id,
   checked: JSON.parse(localStorage.getItem(storageKey) || "{}"),
   mobileTab: "shots",
   lang: localStorage.getItem(langStorageKey) || "ko",
   sidebarCollapsed: localStorage.getItem(sidebarStorageKey) !== "false"
+};
+
+let remoteContent = {
+  version: 1,
+  updatedAt: null,
+  overrides: { ko: {}, en: {}, vi: {} }
+};
+let remoteCommit = null;
+let editorDraft = [];
+
+const editFlowOverrides = {
+  ko: {
+    "0809": [
+      ["3초 · 4박", "캐리어가 화면을 가릴 때 하카타역 컷으로"],
+      ["3초 · 4박", "같은 방향의 발걸음에서 음식 손동작으로"],
+      ["2초 · 2박", "소스 붓는 순간을 커튼 여는 동작과 매치"],
+      ["4초 · 8박", "커튼이 프레임을 채우면 반지 암시 컷으로"],
+      ["2초 · 4박", "검게 페이드한 뒤 다음 날 버스 표지판으로"]
+    ],
+    "0810": [
+      ["3초 · 4박", "버스가 화면을 가리는 순간 창문 반사로"],
+      ["4초 · 8박", "창가 빛을 손등의 햇빛과 밝기 매치"],
+      ["3초 · 4박", "손을 놓고 일어나는 동작에서 벳푸 발걸음으로"],
+      ["4초 · 8박", "식당 문이나 간판으로 프레임을 가리고 초밥으로"],
+      ["2초 · 4박", "접시 내려놓는 소리를 다음 날 식당 간판까지 유지"]
+    ],
+    "0811": [
+      ["3초 · 4박", "간판에서 아래로 틸트해 식탁 위 손으로"],
+      ["3초 · 4박", "손이 프레임 밖으로 나가면 거리 와이드로"],
+      ["4초 · 8박", "같은 걷기 방향을 유지한 채 웃는 얼굴로 휩 팬"],
+      ["4초 · 8박", "식당 문소리를 먼저 들려주고 밤 입구로"],
+      ["3초 · 4박", "문 여는 손동작을 다음 날 프로포즈 공간과 매치"]
+    ],
+    "0812": [
+      ["3초 · 4박", "반지 초점을 흐리며 고백 준비 손으로"],
+      ["4초 · 8박", "문을 여는 동작과 함께 고정 마스터로"],
+      ["말 전체 · 원본음", "대답 직후까지 자르지 않고 반지 착용으로 L-컷"],
+      ["4초 · 8박", "손을 든 동작을 유지해 둘의 웃는 표정으로"],
+      ["6초 · 8박", "손이 렌즈를 가리면 반지 인서트로"],
+      ["3초 · 4박", "같은 반지 손 위치로 다음 날 JR 승차권과 매치"]
+    ],
+    "0813": [
+      ["3초 · 4박", "승차권을 내리면 기차 창가가 드러나게"],
+      ["4초 · 8박", "지나가는 기둥이 화면을 덮을 때 하카타역으로"],
+      ["3초 · 4박", "같은 방향 휩 팬으로 라멘 김에 연결"],
+      ["2초 · 4박", "그릇 가장자리가 화면을 가리면 저녁 손 컷으로"],
+      ["3초 · 4박", "반지 낀 손 구도를 다음 날 쇼핑 손과 매치"]
+    ],
+    "0814": [
+      ["3초 · 4박", "쇼핑백이 화면을 가리면 마지막 식사로"],
+      ["4초 · 8박", "거리 소리를 먼저 들려주고 밤거리로 J-컷"],
+      ["5초 · 8박", "기둥이나 어두운 벽을 지나며 호텔 거울로"],
+      ["3초 · 4박", "카드키 소리를 남긴 채 감사 멘트로"],
+      ["말마다 8초", "마지막 말 뒤 1초 침묵 후 공항 버스 표지판으로"]
+    ],
+    "0815": [
+      ["3초 · 4박", "버스가 프레임을 가리면 공항 체크인으로"],
+      ["3초 · 4박", "탑승권을 내려놓으며 기념품 플랫레이로"],
+      ["3초 · 4박", "가방 지퍼 소리로 비행기 창가를 먼저 예고"],
+      ["5초 · 8박", "창문 반사를 겹친 손 디졸브로 연결"],
+      ["8초 · 엔딩 홀드", "첫날 공항 손 구도를 1초 겹친 뒤 현장음으로 끝"]
+    ]
+  },
+  en: {
+    "0809": [["3s · 4 beats", "Let the suitcase cover frame, then cut to Hakata Station"], ["3s · 4 beats", "Match the walking direction into hands around the first meal"], ["2s · 2 beats", "Match the sauce pour to the curtain-opening motion"], ["4s · 8 beats", "When the curtain fills frame, cut to the hidden ring clue"], ["2s · 4 beats", "Fade to black, then open on tomorrow's bus sign"]],
+    "0810": [["3s · 4 beats", "Cut to the window reflection as the bus covers frame"], ["4s · 8 beats", "Match the window light to sunlight across joined hands"], ["3s · 4 beats", "Release hands and stand, then cut on action to Beppu steps"], ["4s · 8 beats", "Use a restaurant door or sign as a wipe into sushi"], ["2s · 4 beats", "Carry the plate sound into the next day's restaurant sign"]],
+    "0811": [["3s · 4 beats", "Tilt down from the sign into hands at the table"], ["3s · 4 beats", "As the hand leaves frame, cut to the street wide"], ["4s · 8 beats", "Keep screen direction and whip-pan into the laughing face"], ["4s · 8 beats", "Bring in the door sound early, then reveal the night entrance"], ["3s · 4 beats", "Match the door-opening hand to tomorrow's proposal space"]],
+    "0812": [["3s · 4 beats", "Defocus from the ring into the hands preparing to speak"], ["4s · 8 beats", "Open the door and cut on action to the locked master"], ["Full words · live audio", "Do not cut before the answer; L-cut the voice over the ring going on"], ["4s · 8 beats", "Keep the lifting-hand motion and cut to both faces smiling"], ["6s · 8 beats", "Let a hand cover the lens, then reveal the ring insert"], ["3s · 4 beats", "Match the ring-hand position to tomorrow's JR ticket"]],
+    "0813": [["3s · 4 beats", "Lower the ticket to reveal the train window"], ["4s · 8 beats", "Cut to Hakata Station as a passing pillar fills frame"], ["3s · 4 beats", "Whip in the same direction into the ramen steam"], ["2s · 4 beats", "Let the bowl edge wipe into the dinner hand shot"], ["3s · 4 beats", "Match the ring-hand composition to tomorrow's shopping hand"]],
+    "0814": [["3s · 4 beats", "Let the shopping bag cover frame, then cut to dinner"], ["4s · 8 beats", "J-cut the street sound before revealing the night walk"], ["5s · 8 beats", "Pass a pillar or dark wall and emerge in the hotel mirror"], ["3s · 4 beats", "Leave the key-card sound under the first thank-you line"], ["8s each line", "Hold one second after the last words, then cut to the airport bus sign"]],
+    "0815": [["3s · 4 beats", "Cut to airport check-in as the bus fills frame"], ["3s · 4 beats", "Lower the boarding pass into the souvenir flat lay"], ["3s · 4 beats", "Use the bag zipper to foreshadow the plane window"], ["5s · 8 beats", "Dissolve the window reflection into the joined hands"], ["8s · ending hold", "Overlay one second of the first airport hand frame, then end on live sound"]]
+  },
+  vi: {
+    "0809": [["3 giây · 4 nhịp", "Để vali che khung rồi cắt sang ga Hakata"], ["3 giây · 4 nhịp", "Giữ cùng hướng bước chân rồi nối sang bàn tay bên món ăn"], ["2 giây · 2 nhịp", "Nối động tác rót sốt với động tác mở rèm"], ["4 giây · 8 nhịp", "Khi rèm phủ khung, cắt sang gợi ý chiếc nhẫn"], ["2 giây · 4 nhịp", "Mờ sang đen rồi mở bằng biển xe buýt ngày hôm sau"]],
+    "0810": [["3 giây · 4 nhịp", "Khi xe buýt che khung, cắt sang phản chiếu cửa kính"], ["4 giây · 8 nhịp", "Khớp ánh sáng cửa sổ với nắng trên hai bàn tay"], ["3 giây · 4 nhịp", "Buông tay và đứng dậy rồi nối động tác sang bước chân ở Beppu"], ["4 giây · 8 nhịp", "Dùng cửa hoặc biển nhà hàng che khung để nối sang sushi"], ["2 giây · 4 nhịp", "Giữ tiếng đặt đĩa sang biển nhà hàng ngày hôm sau"]],
+    "0811": [["3 giây · 4 nhịp", "Nghiêng từ biển xuống bàn tay trên bàn ăn"], ["3 giây · 4 nhịp", "Khi tay ra khỏi khung, cắt sang cảnh rộng đường phố"], ["4 giây · 8 nhịp", "Giữ hướng màn hình rồi whip-pan sang gương mặt cười"], ["4 giây · 8 nhịp", "Cho tiếng cửa vào trước rồi hiện lối vào ban đêm"], ["3 giây · 4 nhịp", "Khớp tay mở cửa với không gian cầu hôn ngày hôm sau"]],
+    "0812": [["3 giây · 4 nhịp", "Làm mờ chiếc nhẫn rồi chuyển sang bàn tay chuẩn bị nói"], ["4 giây · 8 nhịp", "Mở cửa và nối động tác sang toàn cảnh cố định"], ["Toàn bộ lời · âm thật", "Không cắt trước câu trả lời; giữ lời nói qua cảnh đeo nhẫn"], ["4 giây · 8 nhịp", "Giữ động tác nâng tay rồi cắt sang hai gương mặt cười"], ["6 giây · 8 nhịp", "Để bàn tay che ống kính rồi hé lộ cận cảnh nhẫn"], ["3 giây · 4 nhịp", "Khớp vị trí tay đeo nhẫn với vé JR ngày hôm sau"]],
+    "0813": [["3 giây · 4 nhịp", "Hạ vé xuống để lộ cửa sổ tàu"], ["4 giây · 8 nhịp", "Khi cột lướt qua che khung, cắt sang ga Hakata"], ["3 giây · 4 nhịp", "Whip-pan cùng hướng vào hơi nóng ramen"], ["2 giây · 4 nhịp", "Dùng mép bát che khung để nối sang bàn tay bữa tối"], ["3 giây · 4 nhịp", "Khớp bố cục tay đeo nhẫn với tay mua sắm ngày hôm sau"]],
+    "0814": [["3 giây · 4 nhịp", "Để túi mua sắm che khung rồi cắt sang bữa tối"], ["4 giây · 8 nhịp", "Cho tiếng phố vào trước rồi hiện cảnh đi bộ ban đêm"], ["5 giây · 8 nhịp", "Đi qua cột hoặc tường tối rồi xuất hiện trong gương khách sạn"], ["3 giây · 4 nhịp", "Giữ tiếng thẻ phòng dưới câu cảm ơn đầu tiên"], ["Mỗi lời 8 giây", "Giữ im một giây sau câu cuối rồi cắt sang biển xe buýt sân bay"]],
+    "0815": [["3 giây · 4 nhịp", "Khi xe buýt che khung, cắt sang quầy check-in"], ["3 giây · 4 nhịp", "Hạ thẻ lên máy bay xuống bố cục quà lưu niệm"], ["3 giây · 4 nhịp", "Dùng tiếng khóa kéo để báo trước cửa sổ máy bay"], ["5 giây · 8 nhịp", "Dissolve hình phản chiếu cửa sổ vào hai bàn tay"], ["8 giây · giữ cảnh kết", "Chồng một giây khung bàn tay ở sân bay ngày đầu rồi kết bằng âm thật"]]
+  }
+};
+
+const mvChapters = {
+  ko: {
+    "0809": "인트로 · 설렘을 숨기는 시작",
+    "0810": "1절 · 이동과 기대",
+    "0811": "프리코러스 · 가까워지는 둘",
+    "0812": "메인 후렴 · 프로포즈와 실제 목소리",
+    "0813": "2절 · 반지와 함께하는 여행",
+    "0814": "브리지 · 둘만의 짧은 대화",
+    "0815": "아웃트로 · 첫 장면을 다시 만나기"
+  },
+  en: {
+    "0809": "Intro · excitement kept secret",
+    "0810": "Verse 1 · movement and anticipation",
+    "0811": "Pre-chorus · growing closer",
+    "0812": "Main chorus · proposal and real voices",
+    "0813": "Verse 2 · travelling with the ring",
+    "0814": "Bridge · a few words between you",
+    "0815": "Outro · return to the opening image"
+  },
+  vi: {
+    "0809": "Mở đầu · giấu niềm háo hức",
+    "0810": "Đoạn 1 · di chuyển và mong chờ",
+    "0811": "Tiền điệp khúc · hai người gần nhau hơn",
+    "0812": "Điệp khúc chính · cầu hôn và giọng nói thật",
+    "0813": "Đoạn 2 · hành trình cùng chiếc nhẫn",
+    "0814": "Bridge · vài lời chỉ dành cho nhau",
+    "0815": "Kết · trở lại hình ảnh mở đầu"
+  }
 };
 
 const uiText = {
@@ -574,13 +686,17 @@ const uiText = {
     tabReference: "참고",
     shotEyebrow: "오늘 꼭 찍을 컷",
     shotTitle: "촬영 체크리스트",
+    mvFlowTitle: "오늘의 MV 러프컷",
+    mvFlowIntro: "촬영 순서가 아니라 아래 순서대로 편집 타임라인에 놓습니다.",
+    checklistLabel: "촬영 현장 체크",
+    editShots: "촬영 편집",
     completeDay: "오늘 컷 완료",
     scheduleEyebrow: "PDF 기반 링크와 대안",
     scheduleTitle: "여행 동선",
     ringEyebrow: "촬영 체크리스트에 함께 보는",
     ringTitle: "프로포즈와 반지 연출",
     referenceEyebrow: "일본 현장 참고",
-    referenceTitle: "사용법과 Insta360 X2 운용",
+    referenceTitle: "사용법과 촬영 장비 운용",
     doneTitle: "컷 완료",
     resetConfirm: "모든 촬영 체크를 초기화할까요?",
     topActionsAria: "촬영 도구",
@@ -595,7 +711,38 @@ const uiText = {
     sidebarExpand: "날짜 펼치기",
     sidebarCollapse: "날짜 접기",
     photoSource: "사진 출처",
-    openPhotoSource: "원본 사진 열기"
+    openPhotoSource: "원본 사진 열기",
+    techniqueLibraryTitle: "촬영 기법 라이브러리 · X2 설정 참고",
+    editorTitle: "촬영 내용 편집",
+    editorKey: "편집 키",
+    editorKeyPlaceholder: "서버 편집 키 입력",
+    addShot: "촬영 항목 추가",
+    saveToGit: "번역 후 Git 저장",
+    cancel: "취소",
+    closeTitle: "닫기",
+    shotNameLabel: "촬영 내용",
+    shotDetailLabel: "찍는 방법",
+    techniqueLabel: "촬영 기법",
+    clipLengthLabel: "쓸 길이와 박자",
+    nextCutLabel: "다음 컷 연결",
+    moveUpTitle: "위로 이동",
+    moveDownTitle: "아래로 이동",
+    deleteShotTitle: "항목 삭제",
+    newShotTitle: "새 촬영 컷",
+    newShotDetail: "촬영 방법을 입력하세요.",
+    newShotTechnique: "에스타블리싱",
+    newShotLength: "4초 · 4박",
+    newShotTransition: "같은 방향의 움직임으로 다음 컷 연결",
+    savingToGit: "GLM으로 전체 번역 후 Git에 저장 중...",
+    savedToGit: "3개 언어 번역·Git 반영 완료",
+    saveFailed: "저장하지 못했습니다.",
+    editorContextSuffix: "촬영 목록",
+    viewExamples: "영감 사진 보기",
+    inspirationTitle: "B-roll 영감 보드",
+    inspirationIntro: "그대로 따라 하기보다 빛, 거리, 손동작과 장면 연결 방식을 골라 쓰세요.",
+    editRecipeTitle: "짧은 영상 편집 레시피",
+    editRecipeEyebrow: "CapCut 타임라인처럼 순서 잡기",
+    closeExamples: "영감 보드 닫기"
   },
   en: {
     appTitle: "Aloha Travel MV Shooting Call Sheet",
@@ -606,13 +753,17 @@ const uiText = {
     tabReference: "Guide",
     shotEyebrow: "Must-get shots today",
     shotTitle: "Shooting checklist",
+    mvFlowTitle: "Today's MV rough cut",
+    mvFlowIntro: "Place the shots on your edit timeline in this order, not necessarily the order filmed.",
+    checklistLabel: "On-location checklist",
+    editShots: "Edit shots",
     completeDay: "Complete today",
     scheduleEyebrow: "PDF links and backups",
     scheduleTitle: "Travel route",
     ringEyebrow: "Included with today's shot list",
     ringTitle: "Proposal and ring direction",
     referenceEyebrow: "Japan field guide",
-    referenceTitle: "How to use this and Insta360 X2 setup",
+    referenceTitle: "How to use this and camera setup",
     doneTitle: "shots done",
     resetConfirm: "Reset all shot checks?",
     topActionsAria: "Shooting tools",
@@ -627,7 +778,38 @@ const uiText = {
     sidebarExpand: "Expand dates",
     sidebarCollapse: "Collapse dates",
     photoSource: "Photo",
-    openPhotoSource: "Open original photo"
+    openPhotoSource: "Open original photo",
+    techniqueLibraryTitle: "Shot technique library · X2 settings",
+    editorTitle: "Edit shooting plan",
+    editorKey: "Editor key",
+    editorKeyPlaceholder: "Enter the server editor key",
+    addShot: "Add shot",
+    saveToGit: "Translate & save to Git",
+    cancel: "Cancel",
+    closeTitle: "Close",
+    shotNameLabel: "Shot",
+    shotDetailLabel: "How to film it",
+    techniqueLabel: "Technique",
+    clipLengthLabel: "Use length and beat",
+    nextCutLabel: "Connection to next shot",
+    moveUpTitle: "Move up",
+    moveDownTitle: "Move down",
+    deleteShotTitle: "Delete shot",
+    newShotTitle: "New shot",
+    newShotDetail: "Describe how to film this shot.",
+    newShotTechnique: "Establishing",
+    newShotLength: "4s · 4 beats",
+    newShotTransition: "Connect to the next shot with motion in the same direction",
+    savingToGit: "Translating all languages with GLM and saving to Git...",
+    savedToGit: "Three languages translated and pushed to Git",
+    saveFailed: "The edit could not be saved.",
+    editorContextSuffix: "shooting plan",
+    viewExamples: "View inspiration",
+    inspirationTitle: "B-roll inspiration board",
+    inspirationIntro: "Borrow the light, distance, gestures, and transitions rather than copying a frame exactly.",
+    editRecipeTitle: "Short-form edit recipes",
+    editRecipeEyebrow: "Build the order like a CapCut timeline",
+    closeExamples: "Close inspiration board"
   },
   vi: {
     appTitle: "Call Sheet Quay MV Du Lịch Aloha",
@@ -638,13 +820,17 @@ const uiText = {
     tabReference: "Hướng dẫn",
     shotEyebrow: "Cảnh cần quay hôm nay",
     shotTitle: "Checklist quay",
+    mvFlowTitle: "Bản dựng nháp MV hôm nay",
+    mvFlowIntro: "Đặt các cảnh lên timeline theo thứ tự dưới đây, không nhất thiết theo thứ tự đã quay.",
+    checklistLabel: "Checklist tại hiện trường",
+    editShots: "Sửa cảnh quay",
     completeDay: "Hoàn tất hôm nay",
     scheduleEyebrow: "Liên kết PDF và phương án phụ",
     scheduleTitle: "Lộ trình du lịch",
     ringEyebrow: "Xem cùng checklist hôm nay",
     ringTitle: "Dàn dựng cầu hôn và nhẫn",
     referenceEyebrow: "Hướng dẫn tại Nhật",
-    referenceTitle: "Cách dùng và thiết lập Insta360 X2",
+    referenceTitle: "Cách dùng và thiết lập máy quay",
     doneTitle: "cảnh đã xong",
     resetConfirm: "Đặt lại toàn bộ checklist quay?",
     topActionsAria: "Công cụ quay",
@@ -659,7 +845,38 @@ const uiText = {
     sidebarExpand: "Mở danh sách ngày",
     sidebarCollapse: "Thu gọn danh sách ngày",
     photoSource: "Nguồn ảnh",
-    openPhotoSource: "Mở ảnh gốc"
+    openPhotoSource: "Mở ảnh gốc",
+    techniqueLibraryTitle: "Thư viện kỹ thuật quay · Gợi ý X2",
+    editorTitle: "Sửa nội dung quay",
+    editorKey: "Khóa chỉnh sửa",
+    editorKeyPlaceholder: "Nhập khóa chỉnh sửa máy chủ",
+    addShot: "Thêm cảnh quay",
+    saveToGit: "Dịch và lưu vào Git",
+    cancel: "Hủy",
+    closeTitle: "Đóng",
+    shotNameLabel: "Nội dung quay",
+    shotDetailLabel: "Cách quay",
+    techniqueLabel: "Kỹ thuật",
+    clipLengthLabel: "Độ dài và nhịp dùng",
+    nextCutLabel: "Cách nối sang cảnh sau",
+    moveUpTitle: "Chuyển lên",
+    moveDownTitle: "Chuyển xuống",
+    deleteShotTitle: "Xóa cảnh",
+    newShotTitle: "Cảnh quay mới",
+    newShotDetail: "Nhập cách quay cảnh này.",
+    newShotTechnique: "Cảnh mở địa điểm",
+    newShotLength: "4 giây · 4 nhịp",
+    newShotTransition: "Nối sang cảnh sau bằng chuyển động cùng hướng",
+    savingToGit: "Đang dịch toàn bộ bằng GLM và lưu vào Git...",
+    savedToGit: "Đã dịch 3 ngôn ngữ và đẩy lên Git",
+    saveFailed: "Không thể lưu thay đổi.",
+    editorContextSuffix: "danh sách quay",
+    viewExamples: "Xem ảnh cảm hứng",
+    inspirationTitle: "Bảng cảm hứng B-roll",
+    inspirationIntro: "Hãy chọn ánh sáng, khoảng cách, cử chỉ và cách nối cảnh thay vì sao chép nguyên khung hình.",
+    editRecipeTitle: "Công thức dựng video ngắn",
+    editRecipeEyebrow: "Sắp thứ tự như timeline CapCut",
+    closeExamples: "Đóng bảng cảm hứng"
   }
 };
 
@@ -945,6 +1162,189 @@ const shotVisuals = {
     source: "https://unsplash.com/photos/OPk3ynqLToI",
     credit: "Hoi An Photographer / Unsplash"
   }
+};
+
+const techniqueOverrides = {
+  ko: {
+    "0809": ["에스타블리싱", "팔로우", "인서트", "리빌", "히든 인서트"],
+    "0810": ["로우 앵글", "리플렉션", "탑 숏", "트래킹", "5컷 시퀀스"],
+    "0811": ["로우 앵글", "탑 숏", "360 오빗", "슬로모션", "매치 컷"],
+    "0812": ["매크로 보조", "디테일 몽타주", "고정 마스터", "핸드헬드 클로즈업", "360 오빗", "라이트 스윕"],
+    "0813": ["인서트", "리플렉션", "타임시프트", "슬로모션", "오버숄더"],
+    "0814": ["POV", "투 숏", "팔로우", "미러 숏", "미니 인터뷰"],
+    "0815": ["에스타블리싱", "인서트", "플랫레이", "타임랩스", "엔딩 홀드"]
+  },
+  en: {
+    "0809": ["Establishing", "Follow", "Insert", "Reveal", "Hidden insert"],
+    "0810": ["Low angle", "Reflection", "Top shot", "Tracking", "5-shot sequence"],
+    "0811": ["Low angle", "Top shot", "360 orbit", "Slow motion", "Match cut"],
+    "0812": ["Macro backup", "Detail montage", "Locked master", "Handheld close-up", "360 orbit", "Light sweep"],
+    "0813": ["Insert", "Reflection", "TimeShift", "Slow motion", "Over-the-shoulder"],
+    "0814": ["POV", "Two shot", "Follow", "Mirror shot", "Mini interview"],
+    "0815": ["Establishing", "Insert", "Flat lay", "Timelapse", "Ending hold"]
+  },
+  vi: {
+    "0809": ["Cảnh mở địa điểm", "Bám theo", "Cảnh chèn", "Hé lộ", "Cảnh chèn ẩn"],
+    "0810": ["Góc thấp", "Phản chiếu", "Góc từ trên", "Bám chuyển động", "Chuỗi 5 cảnh"],
+    "0811": ["Góc thấp", "Góc từ trên", "Quay vòng 360", "Chuyển động chậm", "Nối hành động"],
+    "0812": ["Cận cảnh bằng điện thoại", "Montage chi tiết", "Toàn cảnh cố định", "Cận cảnh cầm tay", "Quay vòng 360", "Quét ánh sáng"],
+    "0813": ["Cảnh chèn", "Phản chiếu", "TimeShift", "Chuyển động chậm", "Qua vai"],
+    "0814": ["POV", "Khung hình hai người", "Bám theo", "Cảnh qua gương", "Phỏng vấn ngắn"],
+    "0815": ["Cảnh mở địa điểm", "Cảnh chèn", "Sắp đồ từ trên", "Timelapse", "Giữ cảnh kết"]
+  }
+};
+
+const techniquePresets = {
+  ko: [
+    ["에스타블리싱", "장소와 두 사람이 함께 보이게 5-8초 고정합니다.", "360 5.7K/30"],
+    ["팔로우", "셀피스틱을 뒤나 옆에 두고 걷는 속도에 맞춰 따라갑니다.", "360 5.7K/30"],
+    ["트래킹", "피사체와 나란히 천천히 이동하며 같은 거리를 유지합니다.", "360 5.7K/30"],
+    ["리빌", "문, 기둥, 가방 뒤에서 시작해 장소나 인물을 드러냅니다.", "360 5.7K/30"],
+    ["POV", "가슴이나 손 높이에서 내가 보는 시점처럼 짧게 찍습니다.", "Steady Cam 또는 360"],
+    ["리플렉션", "기차 창문이나 거울에 비친 얼굴과 실제 풍경을 함께 담습니다.", "360 5.7K/30"],
+    ["탑 숏", "음식과 손이 한 화면에 들어오도록 테이블 위에서 내려다봅니다.", "360 5.7K/30"],
+    ["로우 앵글", "무릎 높이에서 발걸음과 건물을 함께 올려다봅니다.", "360 5.7K/30"],
+    ["360 오빗", "두 사람 주변을 천천히 반원으로 돌고 편집 때 구도를 고릅니다.", "360 5.7K/30"],
+    ["인서트", "티켓, 키카드, 음식, 반지를 2-5초씩 크게 담습니다.", "반지는 휴대폰 보조"],
+    ["매치 컷", "두 장소에서 같은 손동작이나 문 열기를 반복해 연결합니다.", "같은 방향 유지"],
+    ["타임시프트", "거리 이동을 빠른 전환 장면으로 압축합니다.", "X2 TimeShift"],
+    ["타임랩스", "카메라를 고정해 구름, 역, 거리의 시간 흐름을 담습니다.", "X2 Timelapse 5.7K/30"],
+    ["슬로모션", "웃음, 손 흔들기, 반지 착용처럼 짧은 동작을 느리게 만듭니다.", "X2 3K/100"],
+    ["고정 마스터", "프로포즈 전체가 들어오게 고정하고 최소 30초 계속 촬영합니다.", "360 5.7K/30"],
+    ["포어그라운드 와이프", "기둥이나 지나가는 사람으로 화면을 완전히 가렸다가 다음 장소로 잇습니다.", "같은 이동 방향"],
+    ["휩 팬", "한 장면 끝과 다음 장면 시작을 같은 방향으로 빠르게 휘둘러 연결합니다.", "셔터 흔들림 활용"],
+    ["패럴랙스 워크", "난간이나 나무를 앞에 두고 옆으로 걸어 배경이 층처럼 움직이게 합니다.", "천천히 측면 이동"],
+    ["프레임 인 프레임", "문, 창문, 거울 틀 안에 두 사람을 배치해 시선을 모읍니다.", "대칭보다 자연스럽게"],
+    ["매치 온 액션", "앉기, 잔 들기, 문 열기를 동작 중간에서 다른 장소로 잘라 붙입니다.", "동작 크기 맞추기"],
+    ["스피드 램프", "걷기 시작과 끝은 보통 속도, 중간 이동만 빠르게 편집합니다.", "편집 1x → 6x → 1x"],
+    ["J-컷 / L-컷", "다음 장소 소리를 먼저 들려주거나 이전 장면 소리를 다음 화면까지 남깁니다.", "현장음 5초 확보"],
+    ["모티프 반복", "같은 손잡기나 반지 낀 손을 여행 여러 날 같은 구도로 반복합니다.", "MV 이야기 연결"],
+    ["사운드 브리지", "기차 문, 접시, 캐리어 바퀴 소리로 서로 다른 장소를 자연스럽게 잇습니다.", "소리만 별도 10초"],
+    ["엔딩 리프라이즈", "첫날 찍은 구도와 같은 구도를 마지막 날 다시 찍어 변화와 약속을 보여줍니다.", "첫 컷 사진 참고"]
+  ],
+  en: [
+    ["Establishing", "Hold 5-8 seconds with both the location and couple in frame.", "360 5.7K/30"],
+    ["Follow", "Keep the selfie stick behind or beside the subject and match walking speed.", "360 5.7K/30"],
+    ["Tracking", "Move alongside the subject slowly while maintaining the same distance.", "360 5.7K/30"],
+    ["Reveal", "Start behind a door, pillar, or bag, then uncover the person or place.", "360 5.7K/30"],
+    ["POV", "Shoot briefly from chest or hand height as if through your own eyes.", "Steady Cam or 360"],
+    ["Reflection", "Frame a face reflected in a train window or mirror with the real scene.", "360 5.7K/30"],
+    ["Top shot", "Look down over the table so food and hands share one frame.", "360 5.7K/30"],
+    ["Low angle", "Shoot from knee height to combine footsteps with the buildings above.", "360 5.7K/30"],
+    ["360 orbit", "Move in a slow half-circle around the couple and choose framing later.", "360 5.7K/30"],
+    ["Insert", "Capture tickets, keycards, food, or a ring for 2-5 seconds each.", "Use a phone for the ring"],
+    ["Match cut", "Repeat the same hand move or door opening in two locations.", "Keep direction consistent"],
+    ["TimeShift", "Compress a walk through the city into a fast transition.", "X2 TimeShift"],
+    ["Timelapse", "Lock the camera to show time passing through clouds, stations, or streets.", "X2 Timelapse 5.7K/30"],
+    ["Slow motion", "Slow down a laugh, wave, or the moment the ring goes on.", "X2 3K/100"],
+    ["Locked master", "Lock a wide view of the whole proposal and roll for at least 30 seconds.", "360 5.7K/30"],
+    ["Foreground wipe", "Let a pillar or passerby fill the frame, then cut to the next location behind it.", "Match movement direction"],
+    ["Whip pan", "Swing quickly in one direction at the end and start the next shot with the same swing.", "Use motion blur"],
+    ["Parallax walk", "Move sideways with a rail or tree in front so foreground and background slide in layers.", "Slow lateral move"],
+    ["Frame within frame", "Place the couple inside a doorway, window, or mirror frame to guide attention.", "Keep it natural"],
+    ["Match on action", "Cut a sit, toast, or door opening midway into the same action elsewhere.", "Match motion size"],
+    ["Speed ramp", "Keep the start and finish normal, then accelerate only the travel between them.", "Edit 1x → 6x → 1x"],
+    ["J-cut / L-cut", "Bring in the next place's sound early or let the previous sound continue over the new image.", "Record 5s room tone"],
+    ["Repeat motif", "Repeat the same handhold or ring-hand composition across several travel days.", "Connect the MV story"],
+    ["Sound bridge", "Use a train door, plate, or suitcase wheel sound to join different places.", "Record 10s clean sound"],
+    ["Ending reprise", "Repeat the first day's composition on the final day to show change and commitment.", "Reference the first frame"]
+  ],
+  vi: [
+    ["Cảnh mở địa điểm", "Giữ 5-8 giây để thấy cả địa điểm và hai người.", "360 5.7K/30"],
+    ["Bám theo", "Đặt gậy selfie phía sau hoặc bên cạnh và đi cùng tốc độ.", "360 5.7K/30"],
+    ["Bám chuyển động", "Di chuyển song song, chậm và giữ nguyên khoảng cách với nhân vật.", "360 5.7K/30"],
+    ["Hé lộ", "Bắt đầu sau cửa, cột hoặc túi rồi dần để lộ người hay địa điểm.", "360 5.7K/30"],
+    ["POV", "Quay ngắn ở độ cao ngực hoặc bàn tay như góc nhìn của chính mình.", "Steady Cam hoặc 360"],
+    ["Phản chiếu", "Quay gương mặt phản chiếu trên cửa tàu hoặc gương cùng cảnh thật.", "360 5.7K/30"],
+    ["Góc từ trên", "Nhìn xuống bàn để món ăn và bàn tay cùng trong một khung hình.", "360 5.7K/30"],
+    ["Góc thấp", "Quay từ độ cao đầu gối để thấy bước chân và tòa nhà phía trên.", "360 5.7K/30"],
+    ["Quay vòng 360", "Đi chậm theo nửa vòng quanh hai người rồi chọn khung khi dựng.", "360 5.7K/30"],
+    ["Cảnh chèn", "Quay vé, thẻ phòng, món ăn hoặc nhẫn trong 2-5 giây.", "Dùng điện thoại cho nhẫn"],
+    ["Nối hành động", "Lặp lại cùng động tác tay hoặc mở cửa ở hai địa điểm.", "Giữ cùng hướng chuyển động"],
+    ["TimeShift", "Nén cảnh đi bộ trong thành phố thành một đoạn chuyển nhanh.", "X2 TimeShift"],
+    ["Timelapse", "Cố định máy để quay thời gian trôi qua ở mây, ga hoặc đường phố.", "X2 Timelapse 5.7K/30"],
+    ["Chuyển động chậm", "Làm chậm nụ cười, vẫy tay hoặc khoảnh khắc đeo nhẫn.", "X2 3K/100"],
+    ["Toàn cảnh cố định", "Cố định toàn cảnh lời cầu hôn và quay liên tục ít nhất 30 giây.", "360 5.7K/30"],
+    ["Che khung tiền cảnh", "Để cột hoặc người đi qua che kín khung rồi nối sang địa điểm kế tiếp.", "Giữ cùng hướng chuyển động"],
+    ["Whip pan", "Vung máy nhanh cùng một hướng ở cuối cảnh và đầu cảnh kế tiếp.", "Tận dụng nhòe chuyển động"],
+    ["Di chuyển parallax", "Đi ngang với lan can hoặc cây ở phía trước để các lớp nền trượt khác tốc độ.", "Đi ngang thật chậm"],
+    ["Khung trong khung", "Đặt hai người trong khung cửa, cửa sổ hoặc gương để dẫn mắt.", "Tự nhiên hơn đối xứng"],
+    ["Nối giữa hành động", "Cắt giữa lúc ngồi, nâng ly hoặc mở cửa sang cùng động tác ở nơi khác.", "Khớp độ lớn động tác"],
+    ["Speed ramp", "Giữ đầu và cuối ở tốc độ thường, chỉ tăng nhanh đoạn di chuyển ở giữa.", "Dựng 1x → 6x → 1x"],
+    ["J-cut / L-cut", "Cho âm thanh cảnh sau vào sớm hoặc giữ âm cảnh trước sang hình ảnh mới.", "Thu 5 giây âm hiện trường"],
+    ["Lặp mô-típ", "Lặp lại cùng bố cục nắm tay hoặc bàn tay đeo nhẫn qua nhiều ngày.", "Nối câu chuyện MV"],
+    ["Cầu nối âm thanh", "Dùng tiếng cửa tàu, đĩa hoặc bánh vali để nối hai địa điểm.", "Thu riêng 10 giây âm thanh"],
+    ["Lặp lại đoạn kết", "Quay lại bố cục ngày đầu vào ngày cuối để thể hiện thay đổi và lời hứa.", "Xem lại khung hình đầu"]
+  ]
+};
+
+const inspirationPhotos = {
+  movement: [
+    ["https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1100&q=82", "Ross Parmly / Unsplash"],
+    ["https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1100&q=82", "Jezael Melgoza / Unsplash"],
+    ["https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=1100&q=82", "Unsplash"],
+    ["https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1100&q=82", "Rawpixel / Unsplash"]
+  ],
+  details: [
+    ["https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1100&q=82", "Diego Lozano / Unsplash"],
+    ["https://images.unsplash.com/photo-1586441133374-ed1cb4007a47?auto=format&fit=crop&w=1100&q=82", "CardMapr.nl / Unsplash"],
+    ["https://images.unsplash.com/photo-1607541756372-6b51093db8c6?auto=format&fit=crop&w=1100&q=82", "Hoi An Photographer / Unsplash"],
+    ["https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1100&q=82", "Nathan Dumlao / Unsplash"]
+  ],
+  transitions: [
+    ["https://images.unsplash.com/photo-1559084692-5f253118aa3a?auto=format&fit=crop&w=1100&q=82", "Joao Estrella / Unsplash"],
+    ["https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=1100&q=82", "Mesut Kaya / Unsplash"],
+    ["https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1100&q=82", "Manuel Cosentino / Unsplash"],
+    ["https://images.unsplash.com/photo-1492571350019-22de08371fd3?auto=format&fit=crop&w=1100&q=82", "Tianshu Liu / Unsplash"]
+  ],
+  emotion: [
+    ["https://images.unsplash.com/photo-1548733320-e95c4faf8aba?auto=format&fit=crop&w=1100&q=82", "Luis Quintero / Unsplash"],
+    ["https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1100&q=82", "Pablo Heimplatz / Unsplash"],
+    ["https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1100&q=82", "Brooke Cagle / Unsplash"],
+    ["https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1100&q=82", "Duy Pham / Unsplash"]
+  ]
+};
+
+const inspirationBoards = {
+  ko: [
+    ["movement", "이동의 리듬", "공항·역·거리에서 방향과 속도를 이어 붙이는 B-roll", ["창밖보다 창에 스친 손과 풍경을 함께", "표지판 뒤에서 두 사람이 나타나는 리빌", "발걸음과 캐리어 바퀴를 같은 방향으로", "멈춤 2초 뒤 이동을 시작해 편집 여백 확보"]],
+    ["details", "여행 디테일", "물건 자체보다 손이 들어오고 나가는 작은 행동을 찍는 보드", ["김이 오를 때 젓가락이 프레임에 들어오기", "티켓을 펼치고 손가락으로 목적지 짚기", "반지에 초점을 맞춘 뒤 손을 자연스럽게 움직이기", "잔을 내려놓는 소리까지 5초 유지"]],
+    ["transitions", "장소 전환", "복도·문·기둥과 같은 가림막으로 서로 다른 장소를 연결", ["기둥이 화면을 덮는 순간 다음 장소로 컷", "문을 여는 손동작을 두 장소에서 반복", "같은 화면 방향으로 걷는 컷끼리 연결", "창문 반사에서 실제 인물 화면으로 전환"]],
+    ["emotion", "둘 사이의 순간", "정면 포즈 대신 기다림·웃음·시선이 생기는 전후를 담는 보드", ["웃기 직전과 웃고 난 뒤까지 길게", "한 사람은 풍경, 한 사람은 상대를 보는 순간", "말하는 사람보다 듣는 사람의 반응", "손이 먼저 닿고 시선이 뒤따르는 순서"]]
+  ],
+  en: [
+    ["movement", "Rhythm in transit", "B-roll that carries direction and speed through airports, stations, and streets", ["Layer a hand and scenery in the window reflection", "Reveal the couple from behind a station sign", "Match footsteps and suitcase wheels in one direction", "Hold two seconds before moving for edit handles"]],
+    ["details", "Travel details", "Film the small action of hands entering and leaving, not just the object", ["Let chopsticks enter while steam is visible", "Open the ticket and point to the destination", "Focus on the ring, then let the hand move naturally", "Hold five seconds through the sound of setting down a cup"]],
+    ["transitions", "Place transitions", "Connect locations with corridors, doors, pillars, and other visual covers", ["Cut as a pillar fills the frame", "Repeat the same door-opening action twice", "Join shots that travel in the same screen direction", "Move from a window reflection to the real person"]],
+    ["emotion", "Between the two of you", "Capture anticipation, laughter, and exchanged looks instead of a front-facing pose", ["Roll before the laugh and after it fades", "One watches the view while the other watches them", "Film the listener's reaction instead of the speaker", "Let hands meet first and eyes follow"]]
+  ],
+  vi: [
+    ["movement", "Nhịp điệu di chuyển", "B-roll nối hướng và tốc độ qua sân bay, nhà ga và đường phố", ["Quay bàn tay cùng phong cảnh phản chiếu trên cửa kính", "Để hai người xuất hiện từ sau biển chỉ dẫn", "Nối bước chân và bánh vali cùng một hướng", "Giữ yên hai giây trước khi di chuyển để dễ dựng"]],
+    ["details", "Chi tiết chuyến đi", "Quay hành động nhỏ khi bàn tay đi vào và ra thay vì chỉ quay đồ vật", ["Để đũa đi vào khung khi hơi nóng còn rõ", "Mở vé rồi chỉ vào điểm đến", "Lấy nét vào nhẫn rồi để bàn tay chuyển động tự nhiên", "Giữ năm giây cả tiếng đặt cốc xuống"]],
+    ["transitions", "Chuyển địa điểm", "Nối các nơi bằng hành lang, cửa, cột và vật che khung", ["Cắt khi cột che kín màn hình", "Lặp cùng động tác mở cửa ở hai nơi", "Nối các cảnh đi cùng hướng trên màn hình", "Chuyển từ hình phản chiếu sang người thật"]],
+    ["emotion", "Khoảnh khắc giữa hai người", "Quay chờ đợi, tiếng cười và ánh mắt thay vì tạo dáng chính diện", ["Quay từ trước khi cười đến sau khi nụ cười dịu lại", "Một người ngắm cảnh, người kia nhìn người ấy", "Quay phản ứng của người nghe thay vì người nói", "Để bàn tay chạm trước rồi ánh mắt theo sau"]]
+  ]
+};
+
+const editRecipes = {
+  ko: [
+    ["15초 비트 몽타주", "경쾌함", "표지판 1초 → 발걸음 1초 → 음식 2초 → 웃음 3초 → 반지 낀 손 3초 → 와이드 엔딩 5초"],
+    ["문으로 이어지는 하루", "매치 컷", "호텔 문 열기 → 버스 문 → 식당 문 → 객실 문. 손 위치와 화면 방향을 같게 맞춥니다."],
+    ["프로포즈 빌드업", "감정선", "빈 장소 와이드 → 준비하는 손 → 기다리는 표정 → 고정 마스터 → 반지 → 말없이 안는 장면"],
+    ["소리로 여행 잇기", "J/L 컷", "다음 장소의 기차·접시·파도 소리를 0.5초 먼저 들려준 뒤 화면을 바꿉니다."]
+  ],
+  en: [
+    ["15-second beat montage", "Bright", "Sign 1s → steps 1s → food 2s → laugh 3s → ring hand 3s → wide ending 5s"],
+    ["A day joined by doors", "Match cut", "Hotel door → bus door → restaurant door → room door. Match hand position and screen direction."],
+    ["Proposal build-up", "Emotion arc", "Empty wide → preparing hands → waiting face → locked master → ring → silent embrace"],
+    ["Travel joined by sound", "J/L cut", "Bring train, plate, or wave audio in 0.5 seconds before changing the image."]
+  ],
+  vi: [
+    ["Montage theo nhịp 15 giây", "Tươi sáng", "Biển báo 1s → bước chân 1s → món ăn 2s → tiếng cười 3s → tay đeo nhẫn 3s → cảnh rộng kết 5s"],
+    ["Một ngày nối bằng cửa", "Match cut", "Cửa khách sạn → cửa xe buýt → cửa nhà hàng → cửa phòng. Khớp vị trí tay và hướng màn hình."],
+    ["Tăng cảm xúc cầu hôn", "Đường cảm xúc", "Cảnh rộng trống → tay chuẩn bị → gương mặt chờ → toàn cảnh cố định → nhẫn → ôm im lặng"],
+    ["Nối hành trình bằng âm thanh", "J/L cut", "Cho tiếng tàu, đĩa hoặc sóng vào trước 0,5 giây rồi mới đổi hình."]
+  ]
 };
 
 function mapUrl(query) {
@@ -1449,10 +1849,42 @@ const selectedDirectorNote = document.querySelector("#selectedDirectorNote");
 const heroBadges = document.querySelector("#heroBadges");
 const progressText = document.querySelector("#progressText");
 const progressBar = document.querySelector("#progressBar");
+const shotEditorDialog = document.querySelector("#shotEditorDialog");
+const editorContext = document.querySelector("#editorContext");
+const editorKeyInput = document.querySelector("#editorKeyInput");
+const editorRows = document.querySelector("#editorRows");
+const editorStatus = document.querySelector("#editorStatus");
+const saveShotsBtn = document.querySelector("#saveShotsBtn");
+const techniqueOptions = document.querySelector("#techniqueOptions");
+const inspirationDialog = document.querySelector("#inspirationDialog");
+const inspirationBoardTitle = document.querySelector("#inspirationBoardTitle");
+const inspirationLead = document.querySelector("#inspirationLead");
+const inspirationGallery = document.querySelector("#inspirationGallery");
 
 function localizeDay(day) {
   const translation = itineraryTranslations[state.lang]?.[day.id];
-  return translation ? { ...day, ...translation, id: day.id, date: day.date } : day;
+  const localized = translation ? { ...day, ...translation, id: day.id, date: day.date } : { ...day };
+  const techniques = techniqueOverrides[state.lang]?.[day.id] || [];
+  const editFlow = editFlowOverrides[state.lang]?.[day.id] || editFlowOverrides.ko[day.id] || [];
+  const defaultShots = localized.shots.map(([title, detail, technique], index) => {
+    const [length = "4초 · 4박", transition = "다음 컷과 같은 방향으로 연결"] = editFlow[index] || [];
+    return [title, detail, techniques[index] || technique, length, transition];
+  });
+  const editedShots = remoteContent.overrides?.[state.lang]?.[day.id]?.shots;
+  const normalizedEditedShots = Array.isArray(editedShots)
+    ? editedShots.map((shot, index) => [
+        shot[0],
+        shot[1],
+        shot[2],
+        shot[3] || defaultShots[index]?.[3] || defaultShots[0][3],
+        shot[4] || defaultShots[index]?.[4] || defaultShots[0][4]
+      ])
+    : null;
+
+  return {
+    ...localized,
+    shots: normalizedEditedShots?.length ? normalizedEditedShots : defaultShots
+  };
 }
 
 function getDay() {
@@ -1496,8 +1928,9 @@ function countDayDone(day) {
 }
 
 function countAllDone() {
-  const total = itinerary.reduce((sum, day) => sum + day.shots.length, 0);
-  const done = itinerary.reduce((sum, day) => sum + countDayDone(day), 0);
+  const localizedDays = itinerary.map(localizeDay);
+  const total = localizedDays.reduce((sum, day) => sum + day.shots.length, 0);
+  const done = localizedDays.reduce((sum, day) => sum + countDayDone(day), 0);
   return { total, done, percent: total ? Math.round((done / total) * 100) : 0 };
 }
 
@@ -1508,11 +1941,11 @@ function renderDays() {
   itinerary.forEach((day) => {
     const localizedDay = localizeDay(day);
     const node = template.content.firstElementChild.cloneNode(true);
-    const done = countDayDone(day);
+    const done = countDayDone(localizedDay);
     node.classList.toggle("active", day.id === state.selectedDay);
     node.querySelector(".day-date").textContent = day.date;
     node.querySelector(".day-name").textContent = localizedDay.title;
-    node.querySelector(".day-progress").textContent = `${done}/${day.shots.length}`;
+    node.querySelector(".day-progress").textContent = `${done}/${localizedDay.shots.length}`;
     node.addEventListener("click", () => {
       state.selectedDay = day.id;
       render();
@@ -1544,6 +1977,10 @@ function renderUiText() {
     const key = node.dataset.i18nTitle;
     node.title = labels[key] || uiText.ko[key] || node.title;
   });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
+    const key = node.dataset.i18nPlaceholder;
+    node.placeholder = labels[key] || uiText.ko[key] || node.placeholder;
+  });
   document.querySelectorAll(".lang-button").forEach((button) => {
     button.classList.toggle("active", button.dataset.lang === state.lang);
   });
@@ -1558,6 +1995,35 @@ function renderSidebar() {
   sidebarToggle.setAttribute("aria-label", label);
   sidebarToggle.title = label;
   sidebarToggle.innerHTML = `<i data-lucide="${icon}"></i><span class="toggle-label">${label}</span>`;
+}
+
+function renderMvFlow(day) {
+  const flowList = document.querySelector("#mvFlowList");
+  const chapter = mvChapters[state.lang]?.[day.id] || mvChapters.ko[day.id];
+  document.querySelector("#mvChapter").textContent = chapter;
+  flowList.replaceChildren(
+    ...day.shots.map(([title, , technique, length, transition], index) => {
+      const step = document.createElement("article");
+      step.className = "mv-flow-step";
+      step.innerHTML = `
+        <span class="flow-index">${index + 1}</span>
+        <div class="flow-shot">
+          <strong></strong>
+          <small></small>
+        </div>
+        <span class="flow-length"></span>
+        <div class="flow-transition">
+          <i data-lucide="corner-down-right"></i>
+          <span></span>
+        </div>
+      `;
+      step.querySelector(".flow-shot strong").textContent = title;
+      step.querySelector(".flow-shot small").textContent = technique;
+      step.querySelector(".flow-length").textContent = length;
+      step.querySelector(".flow-transition span").textContent = transition;
+      return step;
+    })
+  );
 }
 
 function renderShots(day) {
@@ -1632,6 +2098,9 @@ function renderReferenceGuide() {
   const labels = uiText[state.lang] || uiText.ko;
   const guide = referenceGuide[state.lang] || referenceGuide.ko;
   const glossary = shotGlossary[state.lang] || shotGlossary.ko;
+  const techniques = techniquePresets[state.lang] || techniquePresets.ko;
+  const boards = inspirationBoards[state.lang] || inspirationBoards.ko;
+  const recipes = editRecipes[state.lang] || editRecipes.ko;
   const guideHtml = guide
     .map(
       (section) => `
@@ -1653,14 +2122,17 @@ function renderReferenceGuide() {
               const visual = shotVisuals[item.type];
               return `
               <section class="glossary-card">
-                <a class="glossary-photo ${item.type}" href="${visual.source}" target="_blank" rel="noreferrer" aria-label="${labels.openPhotoSource}">
+                <div class="glossary-photo ${item.type}">
                   <img src="${visual.image}" alt="${item.term}: ${item.example}" loading="lazy" />
                   <span>${labels.photoSource}: ${visual.credit}</span>
-                </a>
+                </div>
                 <div class="glossary-copy">
                   <h4>${item.term}</h4>
                   <p>${item.meaning}</p>
                   <small>${item.example}</small>
+                  <button class="example-button" type="button" data-inspiration="${
+                    { broll: "movement", wide: "movement", close: "emotion", insert: "details", transition: "transitions", emotion: "emotion", ring: "details" }[item.type]
+                  }">${labels.viewExamples}</button>
                 </div>
               </section>
             `;
@@ -1670,7 +2142,277 @@ function renderReferenceGuide() {
       </div>
     </article>
   `;
-  referenceGuideEl.innerHTML = glossaryHtml + guideHtml;
+  const techniqueHtml = `
+    <article class="reference-card technique-section">
+      <strong>${labels.techniqueLibraryTitle}</strong>
+      <div class="technique-grid">
+        ${techniques
+          .map(
+            ([name, method, setting]) => `
+              <section class="technique-card">
+                <div>
+                  <h4>${name}</h4>
+                  <p>${method}</p>
+                </div>
+                <span>${setting}</span>
+              </section>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+  const inspirationHtml = `
+    <article class="reference-card inspiration-section">
+      <strong>${labels.inspirationTitle}</strong>
+      <p>${labels.inspirationIntro}</p>
+      <div class="inspiration-launchers">
+        ${boards
+          .map(([id, title, note]) => {
+            const [image] = inspirationPhotos[id][0];
+            return `
+              <button class="inspiration-launcher" type="button" data-inspiration="${id}">
+                <img src="${image}" alt="" loading="lazy" />
+                <span><b>${title}</b><small>${note}</small></span>
+                <i data-lucide="images"></i>
+              </button>
+            `;
+          })
+          .join("")}
+      </div>
+    </article>
+  `;
+  const recipeHtml = `
+    <article class="reference-card edit-recipe-section">
+      <span class="summary-label">${labels.editRecipeEyebrow}</span>
+      <strong>${labels.editRecipeTitle}</strong>
+      <div class="edit-recipe-grid">
+        ${recipes
+          .map(
+            ([title, mood, sequence]) => `
+              <section class="edit-recipe-card">
+                <header><h4>${title}</h4><span>${mood}</span></header>
+                <p>${sequence}</p>
+              </section>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+  referenceGuideEl.innerHTML = inspirationHtml + recipeHtml + techniqueHtml + glossaryHtml + guideHtml;
+  referenceGuideEl.querySelectorAll("[data-inspiration]").forEach((button) => {
+    button.addEventListener("click", () => openInspirationBoard(button.dataset.inspiration));
+  });
+}
+
+function openInspirationBoard(boardId) {
+  const labels = uiText[state.lang] || uiText.ko;
+  const board = (inspirationBoards[state.lang] || inspirationBoards.ko).find(([id]) => id === boardId);
+  const photos = inspirationPhotos[boardId];
+  if (!board || !photos) return;
+  const [, title, note, prompts] = board;
+  inspirationBoardTitle.textContent = title;
+  inspirationLead.textContent = `${note}. ${labels.inspirationIntro}`;
+  inspirationGallery.replaceChildren(
+    ...photos.map(([source, credit], index) => {
+      const figure = document.createElement("figure");
+      const image = document.createElement("img");
+      const caption = document.createElement("figcaption");
+      image.src = source;
+      image.alt = prompts[index];
+      caption.innerHTML = `<strong></strong><small></small>`;
+      caption.querySelector("strong").textContent = prompts[index];
+      caption.querySelector("small").textContent = credit;
+      figure.append(image, caption);
+      return figure;
+    })
+  );
+  inspirationDialog.showModal();
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function renderTechniqueOptions() {
+  const presetNames = (techniquePresets[state.lang] || techniquePresets.ko).map(([name]) => name);
+  const draftNames = editorDraft.map((shot) => shot[2]).filter(Boolean);
+  const names = [...new Set([...presetNames, ...draftNames])];
+  techniqueOptions.replaceChildren(
+    ...names.map((name) => {
+      const option = document.createElement("option");
+      option.value = name;
+      return option;
+    })
+  );
+}
+
+function readEditorRows() {
+  return [...editorRows.querySelectorAll(".editor-row")].map((row) => [
+    row.querySelector('[data-field="title"]').value,
+    row.querySelector('[data-field="detail"]').value,
+    row.querySelector('[data-field="technique"]').value,
+    row.querySelector('[data-field="length"]').value,
+    row.querySelector('[data-field="transition"]').value
+  ]);
+}
+
+function renderEditorRows() {
+  const labels = uiText[state.lang] || uiText.ko;
+  editorRows.replaceChildren();
+
+  editorDraft.forEach(([title, detail, technique, length, transition], index) => {
+    const row = document.createElement("article");
+    row.className = "editor-row";
+    row.innerHTML = `
+      <span class="editor-row-number">${index + 1}</span>
+      <div class="editor-fields">
+        <div class="editor-field">
+          <label>${labels.shotNameLabel}</label>
+          <input data-field="title" maxlength="100" required />
+        </div>
+        <div class="editor-field">
+          <label>${labels.techniqueLabel}</label>
+          <input data-field="technique" maxlength="80" list="techniqueOptions" required />
+        </div>
+        <div class="editor-field detail-field">
+          <label>${labels.shotDetailLabel}</label>
+          <textarea data-field="detail" maxlength="500" required></textarea>
+        </div>
+        <div class="editor-field length-field">
+          <label>${labels.clipLengthLabel}</label>
+          <input data-field="length" maxlength="80" required />
+        </div>
+        <div class="editor-field transition-field">
+          <label>${labels.nextCutLabel}</label>
+          <textarea data-field="transition" maxlength="300" required></textarea>
+        </div>
+      </div>
+      <div class="editor-row-controls">
+        <button class="icon-button move-up" type="button" title="${labels.moveUpTitle}" aria-label="${labels.moveUpTitle}">
+          <i data-lucide="arrow-up"></i>
+        </button>
+        <button class="icon-button move-down" type="button" title="${labels.moveDownTitle}" aria-label="${labels.moveDownTitle}">
+          <i data-lucide="arrow-down"></i>
+        </button>
+        <button class="icon-button delete-shot" type="button" title="${labels.deleteShotTitle}" aria-label="${labels.deleteShotTitle}">
+          <i data-lucide="trash-2"></i>
+        </button>
+      </div>
+    `;
+    row.querySelector('[data-field="title"]').value = title;
+    row.querySelector('[data-field="detail"]').value = detail;
+    row.querySelector('[data-field="technique"]').value = technique;
+    row.querySelector('[data-field="length"]').value = length;
+    row.querySelector('[data-field="transition"]').value = transition;
+
+    row.querySelector(".move-up").disabled = index === 0;
+    row.querySelector(".move-down").disabled = index === editorDraft.length - 1;
+    row.querySelector(".move-up").addEventListener("click", () => moveEditorRow(index, -1));
+    row.querySelector(".move-down").addEventListener("click", () => moveEditorRow(index, 1));
+    row.querySelector(".delete-shot").addEventListener("click", () => deleteEditorRow(index));
+    editorRows.appendChild(row);
+  });
+
+  renderTechniqueOptions();
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function moveEditorRow(index, direction) {
+  editorDraft = readEditorRows();
+  const target = index + direction;
+  if (target < 0 || target >= editorDraft.length) return;
+  [editorDraft[index], editorDraft[target]] = [editorDraft[target], editorDraft[index]];
+  renderEditorRows();
+}
+
+function deleteEditorRow(index) {
+  editorDraft = readEditorRows();
+  if (editorDraft.length === 1) return;
+  editorDraft.splice(index, 1);
+  renderEditorRows();
+}
+
+function openShotEditor() {
+  const day = getDay();
+  const labels = uiText[state.lang] || uiText.ko;
+  editorDraft = day.shots.map((shot) => [...shot]);
+  editorContext.textContent = `${day.date} ${day.title} · ${labels.editorContextSuffix}`;
+  editorKeyInput.value = sessionStorage.getItem(editorTokenStorageKey) || "";
+  editorStatus.textContent = remoteCommit ? `Git ${remoteCommit}` : "";
+  editorStatus.classList.remove("error");
+  renderUiText();
+  renderEditorRows();
+  shotEditorDialog.showModal();
+}
+
+function closeShotEditor() {
+  shotEditorDialog.close();
+}
+
+function clearDayChecks(dayId) {
+  Object.keys(state.checked)
+    .filter((key) => key.startsWith(`${dayId}-`))
+    .forEach((key) => delete state.checked[key]);
+  save();
+}
+
+async function saveShotEdits() {
+  const labels = uiText[state.lang] || uiText.ko;
+  const shots = readEditorRows().map((shot) => shot.map((value) => value.trim()));
+  const token = editorKeyInput.value.trim();
+  const valid = shots.length >= 1 && shots.length <= 30 && shots.every((shot) => shot.every(Boolean));
+
+  if (!valid || !token) {
+    editorStatus.textContent = labels.saveFailed;
+    editorStatus.classList.add("error");
+    return;
+  }
+
+  editorStatus.textContent = labels.savingToGit;
+  editorStatus.classList.remove("error");
+  saveShotsBtn.disabled = true;
+
+  try {
+    const response = await fetch("/api/content", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Editor-Token": token
+      },
+      body: JSON.stringify({ language: state.lang, dayId: state.selectedDay, shots })
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok || !payload.content) throw new Error("save_failed");
+
+    remoteContent = payload.content;
+    remoteCommit = payload.commit || remoteCommit;
+    sessionStorage.setItem(editorTokenStorageKey, token);
+    clearDayChecks(state.selectedDay);
+    editorDraft = shots;
+    render();
+    editorStatus.textContent = `${labels.savedToGit}${remoteCommit ? ` · ${remoteCommit}` : ""}`;
+    window.setTimeout(() => {
+      if (shotEditorDialog.open) closeShotEditor();
+    }, 700);
+  } catch (error) {
+    editorStatus.textContent = labels.saveFailed;
+    editorStatus.classList.add("error");
+  } finally {
+    saveShotsBtn.disabled = false;
+  }
+}
+
+async function loadRemoteContent() {
+  try {
+    const response = await fetch("/api/content", { cache: "no-store" });
+    if (!response.ok) return;
+    const payload = await response.json();
+    if (payload.content?.overrides) {
+      remoteContent = payload.content;
+      remoteCommit = payload.commit || null;
+    }
+  } catch (error) {
+    // Static/offline viewing still works with the bundled itinerary.
+  }
 }
 
 function renderProgress() {
@@ -1696,6 +2438,7 @@ function render() {
   renderSidebar();
   renderDays();
   renderHero(day);
+  renderMvFlow(day);
   renderShots(day);
   renderInfo(day);
   renderReferenceGuide();
@@ -1713,6 +2456,32 @@ document.querySelector("#completeDayBtn").addEventListener("click", () => {
   });
   save();
   render();
+});
+
+document.querySelector("#editShotsBtn").addEventListener("click", openShotEditor);
+document.querySelector("#inspirationCloseBtn").addEventListener("click", () => inspirationDialog.close());
+inspirationDialog.addEventListener("click", (event) => {
+  if (event.target === inspirationDialog) inspirationDialog.close();
+});
+document.querySelector("#editorCloseBtn").addEventListener("click", closeShotEditor);
+document.querySelector("#editorCancelBtn").addEventListener("click", closeShotEditor);
+document.querySelector("#addShotBtn").addEventListener("click", () => {
+  const labels = uiText[state.lang] || uiText.ko;
+  editorDraft = readEditorRows();
+  if (editorDraft.length >= 30) return;
+  editorDraft.push([
+    labels.newShotTitle,
+    labels.newShotDetail,
+    labels.newShotTechnique,
+    labels.newShotLength,
+    labels.newShotTransition
+  ]);
+  renderEditorRows();
+  editorRows.lastElementChild?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+});
+saveShotsBtn.addEventListener("click", saveShotEdits);
+shotEditorDialog.addEventListener("click", (event) => {
+  if (event.target === shotEditorDialog) closeShotEditor();
 });
 
 sidebarToggle.addEventListener("click", () => {
@@ -1764,10 +2533,12 @@ document.querySelectorAll(".tab").forEach((tab) => {
 
 document.querySelectorAll(".lang-button").forEach((button) => {
   button.addEventListener("click", () => {
+    if (shotEditorDialog.open) closeShotEditor();
+    if (inspirationDialog.open) inspirationDialog.close();
     state.lang = button.dataset.lang;
     localStorage.setItem(langStorageKey, state.lang);
     render();
   });
 });
 
-render();
+loadRemoteContent().finally(render);

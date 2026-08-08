@@ -1,1 +1,4 @@
 tmp/
+.server.env
+__pycache__/
+*.pyc
