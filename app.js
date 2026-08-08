@@ -555,11 +555,13 @@ const itineraryTranslations = {
 
 const storageKey = "aloha-mv-call-sheet-v1";
 const langStorageKey = "aloha-mv-language-v1";
+const sidebarStorageKey = "aloha-mv-sidebar-collapsed-v1";
 const state = {
   selectedDay: itinerary[0].id,
   checked: JSON.parse(localStorage.getItem(storageKey) || "{}"),
-  mobileTab: "schedule",
-  lang: localStorage.getItem(langStorageKey) || "ko"
+  mobileTab: "shots",
+  lang: localStorage.getItem(langStorageKey) || "ko",
+  sidebarCollapsed: localStorage.getItem(sidebarStorageKey) !== "false"
 };
 
 const uiText = {
@@ -569,15 +571,14 @@ const uiText = {
     overallProgress: "전체 진행률",
     tabShots: "촬영",
     tabSchedule: "여행 동선",
-    tabRing: "반지",
     tabReference: "참고",
     shotEyebrow: "오늘 꼭 찍을 컷",
     shotTitle: "촬영 체크리스트",
     completeDay: "오늘 컷 완료",
     scheduleEyebrow: "PDF 기반 링크와 대안",
     scheduleTitle: "여행 동선",
-    ringEyebrow: "프로포즈링 연출",
-    ringTitle: "감정선 설계",
+    ringEyebrow: "촬영 체크리스트에 함께 보는",
+    ringTitle: "프로포즈와 반지 연출",
     referenceEyebrow: "일본 현장 참고",
     referenceTitle: "사용법과 Insta360 X2 운용",
     doneTitle: "컷 완료",
@@ -590,7 +591,11 @@ const uiText = {
     exportTitle: "진행 상황 내보내기",
     resetTitle: "체크 초기화",
     alternativePrefix: "대안",
-    glossaryTitle: "촬영 용어 예시"
+    glossaryTitle: "실제 사진으로 보는 촬영 용어",
+    sidebarExpand: "날짜 펼치기",
+    sidebarCollapse: "날짜 접기",
+    photoSource: "사진 출처",
+    openPhotoSource: "원본 사진 열기"
   },
   en: {
     appTitle: "Aloha Travel MV Shooting Call Sheet",
@@ -598,15 +603,14 @@ const uiText = {
     overallProgress: "Total progress",
     tabShots: "Shooting",
     tabSchedule: "Route",
-    tabRing: "Ring",
     tabReference: "Guide",
     shotEyebrow: "Must-get shots today",
     shotTitle: "Shooting checklist",
     completeDay: "Complete today",
     scheduleEyebrow: "PDF links and backups",
     scheduleTitle: "Travel route",
-    ringEyebrow: "Proposal ring direction",
-    ringTitle: "Emotional arc",
+    ringEyebrow: "Included with today's shot list",
+    ringTitle: "Proposal and ring direction",
     referenceEyebrow: "Japan field guide",
     referenceTitle: "How to use this and Insta360 X2 setup",
     doneTitle: "shots done",
@@ -619,7 +623,11 @@ const uiText = {
     exportTitle: "Export progress",
     resetTitle: "Reset checks",
     alternativePrefix: "Alternative",
-    glossaryTitle: "Shot term examples"
+    glossaryTitle: "Shot terms shown with real photos",
+    sidebarExpand: "Expand dates",
+    sidebarCollapse: "Collapse dates",
+    photoSource: "Photo",
+    openPhotoSource: "Open original photo"
   },
   vi: {
     appTitle: "Call Sheet Quay MV Du Lịch Aloha",
@@ -627,15 +635,14 @@ const uiText = {
     overallProgress: "Tiến độ tổng",
     tabShots: "Quay",
     tabSchedule: "Lộ trình",
-    tabRing: "Nhẫn",
     tabReference: "Hướng dẫn",
     shotEyebrow: "Cảnh cần quay hôm nay",
     shotTitle: "Checklist quay",
     completeDay: "Hoàn tất hôm nay",
     scheduleEyebrow: "Liên kết PDF và phương án phụ",
     scheduleTitle: "Lộ trình du lịch",
-    ringEyebrow: "Dàn dựng nhẫn cầu hôn",
-    ringTitle: "Mạch cảm xúc",
+    ringEyebrow: "Xem cùng checklist hôm nay",
+    ringTitle: "Dàn dựng cầu hôn và nhẫn",
     referenceEyebrow: "Hướng dẫn tại Nhật",
     referenceTitle: "Cách dùng và thiết lập Insta360 X2",
     doneTitle: "cảnh đã xong",
@@ -648,7 +655,11 @@ const uiText = {
     exportTitle: "Xuất tiến độ",
     resetTitle: "Đặt lại checklist",
     alternativePrefix: "Phương án khác",
-    glossaryTitle: "Ví dụ thuật ngữ quay"
+    glossaryTitle: "Thuật ngữ quay bằng ảnh thực tế",
+    sidebarExpand: "Mở danh sách ngày",
+    sidebarCollapse: "Thu gọn danh sách ngày",
+    photoSource: "Nguồn ảnh",
+    openPhotoSource: "Mở ảnh gốc"
   }
 };
 
@@ -896,6 +907,44 @@ const shotGlossary = {
       example: "Bàn tay đeo nhẫn cầm quà, hoặc hộp nhẫn xuất hiện thoáng qua."
     }
   ]
+};
+
+const shotVisuals = {
+  broll: {
+    image: "https://images.unsplash.com/photo-1501200040150-4d65c94e8f21?auto=format&fit=crop&w=1000&q=78",
+    source: "https://unsplash.com/photos/bowl-of-ramen-SdS_XZ2CBqo",
+    credit: "Alison Marras / Unsplash"
+  },
+  wide: {
+    image: "https://images.unsplash.com/photo-1546695075-79e7afee29b1?auto=format&fit=crop&w=1000&q=78",
+    source: "https://unsplash.com/photos/man-and-woman-crossing-on-street-3IA-U2zhIEA",
+    credit: "CHUTTERSNAP / Unsplash"
+  },
+  close: {
+    image: "https://images.unsplash.com/photo-1695585753636-e12d2b97ac3f?auto=format&fit=crop&w=1000&q=78",
+    source: "https://unsplash.com/photos/a-womans-hand-with-a-diamond-ring-on-it-AKLXCQaDPRQ",
+    credit: "Matt Seymour / Unsplash"
+  },
+  insert: {
+    image: "https://images.unsplash.com/photo-1586441133374-ed1cb4007a47?auto=format&fit=crop&w=1000&q=78",
+    source: "https://unsplash.com/photos/a-passport-and-a-boarding-pass-are-on-a-bag-LVA3S6isNYQ",
+    credit: "CardMapr.nl / Unsplash"
+  },
+  transition: {
+    image: "https://images.unsplash.com/photo-1559084692-5f253118aa3a?auto=format&fit=crop&w=1000&q=78",
+    source: "https://unsplash.com/photos/hallway-of-a-hotel-leading-to-a-window-JZ6nWjQ_SSY",
+    credit: "Joao Estrella / Unsplash"
+  },
+  emotion: {
+    image: "https://images.unsplash.com/photo-1548733320-e95c4faf8aba?auto=format&fit=crop&w=1000&q=78",
+    source: "https://unsplash.com/photos/BVrCdFJ5guA",
+    credit: "Luis Quintero / Unsplash"
+  },
+  ring: {
+    image: "https://images.unsplash.com/photo-1607541756372-6b51093db8c6?auto=format&fit=crop&w=1000&q=78",
+    source: "https://unsplash.com/photos/OPk3ynqLToI",
+    credit: "Hoi An Photographer / Unsplash"
+  }
 };
 
 function mapUrl(query) {
@@ -1388,6 +1437,8 @@ const routeTranslations = {
 };
 
 const dayList = document.querySelector("#dayList");
+const sidebar = document.querySelector("#sidebar");
+const sidebarToggle = document.querySelector("#sidebarToggle");
 const shotList = document.querySelector("#shotList");
 const scheduleList = document.querySelector("#scheduleList");
 const ringPlan = document.querySelector("#ringPlan");
@@ -1498,6 +1549,17 @@ function renderUiText() {
   });
 }
 
+function renderSidebar() {
+  const labels = uiText[state.lang] || uiText.ko;
+  const label = state.sidebarCollapsed ? labels.sidebarExpand : labels.sidebarCollapse;
+  const icon = state.sidebarCollapsed ? "panel-left-open" : "panel-left-close";
+  sidebar.classList.toggle("collapsed", state.sidebarCollapsed);
+  sidebarToggle.setAttribute("aria-expanded", String(!state.sidebarCollapsed));
+  sidebarToggle.setAttribute("aria-label", label);
+  sidebarToggle.title = label;
+  sidebarToggle.innerHTML = `<i data-lucide="${icon}"></i><span class="toggle-label">${label}</span>`;
+}
+
 function renderShots(day) {
   const template = document.querySelector("#shotTemplate");
   shotList.innerHTML = "";
@@ -1587,22 +1649,22 @@ function renderReferenceGuide() {
       <div class="glossary-grid">
         ${glossary
           .map(
-            (item) => `
+            (item) => {
+              const visual = shotVisuals[item.type];
+              return `
               <section class="glossary-card">
-                <div class="shot-visual ${item.type}" aria-hidden="true">
-                  <span class="subject one"></span>
-                  <span class="subject two"></span>
-                  <span class="detail mark"></span>
-                  <span class="detail line"></span>
-                  <span class="detail dot"></span>
-                </div>
-                <div>
+                <a class="glossary-photo ${item.type}" href="${visual.source}" target="_blank" rel="noreferrer" aria-label="${labels.openPhotoSource}">
+                  <img src="${visual.image}" alt="${item.term}: ${item.example}" loading="lazy" />
+                  <span>${labels.photoSource}: ${visual.credit}</span>
+                </a>
+                <div class="glossary-copy">
                   <h4>${item.term}</h4>
                   <p>${item.meaning}</p>
                   <small>${item.example}</small>
                 </div>
               </section>
-            `
+            `;
+            }
           )
           .join("")}
       </div>
@@ -1631,6 +1693,7 @@ function renderMobilePanels() {
 function render() {
   const day = getDay();
   renderUiText();
+  renderSidebar();
   renderDays();
   renderHero(day);
   renderShots(day);
@@ -1650,6 +1713,15 @@ document.querySelector("#completeDayBtn").addEventListener("click", () => {
   });
   save();
   render();
+});
+
+sidebarToggle.addEventListener("click", () => {
+  state.sidebarCollapsed = !state.sidebarCollapsed;
+  localStorage.setItem(sidebarStorageKey, String(state.sidebarCollapsed));
+  renderSidebar();
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
 });
 
 document.querySelector("#resetBtn").addEventListener("click", () => {

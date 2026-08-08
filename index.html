@@ -32,7 +32,10 @@
     </header>
 
     <main class="app-shell">
-      <aside class="sidebar" aria-label="일정 선택" data-i18n-aria="sidebarAria">
+      <aside class="sidebar collapsed" id="sidebar" aria-label="일정 선택" data-i18n-aria="sidebarAria">
+        <div class="sidebar-head">
+          <button class="icon-button sidebar-toggle" id="sidebarToggle" type="button" aria-expanded="false"></button>
+        </div>
         <section class="summary-panel">
           <div>
             <span class="summary-label" data-i18n="overallProgress">전체 진행률</span>
@@ -57,17 +60,13 @@
         </div>
 
         <div class="mobile-tabs primary-tabs" role="tablist" aria-label="보기 전환" data-i18n-aria="tabsAria">
-          <button class="tab active" type="button" data-tab="schedule">
-            <i data-lucide="calendar-days"></i>
-            <span data-i18n="tabSchedule">일정</span>
-          </button>
-          <button class="tab" type="button" data-tab="shots">
+          <button class="tab active" type="button" data-tab="shots">
             <i data-lucide="clapperboard"></i>
-            <span data-i18n="tabShots">컷</span>
+            <span data-i18n="tabShots">촬영</span>
           </button>
-          <button class="tab" type="button" data-tab="ring">
-            <i data-lucide="gem"></i>
-            <span data-i18n="tabRing">반지</span>
+          <button class="tab" type="button" data-tab="schedule">
+            <i data-lucide="calendar-days"></i>
+            <span data-i18n="tabSchedule">여행 동선</span>
           </button>
           <button class="tab" type="button" data-tab="reference">
             <i data-lucide="book-open"></i>
@@ -88,6 +87,16 @@
               </button>
             </div>
             <div id="shotList" class="shot-list"></div>
+            <section class="proposal-section">
+              <div class="section-head subsection-head">
+                <div>
+                  <span class="summary-label" data-i18n="ringEyebrow">프로포즈 촬영 메모</span>
+                  <h3 data-i18n="ringTitle">반지와 감정 연출</h3>
+                </div>
+                <i data-lucide="gem" aria-hidden="true"></i>
+              </div>
+              <div id="ringPlan" class="ring-plan"></div>
+            </section>
           </section>
 
           <section class="panel schedule-panel" data-panel="schedule">
@@ -98,16 +107,6 @@
               </div>
             </div>
             <div id="scheduleList" class="info-list"></div>
-          </section>
-
-          <section class="panel ring-panel" data-panel="ring">
-            <div class="section-head">
-              <div>
-                <span class="summary-label" data-i18n="ringEyebrow">프로포즈링 연출</span>
-                <h3 data-i18n="ringTitle">감정선 설계</h3>
-              </div>
-            </div>
-            <div id="ringPlan" class="ring-plan"></div>
           </section>
 
           <section class="panel reference-panel" data-panel="reference">

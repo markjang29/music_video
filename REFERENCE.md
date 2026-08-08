@@ -4,7 +4,7 @@
 
 이 웹앱은 2026년 8월 9일부터 8월 15일까지의 후쿠오카·벳푸 여행 일정에 맞춰, 여자친구와의 결혼반지/프로포즈링 중심 아로하 뮤직비디오를 찍기 위한 촬영 콜시트입니다.
 
-날짜를 선택하면 그날 필요한 컷, 이동과 예약 메모, 반지 연출 포인트를 바로 볼 수 있습니다. 촬영 완료 체크는 휴대폰 브라우저에 저장되므로 일본 현장에서 같은 브라우저로 다시 열면 이어서 사용할 수 있습니다.
+왼쪽의 접힌 날짜 레일에서 날짜를 선택하면 그날 필요한 촬영 컷을 먼저 볼 수 있습니다. `프로포즈와 반지 연출`은 별도 탭이 아니라 촬영 체크리스트 아래에 함께 표시됩니다. 촬영 완료 체크는 휴대폰 브라우저에 저장되므로 일본 현장에서 같은 브라우저로 다시 열면 이어서 사용할 수 있습니다.
 
 ## 일본에서 쓰는 법
 
@@ -25,6 +25,8 @@
 
 ## 촬영 용어 쉬운 설명
 
+웹앱의 `참고` 탭에서는 아래 용어를 실제 사진 구도로 보여줍니다. 사진을 누르면 Unsplash 원본과 사진가 정보를 확인할 수 있습니다.
+
 - B-roll: 분위기를 이어주는 보조 영상입니다. 공항 표지판, 버스 창밖, 라멘 김, 캐리어 바퀴처럼 주인공 얼굴이 없어도 되는 컷입니다.
 - 와이드: 사람과 장소가 같이 보이는 넓은 화면입니다. 하카타역 앞에서 둘이 걸어가는 뒷모습처럼 장소 설명에 좋습니다.
 - 클로즈업: 손, 표정, 반지처럼 중요한 대상을 크게 잡는 화면입니다.
@@ -35,7 +37,17 @@
 
 ## 언어 전환
 
-웹앱 오른쪽 위의 `KO`, `EN`, `VI` 버튼으로 참고 설명과 주요 UI 문구를 한국어, 영어, 베트남어로 바꿀 수 있습니다. 세부 여행 일정과 예약 정보는 실수 방지를 위해 원문 한국어를 유지합니다.
+웹앱 오른쪽 위의 `KO`, `EN`, `VI` 버튼으로 메뉴, 날짜별 일정, 촬영 지시, 프로포즈 연출, 링크 이름, 참고 설명을 한국어, 영어, 베트남어로 바꿀 수 있습니다. 지도와 예약 링크 주소, 예약 번호, 시간, 편명은 언어를 바꿔도 유지됩니다.
+
+## 촬영 예시 사진 출처
+
+- B-roll: [Alison Marras / Unsplash](https://unsplash.com/photos/bowl-of-ramen-SdS_XZ2CBqo)
+- 와이드: [CHUTTERSNAP / Unsplash](https://unsplash.com/photos/man-and-woman-crossing-on-street-3IA-U2zhIEA)
+- 클로즈업: [Matt Seymour / Unsplash](https://unsplash.com/photos/a-womans-hand-with-a-diamond-ring-on-it-AKLXCQaDPRQ)
+- 인서트: [CardMapr.nl / Unsplash](https://unsplash.com/photos/a-passport-and-a-boarding-pass-are-on-a-bag-LVA3S6isNYQ)
+- 전환 컷: [Joao Estrella / Unsplash](https://unsplash.com/photos/hallway-of-a-hotel-leading-to-a-window-JZ6nWjQ_SSY)
+- 감정 컷: [Luis Quintero / Unsplash](https://unsplash.com/photos/BVrCdFJ5guA)
+- 링 컷: [Hoi An Photographer / Unsplash](https://unsplash.com/photos/OPk3ynqLToI)
 
 ## English Quick Guide
 
