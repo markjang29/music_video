@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>아로하 여행 MV 촬영 콜시트</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Fukuoka · Beppu · Proposal Ring</p>
+        <h1>아로하 여행 MV 촬영 콜시트</h1>
+      </div>
+      <div class="top-actions" aria-label="촬영 도구">
+        <button class="icon-button" id="printBtn" type="button" title="프린트">
+          <i data-lucide="printer"></i>
+        </button>
+        <button class="icon-button" id="exportBtn" type="button" title="진행상황 내보내기">
+          <i data-lucide="download"></i>
+        </button>
+        <button class="icon-button danger" id="resetBtn" type="button" title="체크 초기화">
+          <i data-lucide="rotate-ccw"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="일정 선택">
+        <section class="summary-panel">
+          <div>
+            <span class="summary-label">전체 진행률</span>
+            <strong id="progressText">0%</strong>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div id="progressBar"></div>
+          </div>
+        </section>
+
+        <nav class="day-list" id="dayList"></nav>
+      </aside>
+
+      <section class="workspace" aria-live="polite">
+        <div class="day-hero">
+          <div>
+            <p class="eyebrow" id="selectedMood">여행 시작</p>
+            <h2 id="selectedTitle">8/9 후쿠오카 도착</h2>
+            <p id="selectedDirectorNote"></p>
+          </div>
+          <div class="hero-badges" id="heroBadges"></div>
+        </div>
+
+        <div class="mobile-tabs" role="tablist" aria-label="보기 전환">
+          <button class="tab active" type="button" data-tab="shots">
+            <i data-lucide="clapperboard"></i>
+            컷
+          </button>
+          <button class="tab" type="button" data-tab="schedule">
+            <i data-lucide="calendar-days"></i>
+            일정
+          </button>
+          <button class="tab" type="button" data-tab="ring">
+            <i data-lucide="gem"></i>
+            반지
+          </button>
+        </div>
+
+        <div class="content-grid">
+          <section class="panel shot-panel" data-panel="shots">
+            <div class="section-head">
+              <div>
+                <span class="summary-label">오늘 꼭 찍을 컷</span>
+                <h3>촬영 체크리스트</h3>
+              </div>
+              <button class="text-button" id="completeDayBtn" type="button">
+                <i data-lucide="check-check"></i>
+                오늘 컷 완료
+              </button>
+            </div>
+            <div id="shotList" class="shot-list"></div>
+          </section>
+
+          <section class="panel schedule-panel" data-panel="schedule">
+            <div class="section-head">
+              <div>
+                <span class="summary-label">동선과 예약</span>
+                <h3>현장 메모</h3>
+              </div>
+            </div>
+            <div id="scheduleList" class="info-list"></div>
+          </section>
+
+          <section class="panel ring-panel" data-panel="ring">
+            <div class="section-head">
+              <div>
+                <span class="summary-label">프로포즈링 연출</span>
+                <h3>감정선 설계</h3>
+              </div>
+            </div>
+            <div id="ringPlan" class="ring-plan"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <template id="dayButtonTemplate">
+      <button class="day-button" type="button">
+        <span class="day-date"></span>
+        <span class="day-name"></span>
+        <span class="day-progress"></span>
+      </button>
+    </template>
+
+    <template id="shotTemplate">
+      <label class="shot-item">
+        <input type="checkbox" />
+        <span class="shot-main">
+          <strong></strong>
+          <small></small>
+        </span>
+        <span class="shot-meta"></span>
+      </label>
+    </template>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
