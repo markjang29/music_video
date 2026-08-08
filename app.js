@@ -372,6 +372,141 @@ const referenceGuide = {
   ]
 };
 
+const shotGlossary = {
+  ko: [
+    {
+      term: "B-roll",
+      type: "broll",
+      meaning: "주인공 얼굴 말고 분위기를 이어주는 보조 영상입니다.",
+      example: "공항 표지판, 버스 창밖, 라멘 김, 캐리어 바퀴, 손잡은 손."
+    },
+    {
+      term: "와이드",
+      type: "wide",
+      meaning: "사람과 장소가 함께 보이는 넓은 화면입니다.",
+      example: "하카타역 앞에서 둘이 걸어가는 뒷모습. 장소 설명용으로 좋습니다."
+    },
+    {
+      term: "클로즈업",
+      type: "close",
+      meaning: "손, 표정, 반지처럼 중요한 대상을 크게 잡는 화면입니다.",
+      example: "반지 케이스를 여는 손, 젓가락을 드는 손, 웃는 눈."
+    },
+    {
+      term: "인서트",
+      type: "insert",
+      meaning: "편집 중간에 끼워 넣는 아주 짧은 디테일 컷입니다.",
+      example: "승차권, 호텔 키카드, 메뉴판, 반지 반짝임을 2-5초."
+    },
+    {
+      term: "전환 컷",
+      type: "transition",
+      meaning: "장소나 시간대가 바뀌는 느낌을 자연스럽게 이어주는 컷입니다.",
+      example: "문 열기, 엘리베이터 거울, 기차 창밖, 숙소 복도."
+    },
+    {
+      term: "감정 컷",
+      type: "emotion",
+      meaning: "정보보다 마음이 느껴지는 표정과 행동을 담는 컷입니다.",
+      example: "말없이 웃는 얼굴, 고백 직전 숨 고르는 손, 같이 바라보는 시선."
+    },
+    {
+      term: "링 컷",
+      type: "ring",
+      meaning: "결혼반지와 프로포즈링이 이야기의 중심으로 보이는 컷입니다.",
+      example: "반지 낀 손으로 기념품을 들거나, 케이스가 살짝 보이는 장면."
+    }
+  ],
+  en: [
+    {
+      term: "B-roll",
+      type: "broll",
+      meaning: "Support footage that carries mood instead of showing the main face.",
+      example: "Airport signs, bus windows, ramen steam, suitcase wheels, holding hands."
+    },
+    {
+      term: "Wide",
+      type: "wide",
+      meaning: "A broad frame where people and location are visible together.",
+      example: "The two of you walking in front of Hakata Station."
+    },
+    {
+      term: "Close-up",
+      type: "close",
+      meaning: "A tight frame for important details like hands, faces, or rings.",
+      example: "Opening the ring case, chopsticks in hand, smiling eyes."
+    },
+    {
+      term: "Insert",
+      type: "insert",
+      meaning: "A very short detail shot inserted during editing.",
+      example: "Train ticket, hotel keycard, menu, ring sparkle for 2-5 seconds."
+    },
+    {
+      term: "Transition",
+      type: "transition",
+      meaning: "A shot that smoothly connects a new place or time.",
+      example: "Opening a door, elevator mirror, train window, hotel hallway."
+    },
+    {
+      term: "Emotion",
+      type: "emotion",
+      meaning: "A shot that shows feeling more than information.",
+      example: "Quiet smile, nervous hand before the proposal, shared eye contact."
+    },
+    {
+      term: "Ring shot",
+      type: "ring",
+      meaning: "A shot where the proposal or wedding ring becomes part of the story.",
+      example: "A ringed hand holding gifts, or the ring case appearing briefly."
+    }
+  ],
+  vi: [
+    {
+      term: "B-roll",
+      type: "broll",
+      meaning: "Cảnh phụ tạo không khí, không nhất thiết phải quay mặt nhân vật chính.",
+      example: "Biển sân bay, cửa sổ xe buýt, hơi ramen, bánh xe vali, tay nắm tay."
+    },
+    {
+      term: "Toàn cảnh",
+      type: "wide",
+      meaning: "Khung hình rộng thấy cả người và địa điểm.",
+      example: "Hai người đi trước ga Hakata, dùng để giới thiệu địa điểm."
+    },
+    {
+      term: "Cận cảnh",
+      type: "close",
+      meaning: "Khung hình gần cho chi tiết quan trọng như tay, mặt, nhẫn.",
+      example: "Tay mở hộp nhẫn, tay cầm đũa, ánh mắt khi cười."
+    },
+    {
+      term: "Insert",
+      type: "insert",
+      meaning: "Cảnh chi tiết rất ngắn để chèn khi dựng video.",
+      example: "Vé tàu, thẻ phòng, menu, nhẫn lấp lánh trong 2-5 giây."
+    },
+    {
+      term: "Chuyển cảnh",
+      type: "transition",
+      meaning: "Cảnh giúp nối địa điểm hoặc thời gian mới mượt hơn.",
+      example: "Mở cửa, gương thang máy, cửa sổ tàu, hành lang khách sạn."
+    },
+    {
+      term: "Cảnh cảm xúc",
+      type: "emotion",
+      meaning: "Cảnh cho thấy cảm xúc hơn là thông tin.",
+      example: "Nụ cười yên lặng, bàn tay hồi hộp trước lời cầu hôn, ánh mắt nhìn nhau."
+    },
+    {
+      term: "Cảnh nhẫn",
+      type: "ring",
+      meaning: "Cảnh để nhẫn cầu hôn hoặc nhẫn cưới trở thành một phần câu chuyện.",
+      example: "Bàn tay đeo nhẫn cầm quà, hoặc hộp nhẫn xuất hiện thoáng qua."
+    }
+  ]
+};
+
 const dayList = document.querySelector("#dayList");
 const shotList = document.querySelector("#shotList");
 const scheduleList = document.querySelector("#scheduleList");
@@ -484,7 +619,8 @@ function renderInfo(day) {
 
 function renderReferenceGuide() {
   const guide = referenceGuide[state.lang] || referenceGuide.ko;
-  referenceGuideEl.innerHTML = guide
+  const glossary = shotGlossary[state.lang] || shotGlossary.ko;
+  const guideHtml = guide
     .map(
       (section) => `
         <article class="reference-card">
@@ -494,6 +630,35 @@ function renderReferenceGuide() {
       `
     )
     .join("");
+  const glossaryTitle = state.lang === "en" ? "Shot term examples" : state.lang === "vi" ? "Ví dụ thuật ngữ quay" : "촬영 용어 예시";
+  const glossaryHtml = `
+    <article class="reference-card glossary-section">
+      <strong>${glossaryTitle}</strong>
+      <div class="glossary-grid">
+        ${glossary
+          .map(
+            (item) => `
+              <section class="glossary-card">
+                <div class="shot-visual ${item.type}" aria-hidden="true">
+                  <span class="subject one"></span>
+                  <span class="subject two"></span>
+                  <span class="detail mark"></span>
+                  <span class="detail line"></span>
+                  <span class="detail dot"></span>
+                </div>
+                <div>
+                  <h4>${item.term}</h4>
+                  <p>${item.meaning}</p>
+                  <small>${item.example}</small>
+                </div>
+              </section>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+  referenceGuideEl.innerHTML = glossaryHtml + guideHtml;
 }
 
 function renderProgress() {
