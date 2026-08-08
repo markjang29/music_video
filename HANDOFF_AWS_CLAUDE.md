@@ -29,15 +29,16 @@ GitHub `markjang29/music_video`의 최신 `main`을 AWS에 배포해 `http://13.
 
 ## AWS 작업 범위
 
-1. 최신 `origin/main`을 별도 Git 작업 디렉터리에 clone 또는 pull한다. 기존 정적 배포 디렉터리는 검증 전까지 보존한다.
-2. 원격 `origin`이 GitHub에 push 가능한 인증 경로인지 확인한다. 비밀값을 remote URL에 넣지 않는다.
-3. 기존 AWS Claude용 로컬 `zai-proxy`와 Claude 설정을 재사용한다. 새 GLM 키를 만들거나 기존 토큰을 복사해 저장소에 넣지 않는다.
-4. 무작위 편집 키를 생성해 Git 밖의 전용 환경 파일에 저장하고 권한을 `600`으로 둔다.
-5. systemd `music-video.service`가 Git 작업 디렉터리에서 `python3 server.py --port 8020`을 실행하도록 바꾼다.
-6. 서비스 재시작 후 정적 화면, `/api/content`, `/api/health`를 확인한다.
-7. 격리된 임시 Git 저장소나 되돌릴 수 있는 테스트 데이터로 GLM 번역과 commit/push 경로를 검증한다. 사용자 촬영 계획을 테스트 문구로 오염시키지 않는다.
-8. 모바일 390px와 데스크톱 화면에서 KO/EN/VI 전체 번역, 촬영 편집, 영감 보드, 여행 링크를 확인한다.
-9. 편집 키는 이사님 텔레그램 개인 대화로 한 번 전달하고 Git, 로그, 작업 결과에는 적지 않는다.
+1. 에이전트 운영 레지스트리의 `aws-manager.repo_ids`에 `music_video`가 없으면, 이사님의 텔레그램 직접 지시에 포함된 범위 추가 승인을 근거로 먼저 등록한다. Notes에 다른 미커밋 변경이 있으면 함께 커밋하지 않는다.
+2. 최신 `origin/main`을 별도 Git 작업 디렉터리에 clone 또는 pull한다. 기존 정적 배포 디렉터리는 검증 전까지 보존한다.
+3. 원격 `origin`이 GitHub에 push 가능한 인증 경로인지 확인한다. 비밀값을 remote URL에 넣지 않는다.
+4. 기존 AWS Claude용 로컬 `zai-proxy`와 Claude 설정을 재사용한다. 새 GLM 키를 만들거나 기존 토큰을 복사해 저장소에 넣지 않는다.
+5. 무작위 편집 키를 생성해 Git 밖의 전용 환경 파일에 저장하고 권한을 `600`으로 둔다.
+6. systemd `music-video.service`가 Git 작업 디렉터리에서 `python3 server.py --port 8020`을 실행하도록 바꾼다.
+7. 서비스 재시작 후 정적 화면, `/api/content`, `/api/health`를 확인한다.
+8. 격리된 임시 Git 저장소나 되돌릴 수 있는 테스트 데이터로 GLM 번역과 commit/push 경로를 검증한다. 사용자 촬영 계획을 테스트 문구로 오염시키지 않는다.
+9. 모바일 390px와 데스크톱 화면에서 KO/EN/VI 전체 번역, 촬영 편집, 영감 보드, 여행 링크를 확인한다.
+10. 편집 키는 이사님 텔레그램 개인 대화로 한 번 전달하고 Git, 로그, 작업 결과에는 적지 않는다.
 
 ## 런타임 설정
 
