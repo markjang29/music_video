@@ -6,6 +6,8 @@
 
 GitHub `markjang29/music_video`의 최신 `main`을 AWS에 배포해 `http://13.125.131.126:8020`에서 촬영 목록 편집, GLM 3개 언어 자동 번역, Git 커밋·푸시가 실제로 동작하게 한다.
 
+서비스 범위는 공인 IP의 HTTP `8020`이다. HTTPS, 도메인, 인증서, Nginx/Caddy 같은 리버스 프록시는 추가하지 않는다.
+
 ## 먼저 읽을 파일
 
 1. `AGENTS.md`
