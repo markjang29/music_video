@@ -769,13 +769,25 @@ svg {
 
 @media (max-width: 720px) {
   .topbar {
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .topbar h1 {
+    font-size: 1.3rem;
   }
 
   .top-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  .language-switcher {
+    margin-right: auto;
   }
 
   .section-head {
