@@ -11,9 +11,14 @@
     <header class="topbar">
       <div>
         <p class="eyebrow">Fukuoka · Beppu · Proposal Ring</p>
-        <h1>아로하 여행 MV 촬영 콜시트</h1>
+        <h1 data-i18n="appTitle">아로하 여행 MV 촬영 콜시트</h1>
       </div>
       <div class="top-actions" aria-label="촬영 도구">
+        <div class="language-switcher" aria-label="언어 선택">
+          <button class="lang-button active" type="button" data-lang="ko">KO</button>
+          <button class="lang-button" type="button" data-lang="en">EN</button>
+          <button class="lang-button" type="button" data-lang="vi">VI</button>
+        </div>
         <button class="icon-button" id="printBtn" type="button" title="프린트">
           <i data-lucide="printer"></i>
         </button>
@@ -30,7 +35,7 @@
       <aside class="sidebar" aria-label="일정 선택">
         <section class="summary-panel">
           <div>
-            <span class="summary-label">전체 진행률</span>
+            <span class="summary-label" data-i18n="overallProgress">전체 진행률</span>
             <strong id="progressText">0%</strong>
           </div>
           <div class="progress-track" aria-hidden="true">
@@ -54,15 +59,19 @@
         <div class="mobile-tabs" role="tablist" aria-label="보기 전환">
           <button class="tab active" type="button" data-tab="shots">
             <i data-lucide="clapperboard"></i>
-            컷
+            <span data-i18n="tabShots">컷</span>
           </button>
           <button class="tab" type="button" data-tab="schedule">
             <i data-lucide="calendar-days"></i>
-            일정
+            <span data-i18n="tabSchedule">일정</span>
           </button>
           <button class="tab" type="button" data-tab="ring">
             <i data-lucide="gem"></i>
-            반지
+            <span data-i18n="tabRing">반지</span>
+          </button>
+          <button class="tab" type="button" data-tab="reference">
+            <i data-lucide="book-open"></i>
+            <span data-i18n="tabReference">참고</span>
           </button>
         </div>
 
@@ -70,12 +79,12 @@
           <section class="panel shot-panel" data-panel="shots">
             <div class="section-head">
               <div>
-                <span class="summary-label">오늘 꼭 찍을 컷</span>
-                <h3>촬영 체크리스트</h3>
+                <span class="summary-label" data-i18n="shotEyebrow">오늘 꼭 찍을 컷</span>
+                <h3 data-i18n="shotTitle">촬영 체크리스트</h3>
               </div>
               <button class="text-button" id="completeDayBtn" type="button">
                 <i data-lucide="check-check"></i>
-                오늘 컷 완료
+                <span data-i18n="completeDay">오늘 컷 완료</span>
               </button>
             </div>
             <div id="shotList" class="shot-list"></div>
@@ -84,8 +93,8 @@
           <section class="panel schedule-panel" data-panel="schedule">
             <div class="section-head">
               <div>
-                <span class="summary-label">동선과 예약</span>
-                <h3>현장 메모</h3>
+                <span class="summary-label" data-i18n="scheduleEyebrow">동선과 예약</span>
+                <h3 data-i18n="scheduleTitle">현장 메모</h3>
               </div>
             </div>
             <div id="scheduleList" class="info-list"></div>
@@ -94,11 +103,21 @@
           <section class="panel ring-panel" data-panel="ring">
             <div class="section-head">
               <div>
-                <span class="summary-label">프로포즈링 연출</span>
-                <h3>감정선 설계</h3>
+                <span class="summary-label" data-i18n="ringEyebrow">프로포즈링 연출</span>
+                <h3 data-i18n="ringTitle">감정선 설계</h3>
               </div>
             </div>
             <div id="ringPlan" class="ring-plan"></div>
+          </section>
+
+          <section class="panel reference-panel" data-panel="reference">
+            <div class="section-head">
+              <div>
+                <span class="summary-label" data-i18n="referenceEyebrow">일본 현장 참고</span>
+                <h3 data-i18n="referenceTitle">사용법과 Insta360 X2 운용</h3>
+              </div>
+            </div>
+            <div id="referenceGuide" class="reference-guide"></div>
           </section>
         </div>
       </section>

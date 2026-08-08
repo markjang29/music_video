@@ -193,16 +193,190 @@ const itinerary = [
 ];
 
 const storageKey = "aloha-mv-call-sheet-v1";
+const langStorageKey = "aloha-mv-language-v1";
 const state = {
   selectedDay: itinerary[0].id,
   checked: JSON.parse(localStorage.getItem(storageKey) || "{}"),
-  mobileTab: "shots"
+  mobileTab: "shots",
+  lang: localStorage.getItem(langStorageKey) || "ko"
+};
+
+const uiText = {
+  ko: {
+    appTitle: "아로하 여행 MV 촬영 콜시트",
+    overallProgress: "전체 진행률",
+    tabShots: "컷",
+    tabSchedule: "일정",
+    tabRing: "반지",
+    tabReference: "참고",
+    shotEyebrow: "오늘 꼭 찍을 컷",
+    shotTitle: "촬영 체크리스트",
+    completeDay: "오늘 컷 완료",
+    scheduleEyebrow: "동선과 예약",
+    scheduleTitle: "현장 메모",
+    ringEyebrow: "프로포즈링 연출",
+    ringTitle: "감정선 설계",
+    referenceEyebrow: "일본 현장 참고",
+    referenceTitle: "사용법과 Insta360 X2 운용",
+    doneTitle: "컷 완료",
+    resetConfirm: "모든 촬영 체크를 초기화할까요?"
+  },
+  en: {
+    appTitle: "Aloha Travel MV Shooting Call Sheet",
+    overallProgress: "Total progress",
+    tabShots: "Shots",
+    tabSchedule: "Schedule",
+    tabRing: "Ring",
+    tabReference: "Guide",
+    shotEyebrow: "Must-get shots today",
+    shotTitle: "Shooting checklist",
+    completeDay: "Complete today",
+    scheduleEyebrow: "Route and bookings",
+    scheduleTitle: "Field notes",
+    ringEyebrow: "Proposal ring direction",
+    ringTitle: "Emotional arc",
+    referenceEyebrow: "Japan field guide",
+    referenceTitle: "How to use this and Insta360 X2 setup",
+    doneTitle: "shots done",
+    resetConfirm: "Reset all shot checks?"
+  },
+  vi: {
+    appTitle: "Call Sheet Quay MV Du Lịch Aloha",
+    overallProgress: "Tiến độ tổng",
+    tabShots: "Cảnh quay",
+    tabSchedule: "Lịch trình",
+    tabRing: "Nhẫn",
+    tabReference: "Hướng dẫn",
+    shotEyebrow: "Cảnh cần quay hôm nay",
+    shotTitle: "Checklist quay",
+    completeDay: "Hoàn tất hôm nay",
+    scheduleEyebrow: "Lộ trình và đặt chỗ",
+    scheduleTitle: "Ghi chú hiện trường",
+    ringEyebrow: "Dàn dựng nhẫn cầu hôn",
+    ringTitle: "Mạch cảm xúc",
+    referenceEyebrow: "Hướng dẫn tại Nhật",
+    referenceTitle: "Cách dùng và thiết lập Insta360 X2",
+    doneTitle: "cảnh đã xong",
+    resetConfirm: "Đặt lại toàn bộ checklist quay?"
+  }
+};
+
+const referenceGuide = {
+  ko: [
+    {
+      title: "이 앱이 하는 일",
+      items: [
+        "후쿠오카와 벳푸 여행 일정에 맞춘 아로하 뮤직비디오 촬영 콜시트입니다.",
+        "날짜를 누르면 그날의 필수 컷, 이동/예약 메모, 프로포즈링 감정선을 바로 확인합니다.",
+        "체크한 촬영 컷은 휴대폰 브라우저에 저장됩니다. 같은 브라우저로 다시 열면 체크 상태가 유지됩니다."
+      ]
+    },
+    {
+      title: "일본 현장에서 쓰는 순서",
+      items: [
+        "아침에 호텔에서 오늘 날짜를 열고 필수 컷 3개만 먼저 머릿속에 넣습니다.",
+        "이동 중에는 Insta360 X2를 셀피스틱에 꽂고 360도로 짧게 켜두면 나중에 화면 방향을 골라 쓸 수 있습니다.",
+        "식당, 공항, 역에서는 직원 얼굴과 다른 손님이 크게 보이지 않게 찍고, 촬영 금지 표지가 있으면 바로 멈춥니다.",
+        "하루 끝에는 완료한 컷을 체크하고, 부족한 컷은 다음날 비슷한 장소에서 보충합니다."
+      ]
+    },
+    {
+      title: "Insta360 X2 기본 세팅",
+      items: [
+        "일반 여행 컷은 360 모드 5.7K 30fps로 찍고, 편집 때 가로/세로 화면을 다시 잡습니다.",
+        "걷는 컷은 FlowState 안정화를 믿고 천천히 움직입니다. 카메라는 얼굴보다 살짝 위, 두 사람 사이 70cm 정도가 편합니다.",
+        "반지 클로즈업은 X2가 아주 가까운 초점에 강하지 않으니 휴대폰 보조 촬영을 같이 남기는 것이 안전합니다.",
+        "프로포즈 순간은 X2를 고정해 30초 이상 계속 돌리고, 휴대폰 하나로 손과 반지 클로즈업을 따로 찍습니다."
+      ]
+    },
+    {
+      title: "여행 중 매일 확인",
+      items: [
+        "배터리 100%, 렌즈 닦기, 메모리 여유, 셀피스틱 잠금, 방수 케이스 필요 여부를 확인합니다.",
+        "반지 케이스는 외출 전 위치를 정해두고, 식당 테이블이나 버스 좌석 위에 오래 꺼내두지 않습니다.",
+        "중요 음성은 X2보다 휴대폰 녹음이 더 안정적일 수 있으니 프로포즈 멘트는 휴대폰도 같이 켭니다."
+      ]
+    }
+  ],
+  en: [
+    {
+      title: "What this app does",
+      items: [
+        "This is a shooting call sheet for an Aloha-style travel music video in Fukuoka and Beppu.",
+        "Tap a date to see must-get shots, route and booking notes, and the proposal-ring emotional arc.",
+        "Checked shots are saved in your phone browser. Open the same browser again and your progress stays there."
+      ]
+    },
+    {
+      title: "How to use it in Japan",
+      items: [
+        "Each morning, open today’s date at the hotel and remember only the top three must-get shots.",
+        "During transfers, mount the Insta360 X2 on the selfie stick and record short 360 clips so you can choose framing later.",
+        "At restaurants, stations, and airports, avoid clear faces of staff or other guests. Stop immediately if filming is not allowed.",
+        "At night, check off finished shots and refill missing ones at a similar place the next day."
+      ]
+    },
+    {
+      title: "Insta360 X2 setup",
+      items: [
+        "For travel footage, use 360 mode at 5.7K 30fps, then reframe horizontal or vertical shots during editing.",
+        "For walking shots, move slowly and rely on FlowState stabilization. Keep the camera slightly above face level, about 70 cm between you.",
+        "The X2 is not ideal for very close ring details, so capture ring close-ups with your phone as backup.",
+        "For the proposal, lock the X2 in place and record for at least 30 seconds. Use a phone for hand and ring close-ups."
+      ]
+    },
+    {
+      title: "Daily travel check",
+      items: [
+        "Check battery, clean lenses, memory space, selfie-stick lock, and whether you need water protection.",
+        "Decide where the ring case lives before leaving the hotel. Do not leave it out long on restaurant tables or bus seats.",
+        "For important audio, phone recording may be safer than the X2. Record the proposal voice on your phone too."
+      ]
+    }
+  ],
+  vi: [
+    {
+      title: "Ứng dụng này dùng để làm gì",
+      items: [
+        "Đây là call sheet để quay MV du lịch phong cách Aloha tại Fukuoka và Beppu.",
+        "Bấm vào từng ngày để xem cảnh cần quay, ghi chú di chuyển/đặt chỗ, và mạch cảm xúc của nhẫn cầu hôn.",
+        "Các cảnh đã tick sẽ được lưu trong trình duyệt điện thoại. Mở lại cùng trình duyệt thì tiến độ vẫn còn."
+      ]
+    },
+    {
+      title: "Cách dùng khi ở Nhật",
+      items: [
+        "Mỗi sáng tại khách sạn, mở ngày hôm đó và chỉ ghi nhớ trước 3 cảnh quan trọng nhất.",
+        "Khi di chuyển, gắn Insta360 X2 vào gậy selfie và quay các đoạn 360 ngắn để sau này chọn khung hình.",
+        "Ở nhà hàng, ga tàu và sân bay, tránh quay rõ mặt nhân viên hoặc khách khác. Nếu có biển cấm quay thì dừng ngay.",
+        "Cuối ngày, tick các cảnh đã xong và bù cảnh còn thiếu ở địa điểm tương tự vào ngày hôm sau."
+      ]
+    },
+    {
+      title: "Thiết lập Insta360 X2",
+      items: [
+        "Với cảnh du lịch, dùng chế độ 360 ở 5.7K 30fps rồi chọn lại khung ngang/dọc khi dựng.",
+        "Với cảnh đi bộ, di chuyển chậm và dùng FlowState stabilization. Đặt máy hơi cao hơn mặt, cách hai người khoảng 70 cm.",
+        "X2 không thật mạnh cho cảnh nhẫn quá gần, nên hãy quay cận nhẫn bằng điện thoại để dự phòng.",
+        "Lúc cầu hôn, cố định X2 và quay liên tục ít nhất 30 giây. Dùng điện thoại quay riêng bàn tay và nhẫn."
+      ]
+    },
+    {
+      title: "Kiểm tra mỗi ngày",
+      items: [
+        "Kiểm tra pin, lau ống kính, dung lượng thẻ nhớ, khóa gậy selfie và nhu cầu chống nước.",
+        "Quyết định vị trí hộp nhẫn trước khi ra khỏi khách sạn. Đừng để hộp nhẫn lâu trên bàn ăn hoặc ghế xe buýt.",
+        "Âm thanh quan trọng có thể thu bằng điện thoại ổn hơn X2. Hãy bật ghi âm điện thoại cho lời cầu hôn."
+      ]
+    }
+  ]
 };
 
 const dayList = document.querySelector("#dayList");
 const shotList = document.querySelector("#shotList");
 const scheduleList = document.querySelector("#scheduleList");
 const ringPlan = document.querySelector("#ringPlan");
+const referenceGuideEl = document.querySelector("#referenceGuide");
 const selectedTitle = document.querySelector("#selectedTitle");
 const selectedMood = document.querySelector("#selectedMood");
 const selectedDirectorNote = document.querySelector("#selectedDirectorNote");
@@ -258,6 +432,18 @@ function renderHero(day) {
   heroBadges.innerHTML = day.tags.map((tag) => `<span class="badge">${tag}</span>`).join("");
 }
 
+function renderUiText() {
+  const labels = uiText[state.lang] || uiText.ko;
+  document.documentElement.lang = state.lang;
+  document.querySelectorAll("[data-i18n]").forEach((node) => {
+    const key = node.dataset.i18n;
+    node.textContent = labels[key] || uiText.ko[key] || node.textContent;
+  });
+  document.querySelectorAll(".lang-button").forEach((button) => {
+    button.classList.toggle("active", button.dataset.lang === state.lang);
+  });
+}
+
 function renderShots(day) {
   const template = document.querySelector("#shotTemplate");
   shotList.innerHTML = "";
@@ -296,11 +482,26 @@ function renderInfo(day) {
     .join("");
 }
 
+function renderReferenceGuide() {
+  const guide = referenceGuide[state.lang] || referenceGuide.ko;
+  referenceGuideEl.innerHTML = guide
+    .map(
+      (section) => `
+        <article class="reference-card">
+          <strong>${section.title}</strong>
+          <ul>${section.items.map((item) => `<li>${item}</li>`).join("")}</ul>
+        </article>
+      `
+    )
+    .join("");
+}
+
 function renderProgress() {
   const { percent, done, total } = countAllDone();
+  const labels = uiText[state.lang] || uiText.ko;
   progressText.textContent = `${percent}%`;
   progressBar.style.width = `${percent}%`;
-  progressText.title = `${done}/${total} 컷 완료`;
+  progressText.title = `${done}/${total} ${labels.doneTitle}`;
 }
 
 function renderMobilePanels() {
@@ -314,10 +515,12 @@ function renderMobilePanels() {
 
 function render() {
   const day = getDay();
+  renderUiText();
   renderDays();
   renderHero(day);
   renderShots(day);
   renderInfo(day);
+  renderReferenceGuide();
   renderProgress();
   renderMobilePanels();
   if (window.lucide) {
@@ -335,7 +538,8 @@ document.querySelector("#completeDayBtn").addEventListener("click", () => {
 });
 
 document.querySelector("#resetBtn").addEventListener("click", () => {
-  const confirmed = window.confirm("모든 촬영 체크를 초기화할까요?");
+  const labels = uiText[state.lang] || uiText.ko;
+  const confirmed = window.confirm(labels.resetConfirm);
   if (!confirmed) return;
   state.checked = {};
   save();
@@ -368,6 +572,14 @@ document.querySelectorAll(".tab").forEach((tab) => {
     if (window.lucide) {
       window.lucide.createIcons();
     }
+  });
+});
+
+document.querySelectorAll(".lang-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    state.lang = button.dataset.lang;
+    localStorage.setItem(langStorageKey, state.lang);
+    render();
   });
 });
 
