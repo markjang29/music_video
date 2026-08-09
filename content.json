@@ -1,9 +1,129 @@
 {
   "version": 2,
-  "updatedAt": null,
+  "updatedAt": "2026-08-09T02:12:24.541712+00:00",
   "overrides": {
-    "ko": {},
-    "en": {},
-    "vi": {}
+    "ko": {
+      "0809": {
+        "shots": [
+          [
+            "공항 도착 표정",
+            "입국장을 나와 캐리어를 끌고 걷는 두 사람을 3~4m 앞에서 뒤따라 찍는다. 표지판이 화면을 스쳐 지나가고, 처음 마주 보며 웃는 순간에 5초 멈춘다. 렌즈는 가슴 높이, 약간 낮은 앵글.",
+            "B-roll, 따라가는 뒷모습",
+            "5~8초, 첫 소절 1박자마다 컷",
+            "캐리어 바퀴가 화면 하단을 가득 채워 프레임이 가려지면 → 하카타역 발걸음으로 wipe."
+          ],
+          [
+            "하카타역 첫 컷",
+            "역 간판 아래 두 사람이 나란히 걸어 들어오는 넓은 구도. 발소리와 캐리어 바퀴 소리를 같이 담는다. 역 중앙에 멈춰 주위를 둘러보는 뒷모습까지 한 호흡.",
+            "와이드, 고정 구도",
+            "7~10초, 후렴 진입 전 한 호흡",
+            "역 천장 불빛이 화면 위를 스쳐 지나가면 → 키와미야 돌판 클로즈업으로 match cut."
+          ],
+          [
+            "첫 음식 리액션",
+            "키와미야 돌판 위 고기가 익는 모습을 테이블 위 각도에서. 소스를 찍어 건네는 손, 한 입 먹고 눈이 커지는 표정을 번갈아. 끝에 상대방 접시로 한 입 옮겨 주는 손동작.",
+            "클로즈업, 손·입 위주",
+            "5~6초, 김이 오르는 타이밍",
+            "젓가락이 화면 아래로 내려가며 어두워지면 → 호텔 창가 커튼으로 wipe."
+          ],
+          [
+            "호텔 체크인 후 창가",
+            "방문을 열고 들어오는 두 발, 캐리어를 세우고 커튼으로 다가가는 뒷모습. 커튼을 열면 후쿠오카 풍경이 쏟아지고, 돌아서며 웃는 얼굴로 프레임을 끝낸다.",
+            "감정, 커튼 열림 라이트 변화",
+            "8~10초, 후렴 도입 한 호흡",
+            "커튼 자락이 화면을 가리며 지나가면 → 가방 안 반지 케이스 실루엣으로 wipe."
+          ],
+          [
+            "반지 암시 컷",
+            "가방 안쪽 파우치에 든 작은 케이스를 2초만 비춘다. 열지 않고 실루엣과 질감만, 빛이 케이스 표면을 스치는 각도. 인물은 등장하지 않는다.",
+            "링, 미스터리 실루엣",
+            "2초, 음악이 잠깐 낮아지는 구간",
+            "케이스가 서서히 어두워지며 페이드 → 다음 날(0810) 버스터미널 아침으로 넘어감."
+          ]
+        ]
+      }
+    },
+    "en": {
+      "0809": {
+        "shots": [
+          [
+            "Arrival at Airport",
+            "Follow the couple 3–4m ahead as they walk out of immigration pulling their carry-ons. Let signs pass through the frame, then hold for 5 seconds when they face each other and smile for the first time. Lens at chest height, slightly low angle.",
+            "B-roll, following from behind",
+            "5–8s, cut on every beat of the first verse",
+            "When the carry-on wheels fill the bottom of the frame and obscure it → wipe to footsteps at Hakata Station."
+          ],
+          [
+            "First Shot at Hakata Station",
+            "Wide shot of the two walking in side by side under the station sign. Capture the sound of footsteps and carry-on wheels together. One continuous take until they stop in the center of the station and look around, seen from behind.",
+            "Wide, fixed shot",
+            "7–10s, one breath before the chorus enters",
+            "When the station ceiling lights sweep across the top of the frame → match cut to a close-up of the Kiwamiya stone plate."
+          ],
+          [
+            "First Food Reaction",
+            "From a tabletop angle, show meat cooking on the Kiwamiya stone plate. Alternate between dipping sauce and passing it with a hand, and the expression of eyes widening after the first bite. End with a hand gesture moving a bite to the partner’s plate.",
+            "Close-up, focus on hands and mouth",
+            "5–6s, timed with the steam rising",
+            "As chopsticks move downward and the frame darkens → wipe to the hotel window curtains."
+          ],
+          [
+            "Hotel Window After Check-in",
+            "Two feet entering as the door opens, then a view from behind as they set down the carry-on and approach the curtains. When the curtains open, Fukuoka scenery pours in; end the frame with a turn and a smiling face.",
+            "Emotion, light change as curtains open",
+            "8–10s, one breath at the chorus intro",
+            "As the curtain hem passes and covers the frame → wipe to the silhouette of the ring case inside the bag."
+          ],
+          [
+            "Ring Hint Shot",
+            "Light up the small case inside the bag’s inner pouch for just 2 seconds. Do not open it; show only silhouette and texture, with light grazing the case surface. No people appear.",
+            "Ring, mysterious silhouette",
+            "2s, section where the music dips briefly",
+            "Case gradually darkens and fades → transition to the next morning (0810) at the bus terminal."
+          ]
+        ]
+      }
+    },
+    "vi": {
+      "0809": {
+        "shots": [
+          [
+            "Biểu cảm khi đến sân bay",
+            "Đi theo sau cặp đôi từ khoảng cách 3–4m khi họ kéo vali đi ra khỏi khu vực nhập cảnh. Để biển báo lướt qua khung hình, sau đó giữ nguyên 5 giây khi họ quay mặt nhau cười lần đầu. Ống kính ở ngang tầm ngực, góc hơi thấp.",
+            "B-roll, đi theo từ phía sau",
+            "5–8s, cắt theo từng nhịp của đoạn đầu",
+            "Khi bánh vali lấp đầy phần dưới khung hình và che khuất → wipe chuyển sang bước chân tại Ga Hakata."
+          ],
+          [
+            "Cảnh đầu tại Ga Hakata",
+            "Góc rộng hai người đi vào song song dưới biển hiệu nhà ga. Thu cả tiếng bước chân và tiếng bánh vali. Một mạch quay cho đến khi họ dừng ở giữa ga và nhìn xung quanh, quay từ phía sau.",
+            "Wide, góc cố định",
+            "7–10s, một nhịp trước khi điệp khúc vào",
+            "Khi ánh đèn trần nhà ga lướt qua phía trên khung hình → match cut sang cận cảnh tảng đá tại Kiwamiya."
+          ],
+          [
+            "Phản ứng món ăn đầu tiên",
+            "Từ góc trên bàn, quay thịt đang chín trên tảng đá Kiwamiya. Xen kẽ cảnh tay chấm sốt đưa qua, và biểu cảm mắt mở to sau khi ăn một miếng. Kết thúc bằng động tác tay gắp một miếng sang đĩa đối phương.",
+            "Cận cảnh, tập trung vào tay và miệng",
+            "5–6s, đúng lúc khói bốc lên",
+            "Khi đũa đi xuống và khung hình tối dần → wipe chuyển sang rèm cửa sổ khách sạn."
+          ],
+          [
+            "Cửa sổ sau khi nhận phòng",
+            "Đôi chân bước vào khi cửa mở, sau đó quay từ phía lưng khi họ để vali và tiến lại gần rèm. Khi rèm mở ra, phong cảnh Fukuoka tràn vào; kết thúc khung hình bằng nụ cười khi quay lại.",
+            "Cảm xúc, thay đổi ánh sáng khi rèm mở",
+            "8–10s, một nhịp khi điệp khúc bắt đầu",
+            "Khi mép rèm lướt qua và che khuất khung hình → wipe chuyển sang bóng lồng hộp nhẫn bên trong túi xách."
+          ],
+          [
+            "Cảnh gợi ý nhẫn",
+            "Chiếu sáng hộp nhỏ bên trong túi của vali trong đúng 2 giây. Không mở, chỉ để bóng lồng và chất liệu, với ánh sáng hắt qua bề mặt hộp. Không có nhân vật xuất hiện.",
+            "Nhẫn, bóng lồng bí ẩn",
+            "2s, đoạn nhạc nhỏ xuống một lúc",
+            "Hộp từ từ tối đi và fade → chuyển sang sáng hôm sau (0810) tại bến xe buýt."
+          ]
+        ]
+      }
+    }
   }
 }
