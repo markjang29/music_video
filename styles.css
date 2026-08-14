@@ -834,6 +834,37 @@ h3 {
   border-left-color: var(--gold);
 }
 
+.souvenir-head {
+  border-left-color: var(--rose);
+}
+
+.souvenir-items {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.55;
+  list-style: none;
+}
+
+.souvenir-items li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.souvenir-items li + li {
+  margin-top: 8px;
+}
+
+.souvenir-items strong {
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.souvenir-items span {
+  font-size: 0.86rem;
+}
+
 .glossary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));

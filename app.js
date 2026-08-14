@@ -684,6 +684,7 @@ const uiText = {
     tabShots: "촬영",
     tabSchedule: "여행 동선",
     tabReference: "참고",
+    tabSouvenirs: "기념품",
     shotEyebrow: "오늘 꼭 찍을 컷",
     shotTitle: "촬영 체크리스트",
     mvFlowTitle: "오늘의 MV 러프컷",
@@ -751,6 +752,7 @@ const uiText = {
     tabShots: "Shooting",
     tabSchedule: "Route",
     tabReference: "Guide",
+    tabSouvenirs: "Souvenirs",
     shotEyebrow: "Must-get shots today",
     shotTitle: "Shooting checklist",
     mvFlowTitle: "Today's MV rough cut",
@@ -818,6 +820,7 @@ const uiText = {
     tabShots: "Quay",
     tabSchedule: "Lộ trình",
     tabReference: "Hướng dẫn",
+    tabSouvenirs: "Quà lưu niệm",
     shotEyebrow: "Cảnh cần quay hôm nay",
     shotTitle: "Checklist quay",
     mvFlowTitle: "Bản dựng nháp MV hôm nay",
@@ -1843,6 +1846,7 @@ const shotList = document.querySelector("#shotList");
 const scheduleList = document.querySelector("#scheduleList");
 const ringPlan = document.querySelector("#ringPlan");
 const referenceGuideEl = document.querySelector("#referenceGuide");
+const souvenirList = document.querySelector("#souvenirList");
 const selectedTitle = document.querySelector("#selectedTitle");
 const selectedMood = document.querySelector("#selectedMood");
 const selectedDirectorNote = document.querySelector("#selectedDirectorNote");
@@ -2423,6 +2427,185 @@ function renderProgress() {
   progressText.title = `${done}/${total} ${labels.doneTitle}`;
 }
 
+const souvenirData = {
+  ko: {
+    title: "하카타역 과자 쇼핑 최적 동선 (지하 1층 → 1층)",
+    note: "역 안에서 헤매지 않고 한 번에. 귀국 당일이면 무거운 기본과자는 공항 면세점(토리몬·멘베이)으로 미루고, 역에서는 한정판 위주로.",
+    shelfTitle: "유통기한 · 추천 타겟",
+    extrasTitle: "더 챙기기 · 정정",
+    steps: [
+      {
+        stage: "1단계",
+        place: "하카타 한큐 백화점 지하 1층 식품관",
+        tip: "에스컬레이터로 지하 1층. 줄이 길고 품절이 빠른 한정판부터 공략. 계산 시 서비스 카운터(또는 M3층 면세)에서 5% 할인쿠폰 + 면세 혜택.",
+        items: [
+          { name: "아만베리 (AMANBERRY)", desc: "딸기 화이트초콜릿 샌드 쿠키. 한큐에서 가장 줄이 기니 눈에 띄면 바로 줄부터 서야 합니다." },
+          { name: "슈가버터트리 (Sugar Butter Tree)", desc: "통밀 쿠키 사이 진한 화이트초콜릿. 큐슈 한정 '아마오(あまおう) 딸기맛'을 꼭 고르세요." }
+        ]
+      },
+      {
+        stage: "2단계",
+        place: "하카타역 1층 마잉구 (Ming)",
+        tip: "한큐 지하에서 1층으로 올라와 중앙통로를 따라 역 북쪽(지쿠시구치 방면) 대형 오미야게 상가로. 이곳 한 곳에서 대중적 명과를 전부 해결.",
+        items: [
+          { name: "명월당 하카타 토리몬", desc: "부드러운 버터 만쥬. 실패 없는 선물 1순위. 상자 크기별(8개입·12개입 등)." },
+          { name: "후쿠타로 멘베이", desc: "명란맛 쌀과자. 대량으로 뿌리기 가장 좋은 가성비. 플레인·마요네즈맛 추천." },
+          { name: "붉은풍선 하카타 이치고이치고", desc: "마잉구 내 단독 매장. 상큼달콤한 딸기 쿠키." },
+          { name: "로이스 / 츠쿠시모찌", desc: "마잉구에서 한 번에. 츠쿠시모찌는 황금콩가루 + 흑설탕 시럽 조합." }
+        ]
+      },
+      {
+        stage: "3단계",
+        place: "하카타역 1층 중앙 개찰구 앞",
+        tip: "JR 하카타역 중앙 개찰구(초록색 창구 근처) 방향으로 이동.",
+        items: [
+          { name: "프레스 버터 샌드 (PRESS BUTTER SAND)", desc: "개찰구 옆 독립 매장. 큐슈 한정 '아마오 딸기맛' 패키지를 구매하세요." }
+        ]
+      }
+    ],
+    extras: [
+      { name: "아마오(あまおう) 딸기가 핵심", desc: "참고 메모의 '아마다우'는 '아마오(あまおう)'가 맞습니다 — 후쿠오카산 왕딸기. 슈가버터트리·프레스버터샌드의 큐슈 한정맛이 모두 이 딸기입니다." },
+      { name: "한큐에서 더", desc: "사브리나, 넨린야(ねんりん家)도 인기. 구운과자라 들고 가기 좋습니다." },
+      { name: "라빗 베이글", desc: "하카타역 특정 매장 한정. 아침 품절이 빠릅니다." }
+    ],
+    shelfLife: [
+      { name: "하카타 토리몬", desc: "상온 약 3~4주 · 부모님·어르신·가족" },
+      { name: "멘베이", desc: "상온 약 3개월 · 직장 동료·친구·맥주파" },
+      { name: "아만베리", desc: "상온 약 2~3주 · 나를 위한 선물·SNS 감성" },
+      { name: "프레스 버터 샌드", desc: "상온 약 1~2주 · 고급스러운 선물 (다소 짧음)" }
+    ]
+  },
+  en: {
+    title: "Hakata Station sweet-souvenir route (B1F → 1F)",
+    note: "Cover it in one pass without wandering the station. If it's your departure day, leave the heavy basics (Torimon, Menbei) for airport duty-free and grab the limited editions at the station.",
+    shelfTitle: "Shelf life · target",
+    extrasTitle: "Worth adding · corrections",
+    steps: [
+      {
+        stage: "Step 1",
+        place: "Hakata Hankyu Department Store B1F food hall",
+        tip: "Escalator down to B1F. Hit the long-queue limited items first. At checkout, claim the 5% discount coupon + tax-free at the service counter (or M3F tax-free counter).",
+        items: [
+          { name: "AMANBERRY", desc: "Strawberry white-chocolate sandwich cookie. Hankyu's longest queue — line up the moment you see it." },
+          { name: "Sugar Butter Tree", desc: "Whole-wheat cookie with rich white chocolate. The Kyushu-limited 'Amaou strawberry' flavor is a must." }
+        ]
+      },
+      {
+        stage: "Step 2",
+        place: "Hakata Station 1F Ming",
+        tip: "From Hankyu B1F come up to 1F and follow the central aisle north (Chikushiguchi side) into the large omiyage mall. All the popular classics in one stop.",
+        items: [
+          { name: "Meigetsudo Hakata Torimon", desc: "Soft butter manju. The can't-miss gift. Box sizes (8-piece, 12-piece, etc.)." },
+          { name: "Fukutaro Menbei", desc: "Mentaiko rice crackers. Best value for handing out in bulk. Plain & mayo flavors recommended." },
+          { name: "Akaifusen Hakata Ichigoichigo", desc: "Ming-exclusive shop. Sweet-tart strawberry cookie." },
+          { name: "Royce / Tsukushimochi", desc: "Both at Ming. Tsukushimochi = golden soybean powder + dark brown-sugar syrup." }
+        ]
+      },
+      {
+        stage: "Step 3",
+        place: "Hakata Station 1F, by the central ticket gate",
+        tip: "Head toward the JR Hakata central ticket gate (green counter).",
+        items: [
+          { name: "PRESS BUTTER SAND", desc: "Standalone shop by the gate. Get the Kyushu-limited 'Amaou strawberry' package." }
+        ]
+      }
+    ],
+    extras: [
+      { name: "Amaou (あまおう) is the key", desc: "The note's 'Amadau' is 'Amaou' — Fukuoka's king strawberry, the base of every Kyushu-limited flavor (Sugar Butter Tree, Press Butter Sand)." },
+      { name: "More at Hankyu", desc: "Sabrina and Nenrinka (ねんりん家) are popular too; baked goods travel home well." },
+      { name: "Rabbit Bagel", desc: "Limited to a specific Hakata Station shop; sells out fast in the morning." }
+    ],
+    shelfLife: [
+      { name: "Hakata Torimon", desc: "~3–4 weeks room temp · parents/elders" },
+      { name: "Menbei", desc: "~3 months room temp · coworkers/friends" },
+      { name: "AMANBERRY", desc: "~2–3 weeks room temp · for yourself" },
+      { name: "Press Butter Sand", desc: "~1–2 weeks room temp · premium gift" }
+    ]
+  },
+  vi: {
+    title: "Lộ trình mua bánh kẹo tại ga Hakata (B1F → 1F)",
+    note: "Mua hết trong một lượt, không cần đi lòng vòng. Nếu là ngày về, hãy để các loại cơ bản nặng (Torimon, Menbei) cho duty-free sân bay và ưu tiên phiên bản giới hạn ở ga.",
+    shelfTitle: "Hạn sử dụng · đối tượng",
+    extrasTitle: "Đáng thêm · đính chính",
+    steps: [
+      {
+        stage: "Bước 1",
+        place: "Tầng hầm B1F khu thực phẩm Hankyu Hakata",
+        tip: "Xuống B1F bằng cầu thang cuốn. Tấn công các phiên bản giới hạn xếp hàng dài trước. Khi thanh toán, nhận phiếu giảm 5% + hoàn thuế tại quầy dịch vụ (hoặc quầy hoàn thuế tầng M3).",
+        items: [
+          { name: "AMANBERRY", desc: "Bánh quy sandwich dâu tây chocolate trắng. Hàng dài nhất ở Hankyu — xếp hàng ngay khi thấy." },
+          { name: "Sugar Butter Tree", desc: "Bánh quy lúa mạch kẹp chocolate trắng đậm. Bắt buộc vị 'dâu tây Amaou' giới hạn Kyushu." }
+        ]
+      },
+      {
+        stage: "Bước 2",
+        place: "Tầng 1 ga Hakata — Ming",
+        tip: "Từ Hankyu B1F lên tầng 1, đi theo lối giữa về phía bắc (cửa Chikushiguchi) đến khu mua sắm omiyage lớn. Giải quyết mọi loại cổ điển ở một chỗ.",
+        items: [
+          { name: "Meigetsudo Hakata Torimon", desc: "Bánh bơ mềm. Quà không thể sai. Hộp nhiều kích cỡ (8 chiếc, 12 chiếc v.v.)." },
+          { name: "Fukutaro Menbei", desc: "Bánh gạo mentaiko. Giá hợp lý nhất để phát số lượng lớn. Vị nguyên vị và sốt mayo." },
+          { name: "Akaifusen Hakata Ichigoichigo", desc: "Cửa hàng độc quyền trong Ming. Bánh quy dâu tây chua ngọt." },
+          { name: "Royce / Tsukushimochi", desc: "Có tại Ming. Tsukushimochi = bột đậu vàng + xi-rô đường đen." }
+        ]
+      },
+      {
+        stage: "Bước 3",
+        place: "Tầng 1 ga Hakata, cạnh quầy vé trung tâm",
+        tip: "Đi về phía quầy vé JR Hakata trung tâm (quầy màu xanh lá).",
+        items: [
+          { name: "PRESS BUTTER SAND", desc: "Cửa hàng riêng cạnh quầy vé. Mua gói giới hạn Kyushu vị 'dâu tây Amaou'." }
+        ]
+      }
+    ],
+    extras: [
+      { name: "Amaou (あまおう) là chìa khóa", desc: "'Amadau' trong ghi chú chính xác là 'Amaou' — giống dâu vua Fukuoka, nền cho mọi vị giới hạn Kyushu (Sugar Butter Tree, Press Butter Sand)." },
+      { name: "Thêm ở Hankyu", desc: "Sabrina và Nenrinka (ねんりん家) cũng phổ biến; bánh nướng dễ mang về." },
+      { name: "Rabbit Bagel", desc: "Giới hạn một cửa hàng nhất định ở ga Hakata; bán hết nhanh vào buổi sáng." }
+    ],
+    shelfLife: [
+      { name: "Hakata Torimon", desc: "~3–4 tuần nhiệt độ phòng · bố mẹ/người lớn tuổi" },
+      { name: "Menbei", desc: "~3 tháng nhiệt độ phòng · đồng nghiệp/bạn bè" },
+      { name: "AMANBERRY", desc: "~2–3 tuần nhiệt độ phòng · cho bản thân" },
+      { name: "Press Butter Sand", desc: "~1–2 tuần nhiệt độ phòng · quà cao cấp" }
+    ]
+  }
+};
+
+function renderSouvenirs() {
+  if (!souvenirList) return;
+  const d = souvenirData[state.lang] || souvenirData.ko;
+  const steps = d.steps
+    .map(
+      (s) => `
+        <article class="route-card">
+          <header>
+            <span class="route-time">${s.stage}</span>
+            <div>
+              <h4>${s.place}</h4>
+              <p>${s.tip || ""}</p>
+            </div>
+          </header>
+          <ul class="souvenir-items">
+            ${s.items.map((i) => `<li><strong>${i.name}</strong><span>${i.desc}</span></li>`).join("")}
+          </ul>
+        </article>
+      `
+    )
+    .join("");
+  const shelf = (d.shelfLife || [])
+    .map((s) => `<li><strong>${s.name}</strong> — ${s.desc}</li>`)
+    .join("");
+  const extras = (d.extras || [])
+    .map((e) => `<li><strong>${e.name}</strong> — ${e.desc}</li>`)
+    .join("");
+  souvenirList.innerHTML = `
+    <article class="info-card souvenir-head"><strong>${d.title}</strong><p>${d.note}</p></article>
+    <div class="route-day">${steps}</div>
+    ${shelf ? `<article class="reference-card"><strong>${d.shelfTitle}</strong><ul>${shelf}</ul></article>` : ""}
+    ${extras ? `<article class="reference-card glossary-section"><strong>${d.extrasTitle}</strong><ul>${extras}</ul></article>` : ""}
+  `;
+}
+
 function renderMobilePanels() {
   document.querySelectorAll("[data-panel]").forEach((panel) => {
     panel.classList.toggle("active-mobile", panel.dataset.panel === state.mobileTab);
@@ -2442,6 +2625,7 @@ function render() {
   renderShots(day);
   renderInfo(day);
   renderReferenceGuide();
+  renderSouvenirs();
   renderProgress();
   renderMobilePanels();
   if (window.lucide) {
