@@ -246,6 +246,7 @@ class MusicVideoHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
+        self.send_header("Cache-Control", "no-store" if self.path.startswith("/api/") else "no-cache")
         super().end_headers()
 
     def log_message(self, format_string, *args):
@@ -261,7 +262,6 @@ class MusicVideoHandler(SimpleHTTPRequestHandler):
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
-        self.send_header("Cache-Control", "no-store")
         self.end_headers()
         self.wfile.write(body)
 
