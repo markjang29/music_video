@@ -2427,6 +2427,18 @@ function renderProgress() {
   progressText.title = `${done}/${total} ${labels.doneTitle}`;
 }
 
+// 기념품 항목별 구입처 구글맵 길찾기 링크 (현재위치 → 매장)
+const SOUVENIR_MAPS = {
+  hankyu: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("博多阪急 百貨店 地下1階"),
+  ming: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("博多駅マイング"),
+  torimon: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("明月堂 博多駅マイング1号店"),
+  menbei: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("福太郎 博多駅いっぴん通り店"),
+  ichigoichigo: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("赤い風船 博多駅マイング"),
+  royce: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("ロイズ 筑紫もち 博多駅マイング"),
+  press: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("プレスバターサンド 博多駅"),
+  gate: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("JR博多駅 中央改札")
+};
+
 const souvenirData = {
   ko: {
     title: "하카타역 과자 쇼핑 최적 동선 (지하 1층 → 1층)",
@@ -2438,28 +2450,31 @@ const souvenirData = {
         stage: "1단계",
         place: "하카타 한큐 백화점 지하 1층 식품관",
         tip: "에스컬레이터로 지하 1층. 줄이 길고 품절이 빠른 한정판부터 공략. 계산 시 서비스 카운터(또는 M3층 면세)에서 5% 할인쿠폰 + 면세 혜택.",
+        map: "hankyu",
         items: [
-          { name: "아만베리 (AMANBERRY)", desc: "딸기 화이트초콜릿 샌드 쿠키. 한큐에서 가장 줄이 기니 눈에 띄면 바로 줄부터 서야 합니다." },
-          { name: "슈가버터트리 (Sugar Butter Tree)", desc: "통밀 쿠키 사이 진한 화이트초콜릿. 큐슈 한정 '아마오(あまおう) 딸기맛'을 꼭 고르세요." }
+          { name: "아만베리 (AMANBERRY)", desc: "딸기 화이트초콜릿 샌드 쿠키. 한큐에서 가장 줄이 기니 눈에 띄면 바로 줄부터 서야 합니다.", map: "hankyu" },
+          { name: "슈가버터트리 (Sugar Butter Tree)", desc: "통밀 쿠키 사이 진한 화이트초콜릿. 큐슈 한정 '아마오(あまおう) 딸기맛'을 꼭 고르세요.", map: "hankyu" }
         ]
       },
       {
         stage: "2단계",
         place: "하카타역 1층 마잉구 (Ming)",
         tip: "한큐 지하에서 1층으로 올라와 중앙통로를 따라 역 북쪽(지쿠시구치 방면) 대형 오미야게 상가로. 이곳 한 곳에서 대중적 명과를 전부 해결.",
+        map: "ming",
         items: [
-          { name: "명월당 하카타 토리몬", desc: "부드러운 버터 만쥬. 실패 없는 선물 1순위. 상자 크기별(8개입·12개입 등)." },
-          { name: "후쿠타로 멘베이", desc: "명란맛 쌀과자. 대량으로 뿌리기 가장 좋은 가성비. 플레인·마요네즈맛 추천." },
-          { name: "붉은풍선 하카타 이치고이치고", desc: "마잉구 내 단독 매장. 상큼달콤한 딸기 쿠키." },
-          { name: "로이스 / 츠쿠시모찌", desc: "마잉구에서 한 번에. 츠쿠시모찌는 황금콩가루 + 흑설탕 시럽 조합." }
+          { name: "명월당 하카타 토리몬", desc: "부드러운 버터 만쥬. 실패 없는 선물 1순위. 상자 크기별(8개입·12개입 등).", map: "torimon" },
+          { name: "후쿠타로 멘베이", desc: "명란맛 쌀과자. 대량으로 뿌리기 가장 좋은 가성비. 플레인·마요네즈맛 추천.", map: "menbei" },
+          { name: "붉은풍선 하카타 이치고이치고", desc: "마잉구 내 단독 매장. 상큼달콤한 딸기 쿠키.", map: "ichigoichigo" },
+          { name: "로이스 / 츠쿠시모찌", desc: "마잉구에서 한 번에. 츠쿠시모찌는 황금콩가루 + 흑설탕 시럽 조합.", map: "royce" }
         ]
       },
       {
         stage: "3단계",
         place: "하카타역 1층 중앙 개찰구 앞",
         tip: "JR 하카타역 중앙 개찰구(초록색 창구 근처) 방향으로 이동.",
+        map: "gate",
         items: [
-          { name: "프레스 버터 샌드 (PRESS BUTTER SAND)", desc: "개찰구 옆 독립 매장. 큐슈 한정 '아마오 딸기맛' 패키지를 구매하세요." }
+          { name: "프레스 버터 샌드 (PRESS BUTTER SAND)", desc: "개찰구 옆 독립 매장. 큐슈 한정 '아마오 딸기맛' 패키지를 구매하세요.", map: "press" }
         ]
       }
     ],
@@ -2485,28 +2500,31 @@ const souvenirData = {
         stage: "Step 1",
         place: "Hakata Hankyu Department Store B1F food hall",
         tip: "Escalator down to B1F. Hit the long-queue limited items first. At checkout, claim the 5% discount coupon + tax-free at the service counter (or M3F tax-free counter).",
+        map: "hankyu",
         items: [
-          { name: "AMANBERRY", desc: "Strawberry white-chocolate sandwich cookie. Hankyu's longest queue — line up the moment you see it." },
-          { name: "Sugar Butter Tree", desc: "Whole-wheat cookie with rich white chocolate. The Kyushu-limited 'Amaou strawberry' flavor is a must." }
+          { name: "AMANBERRY", desc: "Strawberry white-chocolate sandwich cookie. Hankyu's longest queue — line up the moment you see it.", map: "hankyu" },
+          { name: "Sugar Butter Tree", desc: "Whole-wheat cookie with rich white chocolate. The Kyushu-limited 'Amaou strawberry' flavor is a must.", map: "hankyu" }
         ]
       },
       {
         stage: "Step 2",
         place: "Hakata Station 1F Ming",
         tip: "From Hankyu B1F come up to 1F and follow the central aisle north (Chikushiguchi side) into the large omiyage mall. All the popular classics in one stop.",
+        map: "ming",
         items: [
-          { name: "Meigetsudo Hakata Torimon", desc: "Soft butter manju. The can't-miss gift. Box sizes (8-piece, 12-piece, etc.)." },
-          { name: "Fukutaro Menbei", desc: "Mentaiko rice crackers. Best value for handing out in bulk. Plain & mayo flavors recommended." },
-          { name: "Akaifusen Hakata Ichigoichigo", desc: "Ming-exclusive shop. Sweet-tart strawberry cookie." },
-          { name: "Royce / Tsukushimochi", desc: "Both at Ming. Tsukushimochi = golden soybean powder + dark brown-sugar syrup." }
+          { name: "Meigetsudo Hakata Torimon", desc: "Soft butter manju. The can't-miss gift. Box sizes (8-piece, 12-piece, etc.).", map: "torimon" },
+          { name: "Fukutaro Menbei", desc: "Mentaiko rice crackers. Best value for handing out in bulk. Plain & mayo flavors recommended.", map: "menbei" },
+          { name: "Akaifusen Hakata Ichigoichigo", desc: "Ming-exclusive shop. Sweet-tart strawberry cookie.", map: "ichigoichigo" },
+          { name: "Royce / Tsukushimochi", desc: "Both at Ming. Tsukushimochi = golden soybean powder + dark brown-sugar syrup.", map: "royce" }
         ]
       },
       {
         stage: "Step 3",
         place: "Hakata Station 1F, by the central ticket gate",
         tip: "Head toward the JR Hakata central ticket gate (green counter).",
+        map: "gate",
         items: [
-          { name: "PRESS BUTTER SAND", desc: "Standalone shop by the gate. Get the Kyushu-limited 'Amaou strawberry' package." }
+          { name: "PRESS BUTTER SAND", desc: "Standalone shop by the gate. Get the Kyushu-limited 'Amaou strawberry' package.", map: "press" }
         ]
       }
     ],
@@ -2532,28 +2550,31 @@ const souvenirData = {
         stage: "Bước 1",
         place: "Tầng hầm B1F khu thực phẩm Hankyu Hakata",
         tip: "Xuống B1F bằng cầu thang cuốn. Tấn công các phiên bản giới hạn xếp hàng dài trước. Khi thanh toán, nhận phiếu giảm 5% + hoàn thuế tại quầy dịch vụ (hoặc quầy hoàn thuế tầng M3).",
+        map: "hankyu",
         items: [
-          { name: "AMANBERRY", desc: "Bánh quy sandwich dâu tây chocolate trắng. Hàng dài nhất ở Hankyu — xếp hàng ngay khi thấy." },
-          { name: "Sugar Butter Tree", desc: "Bánh quy lúa mạch kẹp chocolate trắng đậm. Bắt buộc vị 'dâu tây Amaou' giới hạn Kyushu." }
+          { name: "AMANBERRY", desc: "Bánh quy sandwich dâu tây chocolate trắng. Hàng dài nhất ở Hankyu — xếp hàng ngay khi thấy.", map: "hankyu" },
+          { name: "Sugar Butter Tree", desc: "Bánh quy lúa mạch kẹp chocolate trắng đậm. Bắt buộc vị 'dâu tây Amaou' giới hạn Kyushu.", map: "hankyu" }
         ]
       },
       {
         stage: "Bước 2",
         place: "Tầng 1 ga Hakata — Ming",
         tip: "Từ Hankyu B1F lên tầng 1, đi theo lối giữa về phía bắc (cửa Chikushiguchi) đến khu mua sắm omiyage lớn. Giải quyết mọi loại cổ điển ở một chỗ.",
+        map: "ming",
         items: [
-          { name: "Meigetsudo Hakata Torimon", desc: "Bánh bơ mềm. Quà không thể sai. Hộp nhiều kích cỡ (8 chiếc, 12 chiếc v.v.)." },
-          { name: "Fukutaro Menbei", desc: "Bánh gạo mentaiko. Giá hợp lý nhất để phát số lượng lớn. Vị nguyên vị và sốt mayo." },
-          { name: "Akaifusen Hakata Ichigoichigo", desc: "Cửa hàng độc quyền trong Ming. Bánh quy dâu tây chua ngọt." },
-          { name: "Royce / Tsukushimochi", desc: "Có tại Ming. Tsukushimochi = bột đậu vàng + xi-rô đường đen." }
+          { name: "Meigetsudo Hakata Torimon", desc: "Bánh bơ mềm. Quà không thể sai. Hộp nhiều kích cỡ (8 chiếc, 12 chiếc v.v.).", map: "torimon" },
+          { name: "Fukutaro Menbei", desc: "Bánh gạo mentaiko. Giá hợp lý nhất để phát số lượng lớn. Vị nguyên vị và sốt mayo.", map: "menbei" },
+          { name: "Akaifusen Hakata Ichigoichigo", desc: "Cửa hàng độc quyền trong Ming. Bánh quy dâu tây chua ngọt.", map: "ichigoichigo" },
+          { name: "Royce / Tsukushimochi", desc: "Có tại Ming. Tsukushimochi = bột đậu vàng + xi-rô đường đen.", map: "royce" }
         ]
       },
       {
         stage: "Bước 3",
         place: "Tầng 1 ga Hakata, cạnh quầy vé trung tâm",
         tip: "Đi về phía quầy vé JR Hakata trung tâm (quầy màu xanh lá).",
+        map: "gate",
         items: [
-          { name: "PRESS BUTTER SAND", desc: "Cửa hàng riêng cạnh quầy vé. Mua gói giới hạn Kyushu vị 'dâu tây Amaou'." }
+          { name: "PRESS BUTTER SAND", desc: "Cửa hàng riêng cạnh quầy vé. Mua gói giới hạn Kyushu vị 'dâu tây Amaou'.", map: "press" }
         ]
       }
     ],
@@ -2574,6 +2595,11 @@ const souvenirData = {
 function renderSouvenirs() {
   if (!souvenirList) return;
   const d = souvenirData[state.lang] || souvenirData.ko;
+  const mapLabel = { ko: "📍 지도에서 길찾기", en: "📍 Directions", vi: "📍 Chỉ đường" }[state.lang] || "📍 Map";
+  const mapBtn = (slug) => {
+    const url = SOUVENIR_MAPS[slug];
+    return url ? `<a class="map-link" href="${url}" target="_blank" rel="noopener">${mapLabel}</a>` : "";
+  };
   const steps = d.steps
     .map(
       (s) => `
@@ -2583,10 +2609,11 @@ function renderSouvenirs() {
             <div>
               <h4>${s.place}</h4>
               <p>${s.tip || ""}</p>
+              ${mapBtn(s.map)}
             </div>
           </header>
           <ul class="souvenir-items">
-            ${s.items.map((i) => `<li><strong>${i.name}</strong><span>${i.desc}</span></li>`).join("")}
+            ${s.items.map((i) => `<li><strong>${i.name}</strong><span>${i.desc}</span>${mapBtn(i.map)}</li>`).join("")}
           </ul>
         </article>
       `
